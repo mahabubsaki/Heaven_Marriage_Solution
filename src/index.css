@@ -1,0 +1,150 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+body {
+    background-color: #EFEBD9 !important;
+    color: black !important;
+}
+
+.swiper-pagination-bullet {
+    width: 5px !important;
+    height: 5px !important;
+    text-align: center !important;
+    line-height: 20px !important;
+    font-size: 12px !important;
+    color: #000 !important;
+    opacity: 1 !important;
+    background: white !important;
+}
+
+.swiper-pagination-bullet-active {
+    color: #fff !important;
+    background: #007aff !important;
+}
+
+
+@layer utilities {
+
+    .icon {
+        width: 16px;
+        height: 16px;
+        stroke-width: 2;
+        color: white;
+    }
+
+    .bg-primary {
+        background-color: #EFEBD9;
+    }
+
+    .blackIcon {
+        width: 16px;
+        height: 16px;
+        stroke-width: 2;
+        color: black;
+    }
+
+    .title {
+        font-size: 16px;
+        letter-spacing: -0.5px;
+        font-weight: 500;
+        z-index: 1;
+    }
+
+    .iconContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        right: 20px;
+
+    }
+
+    .whiteFilledButtonContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        cursor: pointer;
+        background-color: #F9F6EE;
+        border-radius: 2px;
+        overflow: clip;
+        border: 1px black solid;
+    }
+
+    .blackFilledButtonContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        cursor: pointer;
+        background-color: black;
+        border-radius: 2px;
+        overflow: clip;
+        border: 1px solid black;
+    }
+
+    .circle {
+        width: 6px;
+        height: 6px;
+        background-color: black;
+        border-radius: 50%;
+        position: absolute;
+        left: -10px;
+    }
+
+    .whiteCircle {
+        width: 6px;
+        height: 6px;
+        background-color: #F9F6EE;
+        border-radius: 50%;
+        position: absolute;
+        left: -10px;
+    }
+
+    .border-thin {
+        border-width: 0.25px;
+    }
+
+
+    .glass-morphism {
+        background-color: transparent;
+        backdrop-filter: blur(10px);
+        background-image: linear-gradient(120deg,
+                rgba(255, 255, 255, 0.3),
+                rgba(0, 0, 0, 0.2));
+    }
+
+    .glass-card {
+        width: 300px;
+        padding: 20px;
+        border-radius: 20px;
+        background: rgba(198, 156, 131, 0.2);
+        /* base color with transparency */
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        color: #fff;
+        font-family: sans-serif;
+    }
+
+
+
+
+
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+        background-color: #F9F6EE !important;
+        color: black !important;
+        -webkit-box-shadow: 0 0 0px 1000px #F9F6EE inset !important;
+    }
+
+
+
+
+}
