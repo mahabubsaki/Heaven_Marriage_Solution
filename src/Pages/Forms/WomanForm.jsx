@@ -163,13 +163,13 @@ const WomanForm = () => {
 
         {
             name: "accept_tms_policy",
-            question: "আপনি  Taqwa Marriage Solutions (TMS) এর দাম্পত্য জীবন কেন্দ্রিক সকল আদর্শ তথা বিবাহ কেন্দ্রিক সকল শরয়ী বিধান মানতে রাজি আছেন কি না?",
+            question: "আপনি  Taqwa Marriage Solutions (HMS) এর দাম্পত্য জীবন কেন্দ্রিক সকল আদর্শ তথা বিবাহ কেন্দ্রিক সকল শরয়ী বিধান মানতে রাজি আছেন কি না?",
             class: "hidden",
             options: ["জি, রাজি আছি।"]
         },
         {
             name: "fulfill_husband_rights",
-            question: "আপনি আপনার স্বামীর সকল শরয়ী হক্ব আদায় করতে রাজি আছেন কিনা? হক্বগুলো না জানা থাকলে  TMS  থেকে  জেনে নিয়ে তা মানতে রাজি আছেন কিনা?",
+            question: "আপনি আপনার স্বামীর সকল শরয়ী হক্ব আদায় করতে রাজি আছেন কিনা? হক্বগুলো না জানা থাকলে  HMS  থেকে  জেনে নিয়ে তা মানতে রাজি আছেন কিনা?",
             class: "hidden",
             options: ["জি রাজি আছি, ইনশাআল্লাহ"]
         },
@@ -408,7 +408,7 @@ const WomanForm = () => {
             <div className="border-[5px] rounded-xl border-[#373B4D] max-w-[1000px] mx-auto p-10 mt-16 mb-5">
                 <HeadingSubHead heading="মহিলাদের ফরম" />
 
-                <form onSubmit={handleSubmit} className="mt-5 gap-10">
+                <form onSubmit={handleSubmit} className="gap-10 pt-5 px-5">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                         <div className="flex flex-col space-y-5">
                             <label className="font-semibold font-alkatra">
@@ -424,7 +424,7 @@ const WomanForm = () => {
                                     {subHeading && <p className="font-galada">{subHeading}</p>}
 
                                     {!clas && < div className="flex flex-col">
-                                        <label className={`font-semibold font-alkatra ${clas}`}>
+                                        <label className={`font-semibold font-alkatra text-justify ${clas}`}>
                                             {label}
                                         </label>
                                         {!visibility && < input className={`bg-white ${clas} outline-none `} type="text" name={name} required={required || false} />}
@@ -432,7 +432,7 @@ const WomanForm = () => {
 
                                     {clas && (
                                         <div className="mb-4">
-                                            <label className="block font-semibold mb-1">{question}</label>
+                                            <label className="block font-semibold mb-1 text-justify">{question}</label>
                                             <select
                                                 required
                                                 name={name}

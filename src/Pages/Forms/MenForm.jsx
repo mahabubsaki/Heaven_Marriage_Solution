@@ -9,6 +9,7 @@ import { imageUpload } from "../../Utils/ImageUpload";
 import React from 'react';
 import Navbar from "../../Components/Shared/Navbar/Navbar";
 import HeadingSubHead from "../../Components/TextAnimations/HeadingSubHead";
+import menFormImage from '/images/men_form.jpeg'
 
 const MenForm = () => {
 
@@ -291,133 +292,131 @@ const MenForm = () => {
 
         {
             name: "districts",
-            question: "জেলা কোনটি?",
-            class: "hidden",
-            options: [
-                "ঢাকা",
-                "গাজীপুর",
-                "নারায়ণগঞ্জ",
-                "টাঙ্গাইল",
-                "কিশোরগঞ্জ",
-                "মানিকগঞ্জ",
-                "মুন্সিগঞ্জ",
-                "রাজবাড়ী",
-                "মাদারীপুর",
-                "শরীয়তপুর",
-                "গোপালগঞ্জ",
-                "ফরিদপুর",
-                "নরসিংদী",
-                "চট্টগ্রাম",
-                "কক্সবাজার",
-                "বান্দরবান",
-                "রাঙ্গামাটি",
-                "খাগড়াছড়ি",
-                "নোয়াখালী",
-                "লক্ষ্মীপুর",
-                "ফেনী",
-                "চাঁদপুর",
-                "ব্রাহ্মণবাড়িয়া",
-                "কুমিল্লা",
-                "ময়মনসিংহ",
-                "জামালপুর",
-                "নেত্রকোনা",
-                "শেরপুর",
-                "রাজশাহী",
-                "নাটোর",
-                "নওগাঁ",
-                "চাঁপাইনবাবগঞ্জ",
-                "জয়পুরহাট",
-                "বগুড়া",
-                "পাবনা",
-                "সিরাজগঞ্জ",
-                "খুলনা",
-                "যশোর",
-                "চুয়াডাঙ্গা",
-                "মেহেরপুর",
-                "নড়াইল",
-                "বাগেরহাট",
-                "ঝিনাইদহ",
-                "কুষ্টিয়া",
-                "সাতক্ষীরা",
-                "বরিশাল",
-                "ভোলা",
-                "পটুয়াখালী",
-                "ঝালকাঠি",
-                "পিরোজপুর",
-                "বরগুনা",
-                "সিলেট",
-                "মৌলভীবাজার",
-                "হবিগঞ্জ",
-                "সুনামগঞ্জ",
-                "রংপুর",
-                "দিনাজপুর",
-                "ঠাকুরগাঁও",
-                "পঞ্চগড়",
-                "নীলফামারী",
-                "কুড়িগ্রাম",
-                "গাইবান্ধা",
-                "লালমনিরহাট"
-            ]
+            label: "কোন জেলার মেয়ে হলে ভালো হয়?",
+            // class: "hidden",
+            // options: [
+            //     "ঢাকা",
+            //     "গাজীপুর",
+            //     "নারায়ণগঞ্জ",
+            //     "টাঙ্গাইল",
+            //     "কিশোরগঞ্জ",
+            //     "মানিকগঞ্জ",
+            //     "মুন্সিগঞ্জ",
+            //     "রাজবাড়ী",
+            //     "মাদারীপুর",
+            //     "শরীয়তপুর",
+            //     "গোপালগঞ্জ",
+            //     "ফরিদপুর",
+            //     "নরসিংদী",
+            //     "চট্টগ্রাম",
+            //     "কক্সবাজার",
+            //     "বান্দরবান",
+            //     "রাঙ্গামাটি",
+            //     "খাগড়াছড়ি",
+            //     "নোয়াখালী",
+            //     "লক্ষ্মীপুর",
+            //     "ফেনী",
+            //     "চাঁদপুর",
+            //     "ব্রাহ্মণবাড়িয়া",
+            //     "কুমিল্লা",
+            //     "ময়মনসিংহ",
+            //     "জামালপুর",
+            //     "নেত্রকোনা",
+            //     "শেরপুর",
+            //     "রাজশাহী",
+            //     "নাটোর",
+            //     "নওগাঁ",
+            //     "চাঁপাইনবাবগঞ্জ",
+            //     "জয়পুরহাট",
+            //     "বগুড়া",
+            //     "পাবনা",
+            //     "সিরাজগঞ্জ",
+            //     "খুলনা",
+            //     "যশোর",
+            //     "চুয়াডাঙ্গা",
+            //     "মেহেরপুর",
+            //     "নড়াইল",
+            //     "বাগেরহাট",
+            //     "ঝিনাইদহ",
+            //     "কুষ্টিয়া",
+            //     "সাতক্ষীরা",
+            //     "বরিশাল",
+            //     "ভোলা",
+            //     "পটুয়াখালী",
+            //     "ঝালকাঠি",
+            //     "পিরোজপুর",
+            //     "বরগুনা",
+            //     "সিলেট",
+            //     "মৌলভীবাজার",
+            //     "হবিগঞ্জ",
+            //     "সুনামগঞ্জ",
+            //     "রংপুর",
+            //     "দিনাজপুর",
+            //     "ঠাকুরগাঁও",
+            //     "পঞ্চগড়",
+            //     "নীলফামারী",
+            //     "কুড়িগ্রাম",
+            //     "গাইবান্ধা",
+            //     "লালমনিরহাট"
+            // ]
         },
         {
             name: "expected_bride_age",
-            question: "কেমন বয়সের চান? (বয়স নির্বাচন করুন)",
-            class: "hidden",
-            options: [
-                "১৮",
-                "১৯",
-                "২০",
-                "২১",
-                "২২",
-                "২৩",
-                "২৪",
-                "২৫",
-                "২৬",
-                "২৭",
-                "২৮",
-                "২৯",
-                "৩০",
-                "৩১",
-                "৩২",
-                "৩৩",
-                "৩৪",
-                "৩৫",
-                "৩৬",
-                "৩৭",
-                "৩৮",
-                "৩৯",
-                "৪০"
-            ]
+            label: "কেমন বয়সের চান?",
+            // options: [
+            //     "১৮",
+            //     "১৯",
+            //     "২০",
+            //     "২১",
+            //     "২২",
+            //     "২৩",
+            //     "২৪",
+            //     "২৫",
+            //     "২৬",
+            //     "২৭",
+            //     "২৮",
+            //     "২৯",
+            //     "৩০",
+            //     "৩১",
+            //     "৩২",
+            //     "৩৩",
+            //     "৩৪",
+            //     "৩৫",
+            //     "৩৬",
+            //     "৩৭",
+            //     "৩৮",
+            //     "৩৯",
+            //     "৪০"
+            // ]
         },
         {
             name: "expected_bride_height",
-            question: "উচ্চতা কেমন চান? (কত থেকে কত উচ্চতার)",
-            class: "hidden",
-            options: [
-                "৪ ফুট ৮ ইঞ্চি",
-                "৪ ফুট ৯ ইঞ্চি",
-                "৪ ফুট ১০ ইঞ্চি",
-                "৪ ফুট ১১ ইঞ্চি",
-                "৫ ফুট",
-                "৫ ফুট ১ ইঞ্চি",
-                "৫ ফুট ২ ইঞ্চি",
-                "৫ ফুট ৩ ইঞ্চি",
-                "৫ ফুট ৪ ইঞ্চি",
-                "৫ ফুট ৫ ইঞ্চি",
-                "৫ ফুট ৬ ইঞ্চি",
-                "৫ ফুট ৭ ইঞ্চি",
-                "৫ ফুট ৮ ইঞ্চি",
-                "৫ ফুট ৯ ইঞ্চি",
-                "৫ ফুট ১০ ইঞ্চি",
-                "৫ ফুট ১১ ইঞ্চি",
-                "৬ ফুট",
-                "৬ ফুট ১ ইঞ্চি",
-                "৬ ফুট ২ ইঞ্চি",
-                "৬ ফুট ৩ ইঞ্চি",
-                "৬ ফুট ৪ ইঞ্চি",
-                "৬ ফুট ৫ ইঞ্চি",
-                "৬ ফুট ৬ ইঞ্চি"
-            ]
+            label: "উচ্চতা কেমন চান? (কত থেকে কত উচ্চতার)",
+            // options: [
+            //     "৪ ফুট ৮ ইঞ্চি",
+            //     "৪ ফুট ৯ ইঞ্চি",
+            //     "৪ ফুট ১০ ইঞ্চি",
+            //     "৪ ফুট ১১ ইঞ্চি",
+            //     "৫ ফুট",
+            //     "৫ ফুট ১ ইঞ্চি",
+            //     "৫ ফুট ২ ইঞ্চি",
+            //     "৫ ফুট ৩ ইঞ্চি",
+            //     "৫ ফুট ৪ ইঞ্চি",
+            //     "৫ ফুট ৫ ইঞ্চি",
+            //     "৫ ফুট ৬ ইঞ্চি",
+            //     "৫ ফুট ৭ ইঞ্চি",
+            //     "৫ ফুট ৮ ইঞ্চি",
+            //     "৫ ফুট ৯ ইঞ্চি",
+            //     "৫ ফুট ১০ ইঞ্চি",
+            //     "৫ ফুট ১১ ইঞ্চি",
+            //     "৬ ফুট",
+            //     "৬ ফুট ১ ইঞ্চি",
+            //     "৬ ফুট ২ ইঞ্চি",
+            //     "৬ ফুট ৩ ইঞ্চি",
+            //     "৬ ফুট ৪ ইঞ্চি",
+            //     "৬ ফুট ৫ ইঞ্চি",
+            //     "৬ ফুট ৬ ইঞ্চি"
+            // ]
         },
         {
             name: "expected_bride_color",
@@ -675,15 +674,16 @@ const MenForm = () => {
     };
 
     return (
-        <div className=" px-5">
+        <div className="px-2 py-2">
             <div>
                 <h1 className="text-2xl font-bold text-[#C3937C] p-2">Heaven Marriage</h1>
             </div>
             <Navbar />
-            <div className="border-[5px] rounded-xl border-[#373B4D] max-w-[1000px] mx-auto p-10 mt-16 mb-5">
-                <HeadingSubHead heading="পুরুষদের আবেদন ফরম" />
+            <div className="border-[5px] rounded-xl border-[#373B4D] max-w-[1000px] mx-auto  mt-16 mb-5">
+                <img src={menFormImage} className="px-0 mb-5" alt="" />
+                <HeadingSubHead heading="পুরুষদের আবেদন ফরম"/>
 
-                <form onSubmit={handleSubmit} className="mt-5 gap-10">
+                <form onSubmit={handleSubmit} className=" gap-10 pt-5 px-5">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                         <div className="flex flex-col space-y-5">
                             <label className="font-semibold font-alkatra">
@@ -699,15 +699,15 @@ const MenForm = () => {
                                     {subHeading && <p className="font-galada">{subHeading}</p>}
 
                                     {!clas && < div className="flex flex-col">
-                                        <label className={`font-semibold font-alkatra ${clas}`}>
+                                        <label className={`font-semibold font-alkatra mb-3 ${clas} text-justify`}>
                                             {label}
                                         </label>
-                                        {!visibility && < input className={`bg-white ${clas} outline-none `} type="text" name={name} required={required || false} />}
+                                        {!visibility && < input className={`bg-white ${clas} w-full border-2 border-gray-300  font-alkatra rounded py-2 `} type="text" name={name} required={required || false} />}
                                     </div>}
 
                                     {clas && (
                                         <div className="mb-4">
-                                            <label className="block font-semibold mb-1">{question}</label>
+                                            <label className="block font-semibold mb-2 text-justify">{question}</label>
                                             <select
                                                 required
                                                 name={name}
@@ -728,7 +728,7 @@ const MenForm = () => {
 
                     </div>
 
-                    <div className="flex justify-center mt-5">
+                    <div className="flex justify-center my-5">
                         <button className="px-4 py-1 mx-5 w-[340px]
              bg-gradient-to-r from-[#faf0d3] to-[#e9deaf] 
              text-gray-800 font-semibold rounded shadow-md 

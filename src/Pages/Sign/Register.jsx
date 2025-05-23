@@ -1,16 +1,15 @@
 import { FcGoogle } from 'react-icons/fc';
-import { FaLock, FaLockOpen } from 'react-icons/fa';
+import { FaEye, FaEyeSlash, FaLock, FaLockOpen } from 'react-icons/fa';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
-import img_1 from '/images/banner_1.webp';
+import img_1 from '/images/sign_img.jpeg';
 import useAuth from '../../Hooks/Auth/useAuth';
 import React from 'react';
 import useAxiosSecure from '../../Hooks/Axios/useAxiosSecure';
 import { useMutation } from '@tanstack/react-query';
 import { imageUpload } from '../../Utils/ImageUpload';
 import { AiOutlineLoading } from 'react-icons/ai';
-
 
 const Register = () => {
 
@@ -105,14 +104,15 @@ const Register = () => {
             className="relative min-h-screen w-full flex justify-center md:justify-start bg-cover bg-center"
             style={{ backgroundImage: `url('${img_1}')` }}
         >
-            <div className=" absolute inset-0 bg-black/5"></div>
+            <div className=" absolute inset-0 bg-black/30"></div>
 
-            <div className=' relative z-10 min-h-screen md:w-3/5 lg:w-2/5 md:glass flex flex-col justify-center items-center w-[500px]'>
+            <div className=' z-10 min-h-screen md:w-3/5 lg:w-2/5 md:glass flex flex-col justify-center items-center w-[500px]'>
 
-                <form onSubmit={handleSignUp} className="text-left flex justify-center flex-col items-center text-white ">
+                <form onSubmit={handleSignUp} className="text-left flex justify-center mt-2 flex-col items-center text-white ">
 
                     <div className='w-[280px] md:w-[400px] '>
-                        <h1 className="text-4xl font-lexend my-10">SignUp Now!</h1>
+            <Link to={'/'} className='text-3xl font-anek'>Heaven Marriage</Link>
+                        <h1 className="mb-2 font-lexend">SignUp Now!</h1>
                         <div className='flex flex-col space-y-5'>
                             <input required className='glass-morphism py-4 placeholder:text-white pl-4 pr-16 text-left outline-none rounded-sm font-raleway text-sm' placeholder='Your Name' type="text" name="name" />
                             <select
@@ -125,21 +125,21 @@ const Register = () => {
                                 <option className='text-black' value='female'>Female</option>
                             </select>
                             <input type="file" name="image" className='glass-morphism py-4  placeholder:text-white pl-4 pr-16 text-left outline-none rounded-sm font-raleway text-sm file:glass-morphism file:border-none file:rounded-xl ' />
-                            <input required className='glass-morphism py-4 placeholder:text-white pl-4 pr-16 text-left outline-none rounded-sm font-raleway text-sm' placeholder='Phone Number' type="text" name="phone" />
+                            <input required className='glass-morphism py-4 placeholder:text-white pl-4 pr-16 text-left outline-none rounded-sm text-sm' placeholder='Phone Number' type="text" name="phone" />
                             <input required className='glass-morphism py-4  placeholder:text-white pl-4 pr-16 text-left outline-none rounded-sm font-raleway text-sm' placeholder='Email' type="email" name="email" />
                             <div className='relative'>
                                 <input required className='glass-morphism placeholder:text-white  py-4 pl-4  w-full pr-16 text-left outline-none rounded-sm font-raleway text-sm' placeholder='Password' type={passText ? "password" : "text"} name="password" />
-                                <span onClick={() => setPassText(!passText)} className='absolute right-5 top-4'> {passText ? <FaLock /> : <FaLockOpen />} </span>
+                                <span onClick={() => setPassText(!passText)} className='absolute right-5 top-4'> {passText ? <FaEye /> : <FaEyeSlash />} </span>
                             </div>
                             <div className='relative'>
                                 <input required className='glass-morphism placeholder:text-white py-4 pl-4 w-full pr-16 text-left outline-none rounded-sm font-raleway text-sm' placeholder='Confirm Password' type={confirmPassText ? "password" : "text"} name="confirmPassword" />
-                                <span onClick={() => setConfirmPassText(!confirmPassText)} className='absolute right-5 top-4'>{confirmPassText ? <FaLock /> : <FaLockOpen />}</span>
+                                <span onClick={() => setConfirmPassText(!confirmPassText)} className='absolute right-5 top-4'>{confirmPassText ? <FaEye /> : <FaEyeSlash />}</span>
                             </div>
                             <span className='flex justify-center'>
                                 {
                                     logLoad ? <AiOutlineLoading className='text-2xl font-bold animate-spin' />
                                         :
-                                        <button className='border border-white px-2 py-1'>Sign up</button>
+                                        <button className='border-b text-white font-bold border-blue-500 px-2 py-1'>Sign up</button>
                                 }
                             </span>
                         </div>
@@ -157,7 +157,7 @@ const Register = () => {
                         </div>
                     </div>
 
-                    <h1 className='capitalize text-sm text-left text-white'>already have an account ? <Link to='/login' className='hover:text-blue-500 transition-all'>login</Link> </h1>
+                    <h1 className='capitalize text-sm text-left text-white mb-5'>already have an account ? <Link to='/login' className='text-blue-500 underline transition-all'>login</Link> </h1>
                 </div>
 
 

@@ -1,12 +1,12 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 const firebaseConfig = {
-    apiKey: "AIzaSyCfTDbzD9aHtGpXqYsxmcIANK39e2xjd5c",
-    authDomain: "heaven-marriage.firebaseapp.com",
-    projectId: "heaven-marriage",
-    storageBucket: "heaven-marriage.firebasestorage.app",
-    messagingSenderId: "557161650662",
-    appId: "1:557161650662:web:789440b1c6edc2e8971e27"
+  apiKey: "AIzaSyDi2G9ARAgkLk7pqipGdBsoBND-IcWvQHk",
+  authDomain: "complete-heaven-marriage.firebaseapp.com",
+  projectId: "complete-heaven-marriage",
+  storageBucket: "complete-heaven-marriage.firebasestorage.app",
+  messagingSenderId: "571296984597",
+  appId: "1:571296984597:web:946c93a886179f727fe81c"
 };
 
 const app = initializeApp(firebaseConfig);

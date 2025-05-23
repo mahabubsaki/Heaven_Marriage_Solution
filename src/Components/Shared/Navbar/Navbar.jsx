@@ -78,28 +78,28 @@ const Navbar = () => {
             <header className="absolute top-1/2 w-full -translate-y-1/2 ">
                 <nav className={`flex size-full items-center justify-evenly p-4  gap-5 text-[#C3937C]`}>
 
-                    <Link to='/' className="text-[11px] text-[#C3937C]">
+                    <Link to='/' className="text-[11px]">
                         <span className="flex flex-col justify-center items-center">
                             <span className="text-2xl"><FaHome /></span>
-                            Home</span>
+                            <span className="text-[#853e1d]">Home</span></span>
                     </Link>
 
                     <Link to='/member_registration' className="text-[11px]" >
                         <span className="flex flex-col justify-center items-center">
                             <span className="text-2xl"><FaWpforms /></span>
-                            Registration</span>
+                            <span className="text-[#853e1d]">Registration</span></span>
                     </Link>
 
                     <Link to='/all_members' className="text-[11px]" >
                         <span className="flex flex-col justify-center items-center">
                             <span className="text-2xl"><FaHandHoldingHeart /></span>
-                            Request</span>
+                            <span className="text-[#853e1d]">Request</span></span>
                     </Link>
 
                     <Link to='/products' className="text-[11px]" >
                         <span className="flex flex-col justify-center items-center">
                             <span className="text-2xl"><FaShop /></span>
-                            Shop</span>
+                            <span className="text-[#853e1d]">Shop</span></span>
                     </Link>
 
 
@@ -115,9 +115,9 @@ const Navbar = () => {
                     {/* modal */}
                     <motion.div
                         initial={{}}
-                        animate={{ x: isOpen ? -300 : 0 }}
+                        animate={{ x: isOpen ? -330 : 0 }}
                         transition={{ type: "tween", duration: 0.3 }}
-                        className="absolute  md:py-5 right-[-300px] top-[-32px] pl-5 w-4/5 min-h-[100dvh] md:w-64 bg-white shadow-lg"
+                        className="absolute  md:py-5 right-[-330px] top-[-32px] pl-5 w-4/5 min-h-[100dvh] md:w-64 bg-white shadow-lg"
                     >
                         <button
                             onClick={() => setIsOpen(!open)}
@@ -129,7 +129,7 @@ const Navbar = () => {
 
                         <div className="mt-16 pr-5 flex flex-col items-center gap-2">
                             <img src="/images/winner.jpg" width={64} alt="" />
-                            <p className="text-black text-center text-sm">বিশুদ্ধতা, বিশ্বস্ততা ও সুন্নাহ-সম্মত বিবাহের নির্ভরযোগ্য প্রতিষ্ঠান</p>
+                            <p className="text-black text-center text-sm font-galada">বিশুদ্ধতা, বিশ্বস্ততা ও সুন্নাহ-সম্মত বিবাহের নির্ভরযোগ্য প্রতিষ্ঠান</p>
                             <button className="flex gap-2 items-center bg-gradient-to-r from-blue-500 via-fuchsia-500 to-purple-600 text-white px-4 py-2 rounded-md mt-2">
                                 <FaYoutube className="text-red-500 text-2xl" />
                                 <p className="text-center text-sm text-white opacity-70 ">আমাদের সম্পর্কে আরো জানতে ক্লিক করুন </p>
@@ -143,7 +143,7 @@ const Navbar = () => {
                                 {navItems.map((nav, idx) => (
                                     <Link key={idx} to={nav?.destination} className="flex border-b -ml-5 px-5 pb-2 gap-2" >
                                         <span className="text-2xl text-[#C3937C]">{nav?.icon}</span>
-                                        <button className={`uppercase nav-hover-btn text-black`}>{nav?.name}</button>
+                                        <button className={`uppercase nav-hover-btn text-black font-galada`}>{nav?.name}</button>
                                     </Link>
                                 ))}
                                 {role === 'admin' && <Link className={`uppercase nav-hover-btn text-black`} to='dashboard'>Admin</Link>}
@@ -151,7 +151,7 @@ const Navbar = () => {
                             {
                                 user ?
                                     <button className="absolute bottom-5 left-10 text-base text-black font-raleway" onClick={logOut}>Logout</button> :
-                                    <Link to='/login' className="absolute bottom-5 left-10 text-base text-black">Login</Link>
+                                    <Link to='/login' className="absolute bottom-5 font-lexend left-10 text-base text-black">Login</Link>
                             }
                         </nav>
                     </motion.div>
