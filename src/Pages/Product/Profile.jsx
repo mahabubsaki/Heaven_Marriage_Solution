@@ -71,6 +71,7 @@ const Profile = () => {
                             </div>
                         </Link>
 
+
                         <Link to={`/images/${user?.email}`} className=" text-xs ">
                             <div className="bg-[#F2F2F2] flex gap-2 items-center p-4 rounded-xl ">
                                 <FaImage className="text-xl" />

@@ -29,9 +29,10 @@ const MemberVerified = () => {
 
                 <h2 className="font-galada text-lg font-semibold">যেকোনো সহযোগিতা বা পরামর্শের জন্য যোগাযোগ করুন:</h2>
                 <ul className="font-galada space-y-1">
-                    <li>১. মোহাম্মদ রাহেদ হোসেন মাহেদ (ফাউন্ডার, HMS) → <span className="font-semibold">+8801748919251</span></li>
-                    <li>২. হাফিজুর রহমান হাফিজ (সিইও) → <span className="font-semibold">+8801925222525</span></li>
-                    <li>৩. অফিসিয়াল হোয়াটসঅ্যাপ সাপোর্ট (ডকুমেন্ট ও প্রস্তাব সংক্রান্ত) → <span className="font-semibold">+8801610371038</span></li>
+                    <li>১. মোহাম্মদ রাহেদ হোসেন মাহেদ (ফাউন্ডার, HMS) → <span className="font-semibold">+8801610371038</span></li>
+                    <li>২. হাফিজুর রহমান হাফিজ (ফাউন্ডার এন্ড চেয়ারম্যন HMS ) → <span className="font-semibold">+8801925222525</span></li>
+                    <li>৩. অফিসিয়াল ডিরেক্ট কল সাপোর্ট (ডকুমেন্ট ও প্রস্তাব সংক্রান্ত ) → <span className="font-semibold">+8801342665285</span></li>
+                    <li>৩. অফিসিয়াল হোয়াটসঅ্যাপ সাপোর্ট (ডকুমেন্ট ও প্রস্তাব সংক্রান্ত) → <span className="font-semibold">+8801342665286</span></li>
                 </ul>
 
                 <p className="font-galada">যোগাযোগ সময়: প্রতিদিন সকাল ০৯ টা থেকে রাত ০৯টা (বাংলাদেশ সময়)।</p>

@@ -9,6 +9,13 @@ import React from 'react';
 import toast from "react-hot-toast";
 import { FiSend } from "react-icons/fi";
 import { HiOutlineDownload } from "react-icons/hi";
+import { FaSuitcase } from "react-icons/fa";
+import { CiCalendar } from "react-icons/ci";
+import { RiLineHeight } from "react-icons/ri";
+import { FiMapPin } from "react-icons/fi";
+import { RiVerifiedBadgeFill } from "react-icons/ri";
+import default_img from '/images/default_img.jpg';
+
 
 const AllMembers = () => {
     const { user, loading } = useAuth();
@@ -45,15 +52,16 @@ const AllMembers = () => {
             return toast.error('cant send request to yourself');
         }
         const requestData = {
+            type: 'sent_proposal',
             to: to_data?.member_email,
             to_name: to_data?.name,
             to_image: to_data?.image,
             from: user?.email,
             from_name: name,
             from_image: image,
-            status: 'not verified',
-            request_status: 'in process'
+            request_status: 'requested'
         };
+        // console.log(requestData);
         await mutateAsync(requestData);
     };
 
@@ -61,27 +69,27 @@ const AllMembers = () => {
     if (loading || isLoading || memberLoading) return <Loading />;
 
     return (
-        <div className="p-5 bg-white space-y-5 min-h-[100dvh]">
+        <div className="p-5 bg-[#EFEBD9] space-y-5 min-h-[100dvh]">
 
 
             <div className="relative flex flex-col py-1 space-y-2">
                 <div className="flex items-center gap-3">
-                    <Link to='/' className="font-bold text-3xl text-left font-vibes">Heaven Marriage Solutions</Link>
+                    <Link to='/' className="font-bold text-3xl text-left font-galada">Heaven Marriage Solutions</Link>
                 </div>
                 <div className="flex justify-between gap-2 relative">
                     <input type="text" placeholder="search" className="bg-white w-full outline-none border border-black p-2 rounded-lg" />
                     <button className="bg-[#373B4D] text-white  px-2 right-24 top-2 rounded absolute">Search</button>
-                    <button className=" text-black border border-black px-5 rounded">Filter</button>
+                    <button className=" text-black bg-[#F2F2F2] border border-black px-5 rounded">Filter</button>
                 </div>
             </div>
 
 
             <div className="grid grid-cols-2 gap-4">
 
-                <div className=" bg-[#CCCCCC] p-2 rounded-2xl flex  gap-5 col-span-2 items-center">
+                <div className=" bg-[#F2F2F2] p-2 rounded-2xl flex  gap-5 col-span-2 items-center">
                     <div>
-                        <Link to='/profile'>
-                            <img src={image || user?.photoURL} className="size-[50px] object-cover rounded-full" alt="" />
+                        <Link to={`/user_details/${user?.email}`}>
+                            <img src={image || user?.photoURL || default_img} className="size-[50px] object-cover rounded-full" alt="" />
                         </Link>
                     </div>
                     <div>
@@ -118,27 +126,57 @@ const AllMembers = () => {
             </div>
 
             <div className="space-y-2">
-                <h1 className="font-galada border-b">সদস্য সমূহ</h1>
+                <h1 className="font-galada text-2xl border-b border-black mb-5 pl-2">সদস্য সমূহ</h1>
 
                 {
-                    status !== 'verified' && <p className="font-kau text-2xl text-center py-10 font-galada">Please Patiently wait for verification</p>
+                    status !== 'verified' && <p className="font-kau text-2xl text-center py-10 font-galada">দয়া করে ভেরিফিকেশনের জন্য অপেক্ষা করুন।</p>
                 }
+
+                {/* toDO
+                <p className="font-kau text-2xl text-center py-10 font-galada">দয়া করে আপনার  রেজিস্ট্রেশন  সম্পন্ন করুন।</p> */}
 
                 {
                     status === 'verified' &&
                     data?.map((got, idx) => (
-                        <div key={idx} className="border border-[#373B4D] rounded-2xl flex p-2 gap-4 w-full bg-[#F2F2F2]">
-                            <img className="size-[50px] object-cover rounded" src={got?.image} alt="" />
-                            <div className="w-full space-y-1">
-                                <h1 className="font-semibold font-lexend">{got?.name}</h1>
-                                <div className="flex justify-between">
-                                    <h1 className="font-merriway">{got?.age}</h1>
-                                    <div className="flex flex-row gap-4 items-center justify-center">
-                                        <Link to={`/user_details/${got?.member_email}`} className="text-xs font-alkatra">বিস্তারিত</Link>
-                                        <button onClick={() => sentProposal(got)} className="text-xs font-alkatra">প্রস্তাব পাঠান</button>
-                                    </div>
+                        <div key={idx} className="border shadow rounded-2xl flex p-3 gap-4 w-full bg-[#F2F2F2] space-y-4 mt-2 h-[230px]">
+                            <img className="size-[120px] rounded-full object-cover" src={got?.image || default_img} alt="" />
+                            <div className="flex-grow space-y-1 w-full">
+                                <h1 className="text-xs text-blue-500">
+                                    {got?.form_uuId.slice(0, 8)}
+                                </h1>
+                                <div className="flex justify-between items-center">
+                                    <h1 className="text-xl font-galada">
+                                        <span className="text-green-700"></span>
+                                        {got?.name.split(' ').slice(0, 1)} {got?.name.split(' ').slice(1, 2)}
+                                    </h1>
+                                    <span className="text-blue-500"><RiVerifiedBadgeFill /></span>
+                                </div>
+
+                                <div className="w-full">
+                                    <h1 className="flex gap-4 items-center text-base font-anek">
+                                        <span className="text-green-700"><FaSuitcase /></span>
+                                        {got?.income_source}
+                                    </h1>
+                                    <h1 className="flex gap-4 items-center text-base font-anek">
+                                        <span className="text-green-700"><RiLineHeight /></span>
+                                        {got?.height}
+                                    </h1>
+                                    <h1 className="flex gap-4 items-center text-base font-anek">
+                                        <span className="text-green-700"><FiMapPin /></span>
+                                        {got?.current_full_address}
+                                    </h1>
+                                </div>
+
+                                <div className="flex flex-row items-center justify-between pt-4">
+                                    <Link to={`/user_details/${got?.member_email}`} className="text-xs font-alkatra border-b border-blue-700">
+                                        বিস্তারিত
+                                    </Link>
+                                    <button onClick={() => sentProposal(got)} className="text-xs font-alkatra border-b border-blue-700">
+                                        প্রস্তাব পাঠান
+                                    </button>
                                 </div>
                             </div>
+
                         </div>
                     ))
                 }

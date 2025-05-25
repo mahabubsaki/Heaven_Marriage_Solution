@@ -4,12 +4,14 @@ import useAxiosSecure from '../../Hooks/Axios/useAxiosSecure';
 import toast from 'react-hot-toast';
 import { imageUpload } from '../../Utils/ImageUpload';
 import useAuth from '../../Hooks/Auth/useAuth';
+import { useNavigate } from 'react-router-dom';
 
 const InProcessNotVerf = () => {
 
     const axiosSecure = useAxiosSecure();
     const qClinet = useQueryClient();
     const { user } = useAuth();
+const navigate = useNavigate();
 
     const { mutateAsync } = useMutation({
         mutationFn: async (transactionData) => {
@@ -18,6 +20,7 @@ const InProcessNotVerf = () => {
         },
         onSuccess: () => {
             toast.success('Your Transaction Data Sended');
+            navigate('/transaction_received');
             qClinet.invalidateQueries(['usersData']);
         }
     });
@@ -42,31 +45,42 @@ const InProcessNotVerf = () => {
     };
 
     return (
-        <div className='pb-5'>
-            <p className="font-galada text-center text-2xl text-blue-400 my-3">Thank You!</p>
-            <p className="font-galada">মুহতারাম! আপনার ফরমটি সয়ংক্রিয়ভাবে IMB অফিসে জমা হয়েছে।</p>
-            <p className="font-galada">অনুগ্রহ করে ভেরিফিকেশন ও জয়েনিং চার্জ 1020 টাকা নির্দিষ্ট নাম্বার বা একাউন্টে পে করুন এবং টাকা পাঠানোর ডকোমেন্ট অথবা স্ক্রিনশর্ট নিম্নের অফিসিয়াল হোয়াটসঅ্যাপ নাম্বারে পাঠিয়ে দিন। আপনার সাক্ষাত সিডিউল কনফার্ম করা হবে এবং গুগল ম্যাপ ও ভিডিও লোকেশনের লিংক পাঠিয়ে দেওয়া হবে।</p>
+        <div className='pb-5 space-y-4'>
+            <p className="font-galada text-justify text-2xl text-blue-400 my-3">Thank You!</p>
+            <p className="font-galada text-justify">আপনার ফর্মটি সফলভাবে HMS অফিসে জমা হয়েছে, আলহামদুলিল্লাহ।</p>
+            <p className="font-galada text-justify">পরবর্তী ধাপ: ভেরিফিকেশন ও জয়েনিং প্রসেস সম্পন্ন করার জন্য ৫১০ টাকা পাঠাতে অনুরোধ করছি
+(ঈদুল আজহার আগ পর্যন্ত ৫০% ডিসকাউন্ট: ১০২০ টাকার পরিবর্তে মাত্র ৫১০ টাকা)</p>
 
-            <p className="font-galada text-xl mt-2">টাকা পাঠানোর পর যেই হোয়াটসঅ্যাপ নাম্বারে স্ক্রিনসর্ট পাঠাবেন: (IMB অফিসিয়াল হোয়াটসঅ্যাপ):</p>
-            <p className="font-galada font-bold text-red-600">01709-909505</p>
+            <p className="font-galada text-justify text-xl mt-2">পেমেন্ট পাঠানোর বিকল্প মাধ্যমসমূহ:</p>
+            <p className="font-galada text-justify"><span className="font-semibold">Send Money (Nagad/Bkash/Rocket – Personal):</span> <span className='text-red-600'>01748919251</span> (নগদ / বিকাশ / রকেট – পার্সোনাল)</p>
 
-            <p className="font-galada text-xl mt-2">👉যে নাম্বারে বা একাউন্টে টাকা পাঠাবেন:</p>
-            <p className="font-galada"><span className="font-semibold">সেন্ডমানি:</span> <span className='text-red-600'>01709-909505</span> (নগদ / বিকাশ / রকেট – পার্সোনাল)</p>
+            <p className="font-galada text-justify font-semibold">Bank Transfer (Islami Bank):</p>
+            <p className="font-galada text-justify">A/C Name: MD. RAHED HUSSAIN MAHED</p>
+            <p className="font-galada text-justify">A/C Number: 20507770208518332</p>
+            <p className="font-galada text-justify">Branch: Pirer Bazar, Bishwanath, Sylhet</p>
 
-            <p className="font-galada font-semibold">Bank A/C:</p>
-            <p className="font-galada">A/C Name: MD. MAMUNUR RASID</p>
-            <p className="font-galada">A/C Number: 1681520000675</p>
-            <p className="font-galada">Dutch Bangla Bank Limited</p>
-            <p className="font-galada">Kushtia Branch (Routing Number: 090500949)</p>
+            <p className="font-galada text-justify">গুরুত্বপূর্ণ নির্দেশনা:</p>
+            <p className="font-galada text-justify">টাকা পাঠানোর পর অবশ্যই রসিদ/স্ক্রিনশট বা ছবি সংগ্রহ এবং  সংরক্ষণ করুন।</p>
+            <p className="font-galada text-justify">নিচের পেমেন্ট ভেরিফিকেশন ফর্মে “ডকুমেন্ট আপলোড” সেকশনে এটি আপলোড করুন, <br />
+অথবা অফিসিয়াল হোয়াটসঅ্যাপ নম্বরে পাঠিয়ে দিন: +8801342665286</p>
 
-            <p className="font-galada">মুতারাম! অনুগ্রহ করে টাকা এবং টাকা পাঠানোর স্ক্রিনশট নির্দিষ্ট নম্বরেই পাঠাবেন। অন্য কোনো নাম্বারে পাঠাবেন না।</p>
-            <p className="font-galada">আপনার মেসেজে এর রেসপন্স ১ থেকে ৭২ ঘন্টার মধ্যে দেয়া হবে, ইনশাআল্লাহ।</p>
-            <p className="font-galada">অনুগ্রহ করে দ্রুত রিপ্লাই না পেলে কষ্ট নিবেন না ।</p>
-            <p className="font-galada">মাআস্সালাম।</p>
+
+           <p className="font-galada text-justify">অনুরোধ:</p>
+            <p className="font-galada text-justify">শুধুমাত্র উপরোক্ত নির্দিষ্ট নাম্বারে টাকা পাঠাবেন। <br />
+অন্য কোনো নাম্বারে পেমেন্ট করলে HMS আপনার রেজিস্ট্রেশন নিশ্চিত করতে পারবে না।</p>
+
+
+           <p className="font-galada text-justify">সবশেষে:</p>
+            <p className="font-galada text-justify">অবশ্যই পেমেন্ট ভেরিফিকেশন ফর্মটি পূরণ করুন,
+নচেৎ আপনার রেজিস্ট্রেশন প্রক্রিয়া সম্পূর্ণ হবে না।</p>
+
+            <p className="font-galada text-justify">মাআস্সালাম, <br />
+Heaven Marriage Solutions (HMS) টিম</p>
+
 
 
             <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto p-4 border rounded-xl bg-white shadow">
-                <h2 className="text-xl font-bold text-center font-galada">লেনদেনের তথ্য ফর্ম</h2>
+                <h2 className="text-xl font-bold text-center font-galada">ভেরিফাই পেমেন্ট</h2>
 
                 <div>
                     <label className="block font-semibold font-alkatra mb-1">আপনার নাম</label>

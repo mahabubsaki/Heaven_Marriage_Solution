@@ -7,7 +7,9 @@ import HeadingSubHead from "../../Components/TextAnimations/HeadingSubHead";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import Navbar from "../../Components/Shared/Navbar/Navbar";
-
+import { FaCheck } from "react-icons/fa";
+import { RxCross2 } from "react-icons/rx";
+import minar_top from '/images/minar_top.png';
 
 
 const ReceivedRequest = () => {
@@ -15,6 +17,8 @@ const ReceivedRequest = () => {
     const { user, loading } = useAuth();
     const axiosSecure = useAxiosSecure();
 
+
+    // fetch received requests
     const { data = [], isLoading, refetch } = useQuery({
         queryKey: ['received_requests', user?.email],
         queryFn: async () => {
@@ -23,6 +27,10 @@ const ReceivedRequest = () => {
         }
     });
 
+    console.log(data);
+    
+
+    // accept a request
     const { mutateAsync } = useMutation({
         mutationFn: async (id) => {
             const { data } = await axiosSecure.put(`/request_accept/${id}`);
@@ -34,24 +42,43 @@ const ReceivedRequest = () => {
         }
     });
 
+    // reject a request
+    const { mutateAsync:reject } = useMutation({
+        mutationFn: async (id) => {
+            const { data } = await axiosSecure.put(`/request_reject/${id}`);
+            return data;
+        },
+        onSuccess: () => {
+            toast.success('You have rejected the request');
+            refetch();
+        }
+    });
+
 
     const handleAccept = async (id) => {
         await mutateAsync(id);
+    };
+
+    const handleReject = async (id) => {
+        await reject(id);
     };
 
     if (loading, isLoading) return <Loading />;
 
 
     return (
-        <div className='px-5'>
+        <div className='pb-5'>
             <div>
                 <h1 className="text-2xl font-bold text-[#C3937C] p-2">Heaven Marriage</h1>
             </div>
             <Navbar />
 
+ <img src={minar_top} alt="" className="px-2 pt-14" />
 
-
-            <div className="mt-14">
+           <div className="px-5 border-x-4 border-b-4 rounded border-[#93733F] -mt-[78px] mx-2 pt-[50px]">
+{
+     data.length === 0 ? <p className='text-center my-32 font-galada text-3xl'>দুঃখিত ! আপনার কোন প্রস্তাব নেই ।</p> :
+   <div className="my-7">
                 <HeadingSubHead heading="প্রস্তাব সমূহ" />
 
                 <table className="max-w-5xl mx-auto w-full px-5">
@@ -69,9 +96,9 @@ const ReceivedRequest = () => {
                     {/* body */}
                     <tbody className="border-b border-black w-full">
                         {data.map(got => (
-                            <tr key={got?._id} className="w-full text-xs md:text-base border-b">
+                            <tr key={got?._id} className="w-full text-xs md:text-base border-b bg-[#FFFFFF] rounded-full">
 
-                                <td className="pl-5 font-semibold">
+                                <td className="pl-2 font-semibold py-2">
                                     <img src={got?.from_image} className='size-[50px] rounded-xl object-cover' alt="" />
                                 </td>
 
@@ -81,10 +108,20 @@ const ReceivedRequest = () => {
                                     {got?.request_status}
                                 </td>
 
-                                <td><button onClick={() => handleAccept(got?._id)} className="text-blue-500">Accept</button></td>
+                                <td>
+                                   <div className="gap-2 flex justify-center items-center">
+                                     <button onClick={() => handleAccept(got?._id)} className="text-xl text-green-700"><FaCheck/></button>
+                                    <button onClick={() => handleReject(got?._id)} className="text-xl text-red-700"><RxCross2/></button>
+                                   </div>
+                                    </td>
 
-                                <td className="text-center">
-                                    <Link to={`/user_details/${got?.from}`} className="underline ">Details</Link>
+                                <td className="text-center pr-2">
+                               {
+                                got?.request_status === 'accepted' ?
+                                <Link to={`/user_details/${got?.from}`} className="underline ">যোগাযোগ</Link>
+                                :
+                                <Link to={`/user_details/${got?.from}`} className="underline ">Details</Link>
+                                }
                                 </td>
 
                             </tr>
@@ -94,6 +131,8 @@ const ReceivedRequest = () => {
                 </table>
 
             </div>
+}
+           </div>
 
         </div >
     );

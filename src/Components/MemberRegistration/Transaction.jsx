@@ -18,7 +18,7 @@ const Transaction = () => {
                 <p className="font-galada">যেকোনো জিজ্ঞাসা বা সহযোগিতার জন্য আমাদের অফিসিয়াল নম্বরসমূহে যোগাযোগ করতে দ্বিধা করবেন না।</p>
 
                 <p className="font-galada">মাআস্সালাম,</p>
-                <p className="font-galada text-xl text-center">Taqwa Marriage Solutions টিম।</p>
+                <p className="font-galada text-xl text-center">Heaven Marriage Solutions টিম।</p>
             </div>
         </div>
     );

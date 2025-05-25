@@ -43,7 +43,7 @@ const ManageTransactions = () => {
     const handleVerify = (item) => mutateAsync(item);
     return (
         <PhotoProvider>
-            <div className=''>
+            <div className='mt-20'>
                 <Table.ScrollArea borderWidth="1px" maxW="full" >
                     <Table.Root size="lg">
                         <Table.Header>

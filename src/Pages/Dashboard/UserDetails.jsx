@@ -10,7 +10,8 @@ import useRole from "../../Hooks/Role/useRole";
 import useUser from "../../Hooks/User/useUser";
 import { Link } from "react-router-dom";
 import Navbar from "../../Components/Shared/Navbar/Navbar";
-
+import minar_top from '/images/minar_top.png';
+import default_img from '/images/default_img.jpg';
 
 const UserDetails = () => {
 
@@ -49,7 +50,6 @@ const UserDetails = () => {
         { name: "current_full_address", question: "বর্তমান পূর্ণ ঠিকানা (প্রযোজ্য ক্ষেত্রে বাসা নাম্বার, ফ্ল্যাট নাম্বার ইত্যাদিসহ)" },
         { name: "email", question: "ইমেইল অ্যাড্রেস দিন" },
         { name: "whatsapp", question: "হোয়াটসআ্যপ নাম্বার" },
-        { name: "alternate_number", question: "অন্য আরেকটি নাম্বার দিন " },
 
         // 5. Physical Info
         { p: 'Physical Info', hidden: 'hidden' },
@@ -95,7 +95,7 @@ const UserDetails = () => {
         { name: "follow_shariah", question: "আপনি ইসলামী শরীয়াতের সকল বিধান মন থেকে মানতে রাজি আছেন কি না? এবং সবগুলি পছন্দ করেন কি না?" },
         { name: "sunna_beard_and_purdah", question: "আপনি নিজে সুন্নাতী দাড়ী এবং স্ত্রীদেরকে খাস পর্দায় রাখতে অঙ্গিকারবদ্ধ হতে রাজি আছেন কি না?" },
         { name: "accept_all_guidelines", question: "বৈবাহিক জীবনে স্ত্রীর/স্ত্রীদের শরয়ী অধিকারগুলো ও একাধিক  স্ত্রীদের মাঝে আদালত সংক্রান্ত যে শরয়ী নির্দেশনা রয়েছে, সবগুলি মানতে প্রস্তুত আছেন কি না?" },
-        { name: "accept_tms_rules", question: "আপনি Taqwa Marriage Solutions (TMS) এর দাম্পত্য জীবন কেন্দ্রিক সকল আদর্শ তথা বিবাহ কেন্দ্রিক সকল শরয়ী বিধান মানতে রাজি আছেন কি না?" },
+        { name: "accept_tms_rules", question: "আপনি Heaven Marriage Solutions (TMS) এর দাম্পত্য জীবন কেন্দ্রিক সকল আদর্শ তথা বিবাহ কেন্দ্রিক সকল শরয়ী বিধান মানতে রাজি আছেন কি না?" },
         { name: "support_others_polygyny", question: "আপনার বাবা, দুলাভাই, ছেলে বা অন্য কেউ মাসনা, সুলাছা, রুবা'আ করতে চাইলে পূর্ণ সাপোর্ট ও সহযোগিতা করবেন কি না?" },
         { name: "accept_daughters_polygyny", question: "আপনার মেয়ে কারো মাসনা হলে বা আপনার জামাই মাসনা করলে মেনে নিতে পারবেন কি না?" },
         { name: "agreement_false_info_consequence", question: "ভুল বা মিথ্যা তথ্য দিলে সদস্যপদ বাতিল ও তালাক বিষয়ক সম্মতির শর্ত মেনে নেবেন কি না?" },
@@ -118,8 +118,6 @@ const UserDetails = () => {
 
         // Contact
         { p: 'Contact', hidden: 'hidden' },
-        { name: "whatsapp_number", question: "হোয়াটসআ্যপ নাম্বার লিখুন (হোয়াটসঅ্যাপ নাম্বার ছাড়া অন্য নাম্বার প্রযোজ্য নয়। যদি হোয়াটসঅ্যাপ না থাকে, হোয়াটসঅ্যাপ অ্যাপটি এক্টিভ করে নিন)" },
-        { name: "whatsapp_number_owner", question: "হোয়াটসআ্যপ নাম্বারটি কার তা উল্লেখ করুন?" },
 
         // Family
         { p: 'Family', hidden: 'hidden' },
@@ -222,31 +220,36 @@ const UserDetails = () => {
     if (loading || roleLoading || isLoading, userLoading) return <Loading />;
 
     return (
-        <div className="max-w-5xl mx-auto pb-2 w-full md:my-32 px-5 shadow-xl rounded-2xl">
+        <div className="max-w-5xl mx-auto pb-2 w-full md:my-32 shadow-xl rounded-2xl">
             <div>
                 <h1 className="text-2xl font-bold text-[#C3937C] p-2">Heaven Marriage</h1>
             </div>
             <Navbar />
 
-            <div className="flex w-full justify-between items-center mt-10">
+            <img src={minar_top} alt="" className="px-2 pt-14" />
+
+           <div className="px-5 border-x-4 border-b-4 rounded border-[#93733F] -mt-[81px] mx-2 pt-[50px]">
+             <div className="flex w-full justify-between items-center mt-10">
                 <h1 className="text-3xl md:text-4xl border-b py-5 text-[#C3937C] font-anek">ব্যক্তিগত তথ্য</h1>
+            </div>
+
+            <div className="flex flex-col md:flex-row justify-between border-b space-y-4">
+                <div className="flex justify-between">
+                <img src={data?.image||default_img} className=" size-[180px] md:size-[250px] object-cover" alt="" />
                 {role === 'admin' ?
                     <button onClick={() => handleEdit(data?.member_email)} className="h-[50px] px-5 border-b">Edit</button>
                     :
                     <Link to={`/images/${data?.member_email}`} className="font-mina underline">আরো ছবি</Link>
                 }
-            </div>
-
-            <div className="flex flex-col md:flex-row justify-between border-b space-y-4">
+                </div>
                 <p className="text-[clamp(20px,4vw,30px)]  md:text-center font-mina">{data?.name}</p>
-                <img src={data?.image} className=" size-[180px] md:size-[250px] object-cover" alt="" />
             </div>
 
 
             <div>
 
                 {/* for men */}
-                <div className="md:grid my-5 space-y-5 md:grid-cols-4 grid-rows-5 w-full gap-5 py-10">
+                <div className="md:grid space-y-3 md:grid-cols-4 grid-rows-5 w-full gap-5 py-5">
                     {
                         data?.gender === 'male' &&
                         men_questions.map((got, idx) => (
@@ -260,7 +263,7 @@ const UserDetails = () => {
                                     onChange={(e) =>
                                         setEditedData({ ...editedData, [got.name]: e.target.value })
                                     }
-                                    className={`border px-4 py-2 placeholder:text-black rounded w-full outline-none ${got?.hidden} `}
+                                    className={`bg-white placeholder:pl-3 placeholder:text-black w-full border-2 border-gray-300  font-alkatra rounded py-2 ${got?.hidden} `}
                                     placeholder={data?.[got?.name]}
                                 />
                             </div>
@@ -282,7 +285,7 @@ const UserDetails = () => {
                                     onChange={(e) =>
                                         setEditedData({ ...editedData, [got.name]: e.target.value })
                                     }
-                                    className={`border px-4 py-2 placeholder:text-black rounded w-full outline-none ${got?.hidden} `}
+                                    className={`bg-white placeholder:pl-3 placeholder:text-black w-full border-2 border-gray-300  font-alkatra rounded py-2 ${got?.hidden} `}
                                     placeholder={data?.[got?.name]}
                                 />
                             </div>
@@ -291,11 +294,8 @@ const UserDetails = () => {
 
                 </div>
 
-
-
-
-
             </div>
+           </div>
 
 
 

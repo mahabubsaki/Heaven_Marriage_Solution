@@ -681,7 +681,7 @@ const MenForm = () => {
             <Navbar />
             <div className="border-[5px] rounded-xl border-[#373B4D] max-w-[1000px] mx-auto  mt-16 mb-5">
                 <img src={menFormImage} className="px-0 mb-5" alt="" />
-                <HeadingSubHead heading="পুরুষদের আবেদন ফরম"/>
+                <HeadingSubHead heading="পুরুষদের আবেদন ফরম" />
 
                 <form onSubmit={handleSubmit} className=" gap-10 pt-5 px-5">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
@@ -720,10 +720,18 @@ const MenForm = () => {
                                             </select>
                                         </div>
                                     )}
+
                                 </div>
                             ))
                         }
 
+                        <div className="my-4 space-y-2">
+                            <p className="text-justify font-galada">ফর্ম জমা দেওয়ার আগে নির্দেশনাগুলো পড়ুন ও সকল তথ্য যাচাই করুন। ফাঁকা ঘর থাকলে সাবমিশন হবে না।</p>
+                            <p className="text-justify font-galada">মুহতারাম, <br />
+                                সঠিকভাবে জমা হলে স্ক্রিনে পরবর্তী নির্দেশনা প্রদর্শিত হবে।তা ধারাবাহিক ভাবে অনুসরণ করুন।
+                                হোয়াটসঅ্যাপে আলাদা কোনো মেসেজ পাঠানো হবে না, স্ক্রিনশট সংরক্ষণ করুন।</p>
+                            <p className="text-justify font-galada"> ভেরিফিকেশন ফি পাঠিয়ে রেজিস্ট্রেশন নিশ্চিত করুন।</p>
+                        </div>
 
 
                     </div>

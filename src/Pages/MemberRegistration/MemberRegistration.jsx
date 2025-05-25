@@ -15,6 +15,7 @@ import GuestAndNotVerf from "../../Components/MemberRegistration/GuestAndNotVerf
 import InProcessNotVerf from "../../Components/MemberRegistration/InProcessNotVerf";
 import MemberVerified from "../../Components/MemberRegistration/MemberVerified";
 import Transaction from "../../Components/MemberRegistration/Transaction";
+import GirlsVerified from "../../Components/MemberRegistration/GirlsVerified";
 
 const MemberRegistration = () => {
 
@@ -44,7 +45,7 @@ const MemberRegistration = () => {
 
     const gender = profileUser?.gender;
 
-    console.log(user, status, role);
+    // console.log(user, status, role, gender);
 
     if (loading || isLoading || formLoading, roleLoading) return <Loading />;
     return (
@@ -86,7 +87,8 @@ const MemberRegistration = () => {
                         status === 'in process' && role === 'in process' && transaction_status === 'not verified' && <InProcessNotVerf />
                     }
 
-                    {/* transaction sent */}
+                    {/* girls verified */}
+                    {gender === 'female' && status === 'verified' && role === 'member' && <GirlsVerified />}
 
                     {/* member and verified */}
                     {

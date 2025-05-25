@@ -117,7 +117,7 @@ const FormSubmitted = () => {
                         <p className='font-mina'>একবার ভেরিফিকেশন সম্পন্ন হয়ে গেলে, আপনি HMS-এর পরবর্তী কার্যক্রমে সম্পূর্ণভাবে অংশগ্রহণ করতে পারবেন।
                             আপনি প্রোফাইল ব্রাউজ করতে পারবেন, পছন্দের মোহতারাম/মোহতারামাকে প্রস্তাব পাঠাতে পারবেন এবং আপনার জন্য আগত প্রস্তাবগুলোও দেখতে পারবেন।</p>
                         <p className='font-mina'>যেকোনো জিজ্ঞাসা বা সহযোগিতার জন্য আমাদের অফিসিয়াল নম্বরসমূহে যোগাযোগ করতে দ্বিধা করবেন না।</p>
-                        <p className='font-mina font-semibold'>Taqwa Marriage Solutions টিম।</p>
+                        <p className='font-mina font-semibold'>Heaven Marriage Solutions টিম।</p>
 
                         <p className='font-alkatra'>যেকোনো সহযোগিতা বা পরামর্শের জন্য যোগাযোগ করুন:</p>
                         <ul className='space-y-4'>

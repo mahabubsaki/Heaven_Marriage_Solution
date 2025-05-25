@@ -18,7 +18,6 @@ const Login = () => {
     const from = location?.state || '/';
 
     const { login, signInWithGoogle, loading, user, setLoading } = useAuth();
-    // console.log({ loading });
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -67,11 +66,9 @@ const Login = () => {
 
     const handleGoogleLogin = async () => {
         await signInWithGoogle();
-        setLoading(false);
         navigate('/');
     };
 
-    if (loading) return <Loading />;
     if (user) return <Navigate to='/' />;
 
     return (

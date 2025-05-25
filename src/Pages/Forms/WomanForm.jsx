@@ -9,6 +9,7 @@ import { imageUpload } from "../../Utils/ImageUpload";
 import React from 'react';
 import HeadingSubHead from "../../Components/TextAnimations/HeadingSubHead";
 import Navbar from "../../Components/Shared/Navbar/Navbar";
+import womanFormImg from '/images/woman_form.jpeg'
 
 const WomanForm = () => {
 
@@ -163,7 +164,7 @@ const WomanForm = () => {
 
         {
             name: "accept_tms_policy",
-            question: "আপনি  Taqwa Marriage Solutions (HMS) এর দাম্পত্য জীবন কেন্দ্রিক সকল আদর্শ তথা বিবাহ কেন্দ্রিক সকল শরয়ী বিধান মানতে রাজি আছেন কি না?",
+            question: "আপনি  Heaven Marriage Solutions (HMS) এর দাম্পত্য জীবন কেন্দ্রিক সকল আদর্শ তথা বিবাহ কেন্দ্রিক সকল শরয়ী বিধান মানতে রাজি আছেন কি না?",
             class: "hidden",
             options: ["জি, রাজি আছি।"]
         },
@@ -218,6 +219,20 @@ const WomanForm = () => {
                 "প্রোজোয্য না"
             ]
         },
+        {
+            name: "registration_preference",
+            question: "বিশেষ শর্ত: আপনি কিভাবে রেজিস্ট্রেশন করতে আগ্রহী?",
+            class: "hidden",
+            options: [
+                "HMS এর মাধ্যমে",
+                "নিজে নিজে",
+                "আলোচনা সাপেক্ষ"
+            ]
+        },
+
+        { name: "current_full_address", label: "বর্তমান পূর্ণ ঠিকানা (প্রযোজ্য ক্ষেত্রে বাসা নাম্বার, ফ্ল্যাট নাম্বার ইত্যাদিসহ)?", required: true },
+        { name: "email", label: "আপনার ইমেইল অ্যাড্রেস দিন ?", required: true },
+        { name: "alternate_number", label: "আপনার অন্য আরেকটি নাম্বার দিন (আবশ্যিক)" },
         { name: "additional_info", label: "নিজের ব্যাপারে কিছু শেয়ার করতে চাইলে করতে পারেন।" }
     ];
 
@@ -278,7 +293,7 @@ const WomanForm = () => {
         },
         onSuccess: () => {
             toast.success('Form submitted Succesfully !');
-            navigate('/sent_transaction');
+            navigate('/girls_verified');
         }
     });
 
@@ -329,6 +344,9 @@ const WomanForm = () => {
         const obey_husband_fully = form.obey_husband_fully.value;
         const avoid_misbehavior = form.avoid_misbehavior.value;
         const care_step_children = form.care_step_children.value;
+        const email = form.email.value;
+        const current_full_address = form.current_full_address.value;
+        const registration_preference = form.registration_preference.value;
         const follow_shariah_completely = form.follow_shariah_completely.value;
         const child_living_preference = form.child_living_preference.value;
         const additional_info = form.additional_info.value;
@@ -386,6 +404,9 @@ const WomanForm = () => {
             follow_shariah_completely,
             child_living_preference,
             additional_info,
+            email,
+            current_full_address,
+            registration_preference,
             image: imageUrl,
             member_email: user?.email,
             gender: 'female',
@@ -400,12 +421,13 @@ const WomanForm = () => {
     };
 
     return (
-        <div className=" px-5">
+        <div className="px-2 py-2">
             <div>
                 <h1 className="text-2xl font-bold text-[#C3937C] p-2">Heaven Marriage</h1>
             </div>
             <Navbar />
-            <div className="border-[5px] rounded-xl border-[#373B4D] max-w-[1000px] mx-auto p-10 mt-16 mb-5">
+            <div className="border-[5px] rounded-xl border-[#373B4D] max-w-[1000px] mx-auto  mt-16 mb-5">
+                <img src={womanFormImg} className="px-0 mb-5" alt="" />
                 <HeadingSubHead heading="মহিলাদের ফরম" />
 
                 <form onSubmit={handleSubmit} className="gap-10 pt-5 px-5">
@@ -427,7 +449,7 @@ const WomanForm = () => {
                                         <label className={`font-semibold font-alkatra text-justify ${clas}`}>
                                             {label}
                                         </label>
-                                        {!visibility && < input className={`bg-white ${clas} outline-none `} type="text" name={name} required={required || false} />}
+                                        {!visibility && < input className={`bg-white ${clas} w-full border-2 border-gray-300  font-alkatra rounded py-2 `} type="text" name={name} required={required || false} />}
                                     </div>}
 
                                     {clas && (
@@ -453,12 +475,19 @@ const WomanForm = () => {
 
                     </div>
 
+                    <div className="my-4 space-y-2">
+                        <p className="text-justify font-galada">ফর্ম জমা দেওয়ার আগে নির্দেশনাগুলো পড়ুন ও সকল তথ্য যাচাই করুন। ফাঁকা ঘর থাকলে সাবমিশন হবে না।</p>
+                        <p className="text-justify font-galada">মুহতারাম, <br />
+                            সঠিকভাবে জমা হলে স্ক্রিনে পরবর্তী নির্দেশনা প্রদর্শিত হবে।তা ধারাবাহিক ভাবে অনুসরণ করুন।
+                            হোয়াটসঅ্যাপে আলাদা কোনো মেসেজ পাঠানো হবে না, স্ক্রিনশট সংরক্ষণ করুন।</p>
+                    </div>
+
                     <div className="flex justify-center mt-5">
                         <button className="px-4 py-1 mx-5 w-[340px]
              bg-gradient-to-r from-[#faf0d3] to-[#e9deaf] 
              text-gray-800 font-semibold rounded shadow-md 
              hover:from-[#E6E0CC] hover:to-[#d1c38b] 
-             transition duration-300">
+             transition duration-300 my-5">
                             Submit
                         </button>
                     </div>

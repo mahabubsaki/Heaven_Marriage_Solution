@@ -27,7 +27,7 @@ const Users = () => {
             refetch();
         }
     });
-    console.log(data);
+    // console.log(data);
     // update user
     const handleUpdate = async (email) => {
         const updatedData = {

@@ -89,7 +89,6 @@ const Register = () => {
 
     const handleGoogleLogin = async () => {
         await signInWithGoogle();
-        setLoading(false);
         navigate('/');
     };
 
@@ -125,7 +124,7 @@ const Register = () => {
                                 <option className='text-black' value='female'>Female</option>
                             </select>
                             <input type="file" name="image" className='glass-morphism py-4  placeholder:text-white pl-4 pr-16 text-left outline-none rounded-sm font-raleway text-sm file:glass-morphism file:border-none file:rounded-xl ' />
-                            <input required className='glass-morphism py-4 placeholder:text-white pl-4 pr-16 text-left outline-none rounded-sm text-sm' placeholder='Phone Number' type="text" name="phone" />
+                            <input required className='glass-morphism py-4 placeholder:text-white pl-4 pr-16 text-left outline-none rounded-sm text-sm' placeholder='Phone Number' type="number" name="phone" />
                             <input required className='glass-morphism py-4  placeholder:text-white pl-4 pr-16 text-left outline-none rounded-sm font-raleway text-sm' placeholder='Email' type="email" name="email" />
                             <div className='relative'>
                                 <input required className='glass-morphism placeholder:text-white  py-4 pl-4  w-full pr-16 text-left outline-none rounded-sm font-raleway text-sm' placeholder='Password' type={passText ? "password" : "text"} name="password" />

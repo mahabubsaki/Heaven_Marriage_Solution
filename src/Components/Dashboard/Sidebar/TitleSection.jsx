@@ -8,7 +8,6 @@ import useRole from '../../../Hooks/Role/useRole';
 const TitleSection = ({ open }) => {
     const { user } = useAuth();
     const { name } = useRole();
-    console.log(name);
 
     return (
         <div className="mb-3 border-b border-slate-300 pb-3">

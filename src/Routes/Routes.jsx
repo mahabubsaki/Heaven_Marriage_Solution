@@ -31,6 +31,9 @@ import PrivateRoute from './PrivateRoute';
 import AdminRoute from './AdminRoute';
 import SentTransaction from '../Pages/SentTransaction/SentTransaction';
 import ManageTransactions from '../Pages/Dashboard/ManageTransactions';
+import Girl from '../Pages/Girl/Girl';
+import GirlsVerified from '../Components/MemberRegistration/GirlsVerified';
+import TransactionReceived from '../Pages/Transaction/TransactionReceived';
 
 const router = createBrowserRouter([
     {
@@ -122,6 +125,14 @@ const router = createBrowserRouter([
             {
                 path: '/sent_transaction',
                 element: <SentTransaction />
+            },
+            {
+                path: '/transaction_received',
+                element: <TransactionReceived />
+            },
+            {
+                path: '/girls_verified',
+                element: <GirlsVerified />
             },
         ],
     },

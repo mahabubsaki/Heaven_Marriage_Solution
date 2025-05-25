@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useWindowScroll } from "react-use";
 import { motion } from 'framer-motion';
 import React from 'react';
-import { FaHome, FaOpencart } from "react-icons/fa";
+import { FaBook, FaHome, FaOpencart } from "react-icons/fa";
 import { AiOutlineMenu } from "react-icons/ai";
 import { GiCrossedAxes } from "react-icons/gi";
 import useAuth from "../../../Hooks/Auth/useAuth";
@@ -19,6 +19,8 @@ import { RxCross2 } from "react-icons/rx";
 import { CiUser } from "react-icons/ci";
 import { TbUsersGroup } from "react-icons/tb";
 import { FaYoutube } from "react-icons/fa";
+import { Settings, Settings2 } from "lucide-react";
+import logo from "/images/logo.png";
 
 
 const Navbar = () => {
@@ -31,7 +33,9 @@ const Navbar = () => {
     const navItems = [
         { name: 'হোম', destination: '/', icon: <LiaHomeSolid /> },
         { name: 'প্রোফাইল', destination: '/profile', icon: <CiUser /> },
-        { name: 'HMS এর কমকতা সমুহ', destination: '/profile', icon: <TbUsersGroup /> },
+        { name: 'সেটিংস', destination: '/settings', icon: <Settings /> },
+        { name: 'বিবাহের মাসলা-মাসায়েল সমুহ', destination: '/settings', icon: <FaBook /> },
+        { name: 'HMS এর কর্মকতাগণ', destination: '/employee', icon: <TbUsersGroup /> },
     ];
 
     // scroll implementation using react-use
@@ -128,12 +132,9 @@ const Navbar = () => {
 
 
                         <div className="mt-16 pr-5 flex flex-col items-center gap-2">
-                            <img src="/images/winner.jpg" width={64} alt="" />
-                            <p className="text-black text-center text-sm font-galada">বিশুদ্ধতা, বিশ্বস্ততা ও সুন্নাহ-সম্মত বিবাহের নির্ভরযোগ্য প্রতিষ্ঠান</p>
-                            <button className="flex gap-2 items-center bg-gradient-to-r from-blue-500 via-fuchsia-500 to-purple-600 text-white px-4 py-2 rounded-md mt-2">
-                                <FaYoutube className="text-red-500 text-2xl" />
-                                <p className="text-center text-sm text-white opacity-70 ">আমাদের সম্পর্কে আরো জানতে ক্লিক করুন </p>
-                            </button>
+                            <img src={logo} className="size-[200px] mt-[-80px] object-cover" alt="" />
+                            <p className="text-black text-center text-sm mt-[-30px] font-galada">বিশুদ্ধতা, বিশ্বস্ততা ও সুন্নাহ-সম্মত বিবাহের নির্ভরযোগ্য প্রতিষ্ঠান</p>
+                            <img src="/images/underline_img2.png" alt="" />
                         </div>
 
 
@@ -150,8 +151,8 @@ const Navbar = () => {
                             </div>
                             {
                                 user ?
-                                    <button className="absolute bottom-5 left-10 text-base text-black font-raleway" onClick={logOut}>Logout</button> :
-                                    <Link to='/login' className="absolute bottom-5 font-lexend left-10 text-base text-black">Login</Link>
+                                    <button className="absolute bottom-5 left-10 text-base font-raleway text-red-600" onClick={logOut}>Logout</button> :
+                                    <Link to='/login' className="absolute bottom-5 font-lexend left-10 text-base text-green-600">Login</Link>
                             }
                         </nav>
                     </motion.div>
