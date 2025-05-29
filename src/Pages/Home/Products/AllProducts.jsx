@@ -6,12 +6,15 @@ import 'swiper/css';
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Autoplay } from "swiper/modules";
+import { IoCall, IoReorderThreeSharp } from "react-icons/io5";
+import { FaMagnifyingGlass } from "react-icons/fa6";
+import { IoBag } from "react-icons/io5";
+import { IoBagOutline } from "react-icons/io5";
 
-
-import banner_1 from '/images/banner_1.webp';
-import banner_2 from '/images/banner_2.webp';
-import banner_3 from '/images/banner_3.webp';
-import banner_4 from '/images/banner_4.webp';
+import banner_1 from '/images/shop_5.jpg';
+import banner_2 from '/images/shop_6.jpg';
+import banner_3 from '/images/shop_7.jpg';
+import banner_4 from '/images/shop_8.jpg';
 import { FaHome, FaOpencart } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
 
@@ -28,8 +31,13 @@ const AllProducts = () => {
     });
 
     return (
-        <div className="p-5 space-y-5">
-            <div className="max-h-screen overflow-y-auto relative">
+        <div className="">
+            <div className="w-screen bg-[#FC8934] flex text-white py-2">
+                <p className="w-[300px] mx-auto">আমাদের যেকোনো পন্য অর্ডার করতে কল বা হোয়াটসঅ্যাপ করুন: 01734874385</p>
+            </div>
+
+            <div className="max-h-screen overflow-y-auto relative px-5 pb-5">
+
 
                 {/* bottom fixed menu bar */}
                 <div className="fixed bg-white w-full flex justify-evenly bottom-0 left-0">
@@ -59,14 +67,21 @@ const AllProducts = () => {
                     </Link>
                 </div>
 
-                <div className="relative flex flex-col py-1 space-y-2">
-                    <div className="flex items-center gap-3">
-                        <img src={banner_1} className="size-[30px] object-cover rounded-full" alt="" />
-                        <Link to='/' className="font-bold text-2xl text-left">Heaven Shop</Link>
+                <div className="relative flex justify-between items-center my-2 text-[#FC8934]">
+                    <div>
+                        <IoReorderThreeSharp className="text-3xl text-black" />
                     </div>
-                    <div className="flex justify-between gap-2">
-                        <input type="text" placeholder="search" className="bg-white w-full outline-none border p-2 rounded-lg" />
-                        <button className="bg-[#373B4D] text-white px-4 py-1 rounded">Search</button>
+                    <div className="flex items-center gap-2 ml-5 md:ml-0">
+                        <img src="/images/shop_logo.png" alt="" className="size-[50px] object-cover" />
+                        <div>
+                            <p className="font-bold">Falah</p>
+                            <p className="font-bold">Bazar</p>
+                        </div>
+                    </div>
+
+                    <div className="flex space-x-3">
+                        <FaMagnifyingGlass className="text-2xl" />
+                        <IoBagOutline className="text-2xl" />
                     </div>
                 </div>
 
@@ -96,70 +111,23 @@ const AllProducts = () => {
                 </div>
 
                 <div className="">
-                    <p className="font-bold text-xl font-lexend mt-2">Products:</p>
-                    <div className="grid grid-cols-3 gap-5 mb-14">
+                    <p className="font-bold text-xl mt-2">Products:</p>
+                    <div className="grid grid-cols-2 gap-5 mb-14">
                         {data?.map((got) => (
                             <Link to={`/product/${got?._id}`}
                                 key={got?._id}
-                                className="flex flex-col items-center rounded-lg shadow-md h-[105px] w-[80px] overflow-hidden"
+                                className="flex flex-col items-center rounded p-3 shadow-md h-[250px] w-[150px] overflow-hidden border border-gray-200"
                             >
                                 <img
                                     src={got?.image}
                                     alt=""
-                                    className="object-cover h-[70px] w-full"
+                                    className="object-cover h-[120px] w-full"
                                 />
-                                <p className="text-center font-raleway font-semibold text-[10px] mt-1 px-1 h-[50px]">
-                                    {got?.name.length > 8 ? got?.name.slice(0, 8) + "..." : got?.name}
+                                <p className="text-center h-[30px]">
+                                    {got?.name.length > 8 ? got?.name.slice(0, 11) + "..." : got?.name}
                                 </p>
-                                <p className="text-[10px]">{got?.price}</p>
-                            </Link>
-                        ))}
-                        {data?.map((got) => (
-                            <Link to={`/product/${got?._id}`}
-                                key={got?._id}
-                                className="flex flex-col items-center rounded-lg shadow-md h-[105px] w-[80px] overflow-hidden"
-                            >
-                                <img
-                                    src={got?.image}
-                                    alt=""
-                                    className="object-cover h-[70px] w-full"
-                                />
-                                <p className="text-center font-raleway font-semibold text-[10px] mt-1 px-1 h-[50px]">
-                                    {got?.name.length > 8 ? got?.name.slice(0, 8) + "..." : got?.name}
-                                </p>
-                                <p className="text-[10px]">{got?.price}</p>
-                            </Link>
-                        ))}
-                        {data?.map((got) => (
-                            <Link to={`/product/${got?._id}`}
-                                key={got?._id}
-                                className="flex flex-col items-center rounded-lg shadow-md h-[105px] w-[80px] overflow-hidden"
-                            >
-                                <img
-                                    src={got?.image}
-                                    alt=""
-                                    className="object-cover h-[70px] w-full"
-                                />
-                                <p className="text-center font-raleway font-semibold text-[10px] mt-1 px-1 h-[50px]">
-                                    {got?.name.length > 8 ? got?.name.slice(0, 8) + "..." : got?.name}
-                                </p>
-                                <p className="text-[10px]">{got?.price}</p>
-                            </Link>
-                        ))}
-                        {data?.map((got) => (
-                            <Link to={`/product/${got?._id}`}
-                                key={got?._id}
-                                className="flex flex-col items-center rounded-lg shadow-md h-[105px] w-[80px] overflow-hidden"
-                            >
-                                <img
-                                    src={got?.image}
-                                    alt=""
-                                    className="object-cover h-[70px] w-full"
-                                />
-                                <p className="text-center font-raleway font-semibold text-[10px] mt-1 px-1 h-[50px]">
-                                    {got?.name.length > 8 ? got?.name.slice(0, 8) + "..." : got?.name}
-                                </p>
-                                <p className="text-[10px]">{got?.price}</p>
+                                <p className="">Tk {got?.price}</p>
+                                <button className="px-2 bg-[#FC8934] text-white grow py-1 rounded w-full">Buy Now</button>
                             </Link>
                         ))}
                     </div>

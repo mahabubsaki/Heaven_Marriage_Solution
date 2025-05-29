@@ -6,14 +6,16 @@ import useAxiosSecure from "../../Hooks/Axios/useAxiosSecure";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
 import { imageUpload } from "../../Utils/ImageUpload";
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from "../../Components/Shared/Navbar/Navbar";
 import HeadingSubHead from "../../Components/TextAnimations/HeadingSubHead";
 import menFormImage from '/images/men_form.jpeg'
+import { AiOutlineLoading } from "react-icons/ai";
 
 const MenForm = () => {
 
     const { user, loading } = useAuth();
+    const [logLoad, setLogLoad] = useState(false);
 
     const questions = [
         { name: "name", label: "নাম?", required: true },
@@ -133,16 +135,16 @@ const MenForm = () => {
             ]
         },
         { name: "children_count", label: "সন্তান কয়টি? (বিবাহিত হলে),( অবিবাহিত হলে “প্রোজোয্য নয়” লিখুন )", required: true },
-        { name: "previous_wife_rights", label: "আগের স্ত্রী বা স্ত্রীগণের শরয়ী হকগুলো আদায় করছেন কি না?" },
+        // { name: "previous_wife_rights", label: "আগের স্ত্রী বা স্ত্রীগণের শরয়ী হকগুলো আদায় করছেন কি না?" },
         { name: "divorce_reason", label: "ডিভোর্স্ড ( স্ত্রী/স্ত্রীদের সাথে ছাড়াছাড়ি হয়েছে ) ,কেনো হয়েছে বিস্তারিত লিখুন  ?", required: true },
         {
             name: "mohor_support",
             question: "নতুন যাকে বিয়ে করতে চাচ্ছেন তাঁর মোহর ও ভরনপোষণ কী মান এর দিতে পারবেন?",
             class: "hidden",
             options: [
-                "জি,  প্রস্তুত আছি।",
-                "না, প্রস্তুত নাই",
-                "শর্তসাপেক্ষ প্রস্তুত আছি।",
+                // "জি,  প্রস্তুত আছি।",
+                // "না, প্রস্তুত নাই",
+                // "শর্তসাপেক্ষ প্রস্তুত আছি।",
                 "আলোচনা সাপেক্ষে"
             ]
         },
@@ -213,22 +215,22 @@ const MenForm = () => {
                 "যেকোনো পরিস্থিতি আসুক হক নষ্ট  করবো না, ইনশা-আল্লাহ"
             ]
         },
-        {
-            name: "justice_among_wives",
-            question: "স্ত্রীদের মাঝে শরয়ী হক আদায় এর ক্ষেত্রে সম্পূর্ণ আদালত বজায় রাখবেন কি না?",
-            class: "hidden",
-            options: [
-                "জি, ইনশাআল্লাহ"
-            ]
-        },
-        {
-            name: "accept_all_guidelines",
-            question: "বৈবাহিক জীবনে স্ত্রীর/স্ত্রীদের শরয়ী অধিকারগুলো ও একাধিক  স্ত্রীদের মাঝে আদালত সংক্রান্ত যে শরয়ী নির্দেশনা রয়েছে, সবগুলি মানতে প্রস্তুত আছেন কি না?",
-            class: "hidden",
-            options: [
-                "জি, রাজি আছি"
-            ]
-        },
+        // {
+        //     name: "justice_among_wives",
+        //     question: "স্ত্রীদের মাঝে শরয়ী হক আদায় এর ক্ষেত্রে সম্পূর্ণ আদালত বজায় রাখবেন কি না?",
+        //     class: "hidden",
+        //     options: [
+        //         "জি, ইনশাআল্লাহ"
+        //     ]
+        // },
+        // {
+        //     name: "accept_all_guidelines",
+        //     question: "বৈবাহিক জীবনে স্ত্রীর/স্ত্রীদের শরয়ী অধিকারগুলো ও একাধিক  স্ত্রীদের মাঝে আদালত সংক্রান্ত যে শরয়ী নির্দেশনা রয়েছে, সবগুলি মানতে প্রস্তুত আছেন কি না?",
+        //     class: "hidden",
+        //     options: [
+        //         "জি, রাজি আছি"
+        //     ]
+        // },
         {
             name: "follow_shariah",
             question: "আপনি ইসলামী শরীয়াতের সকল বিধান মন থেকে মানতে রাজি আছেন কি না? এবং সবগুলি পছন্দ করেন কি না?",
@@ -245,22 +247,22 @@ const MenForm = () => {
                 "জি, রাজি আছি।"
             ]
         },
-        {
-            name: "support_others_polygyny",
-            question: "আপনার বাবা, দুলাভাই, ছেলে বা অন্য কেউ মাসনা, সুলাছা, রুবা'আ করতে চাইলে পূর্ণ সাপোর্ট ও সহযোগিতা করবেন কি না?",
-            class: "hidden",
-            options: [
-                "জি করবো, ইনশাআল্লাহ"
-            ]
-        },
-        {
-            name: "accept_daughters_polygyny",
-            question: "আপনার মেয়ে কারো মাসনা হলে বা আপনার জামাই মাসনা করলে মেনে নিতে পারবেন কি না?",
-            class: "hidden",
-            options: [
-                "জি পারবো, ইনশাআল্লাহ"
-            ]
-        },
+        // {
+        //     name: "support_others_polygyny",
+        //     question: "আপনার বাবা, দুলাভাই, ছেলে বা অন্য কেউ মাসনা, সুলাছা, রুবা'আ করতে চাইলে পূর্ণ সাপোর্ট ও সহযোগিতা করবেন কি না?",
+        //     class: "hidden",
+        //     options: [
+        //         "জি করবো, ইনশাআল্লাহ"
+        //     ]
+        // },
+        // {
+        //     name: "accept_daughters_polygyny",
+        //     question: "আপনার মেয়ে কারো মাসনা হলে বা আপনার জামাই মাসনা করলে মেনে নিতে পারবেন কি না?",
+        //     class: "hidden",
+        //     options: [
+        //         "জি পারবো, ইনশাআল্লাহ"
+        //     ]
+        // },
         {
             name: "wife_earning",
             question: "বিয়ের পর স্ত্রীদেরকে টিউশনি, শিক্ষকতা বা অন্য কোনো কর্মের মাধ্যমে অর্থ উপার্জন  করবেন কি না ?",
@@ -440,7 +442,9 @@ const MenForm = () => {
                 "হাফেজা",
                 "মাদ্রাসায় পড়ুৃয়া",
                 "জেনারেল শিক্ষিতা",
-                "হোম স্কুলিং"
+                "হোম স্কুলিং",
+                "যেকোনো",
+                "শিক্ষাগত ব্যাকগ্রাউন্ডের ব্যাপারে কোনো সমস্যা নেই।"
             ]
         },
         {
@@ -450,7 +454,8 @@ const MenForm = () => {
             options: [
                 "আলেম দ্বীনদার",
                 "জেনারের দ্বীনদার",
-                "জেনারের"
+                "জেনারের",
+                "যেকোনো",
             ]
         },
         {
@@ -462,7 +467,8 @@ const MenForm = () => {
                 "উচ্চ-মধ্যবিত্ত",
                 "মধ্যবিত্ত",
                 "নিম্ন-মধ্যবিত্ত",
-                "গরিব/বিত্তহীন"
+                "গরিব/বিত্তহীন",
+                "যেকোনো",
             ]
         },
         {
@@ -477,7 +483,7 @@ const MenForm = () => {
                 "যেকোনো"
             ]
         },
-        { name: "specific_dream", label: "প্রত্যেকটি মানুষই তার জীবনসঙ্গীর ব্যাপারে কিছু স্বপ্ন দেখে... দয়া করে উল্লেখ করুন?" },
+        { name: "specific_dream", label: "প্রত্যেকটি মানুষই তার জীবনসঙ্গীর ব্যাপারে কিছু স্বপ্ন দেখে... দয়া করে আপনারটা উল্লেখ করুন?" },
 
         {
             name: "agree_on_false_info_consequence",
@@ -525,6 +531,7 @@ const MenForm = () => {
         onSuccess: () => {
             toast.success('Form submitted Succesfully !');
             navigate('/sent_transaction');
+            setLogLoad(false);
         }
     });
 
@@ -563,7 +570,7 @@ const MenForm = () => {
         const skin_color = form.skin_color.value;
         const marital_status = form.marital_status.value;
         const children_count = form.children_count.value;
-        const previous_wife_rights = form.previous_wife_rights.value;
+        // const previous_wife_rights = form.previous_wife_rights.value;
         const divorce_reason = form.divorce_reason.value;
         const mohor_support = form.mohor_support.value;
         const post_marriage_living = form.post_marriage_living.value;
@@ -577,12 +584,12 @@ const MenForm = () => {
         const monthly_income = form.monthly_income.value;
         const assets_details = form.assets_details.value;
         const will_not_violate_rights = form.will_not_violate_rights.value;
-        const justice_among_wives = form.justice_among_wives.value;
-        const accept_all_guidelines = form.accept_all_guidelines.value;
+        // const justice_among_wives = form.justice_among_wives.value;
+        // const accept_all_guidelines = form.accept_all_guidelines.value;
         const follow_shariah = form.follow_shariah.value;
         const accept_tms_rules = form.accept_tms_rules.value;
-        const support_others_polygyny = form.support_others_polygyny.value;
-        const accept_daughters_polygyny = form.accept_daughters_polygyny.value;
+        // const support_others_polygyny = form.support_others_polygyny.value;
+        // const accept_daughters_polygyny = form.accept_daughters_polygyny.value;
         const wife_earning = form.wife_earning.value;
         const sunna_beard_and_purdah = form.sunna_beard_and_purdah.value;
         const accept_other_children = form.accept_other_children.value;
@@ -622,7 +629,7 @@ const MenForm = () => {
             skin_color,
             marital_status,
             children_count,
-            previous_wife_rights,
+            // previous_wife_rights,
             divorce_reason,
             mohor_support,
             post_marriage_living,
@@ -636,12 +643,12 @@ const MenForm = () => {
             monthly_income,
             assets_details,
             will_not_violate_rights,
-            justice_among_wives,
-            accept_all_guidelines,
+            // justice_among_wives,
+            // accept_all_guidelines,
             follow_shariah,
             accept_tms_rules,
-            support_others_polygyny,
-            accept_daughters_polygyny,
+            // support_others_polygyny,
+            // accept_daughters_polygyny,
             wife_earning,
             sunna_beard_and_purdah,
             accept_other_children,
@@ -668,6 +675,7 @@ const MenForm = () => {
             form_uuId,
         };
 
+        setLogLoad(true);
         await mutateAsync(formData);
         form.reset();
 
@@ -686,8 +694,8 @@ const MenForm = () => {
                 <form onSubmit={handleSubmit} className=" gap-10 pt-5 px-5">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                         <div className="flex flex-col space-y-5">
-                            <label className="font-semibold font-alkatra">
-                                আপনার ছবি
+                            <label className="font-semibold">
+                                আপনার ছবিটি দিন (ঐচ্ছিক)
                             </label>
                             <input type="file" name="image" id="" className="w-full border file:rounded-full border-black rounded-2xl px-5 py-2" />
                         </div>
@@ -695,14 +703,14 @@ const MenForm = () => {
                         {
                             questions.map(({ heading, subHeading, visibility, name, question, class: clas, label, options, required }, idx) => (
                                 <div key={idx}>
-                                    {heading && <p className="text-3xl font-galada">{heading}</p>}
-                                    {subHeading && <p className="font-galada">{subHeading}</p>}
+                                    {heading && <p className="text-3xl">{heading}</p>}
+                                    {subHeading && <p className="">{subHeading}</p>}
 
                                     {!clas && < div className="flex flex-col">
-                                        <label className={`font-semibold font-alkatra mb-3 ${clas} text-justify`}>
+                                        <label className={`font-semibold mb-3 ${clas} text-justify`}>
                                             {label}
                                         </label>
-                                        {!visibility && < input className={`bg-white ${clas} w-full border-2 border-gray-300  font-alkatra rounded py-2 `} type="text" name={name} required={required || false} />}
+                                        {!visibility && < input className={`bg-white ${clas} w-full border-2 border-gray-300  rounded py-2 `} type="text" name={name} required />}
                                     </div>}
 
                                     {clas && (
@@ -725,24 +733,31 @@ const MenForm = () => {
                             ))
                         }
 
-                        <div className="my-4 space-y-2">
-                            <p className="text-justify font-galada">ফর্ম জমা দেওয়ার আগে নির্দেশনাগুলো পড়ুন ও সকল তথ্য যাচাই করুন। ফাঁকা ঘর থাকলে সাবমিশন হবে না।</p>
-                            <p className="text-justify font-galada">মুহতারাম, <br />
+                        <div className="my-4 space-y-2 text-red-600">
+                            <p className="text-justify">ফর্ম জমা দেওয়ার আগে নির্দেশনাগুলো পড়ুন ও সকল তথ্য যাচাই করুন। ফাঁকা ঘর থাকলে সাবমিশন হবে না।</p>
+                            <p className="text-justify">মুহতারাম, <br />
                                 সঠিকভাবে জমা হলে স্ক্রিনে পরবর্তী নির্দেশনা প্রদর্শিত হবে।তা ধারাবাহিক ভাবে অনুসরণ করুন।
                                 হোয়াটসঅ্যাপে আলাদা কোনো মেসেজ পাঠানো হবে না, স্ক্রিনশট সংরক্ষণ করুন।</p>
-                            <p className="text-justify font-galada"> ভেরিফিকেশন ফি পাঠিয়ে রেজিস্ট্রেশন নিশ্চিত করুন।</p>
+                            <p className="text-justify"> ভেরিফিকেশন ফি পাঠিয়ে রেজিস্ট্রেশন নিশ্চিত করুন।</p>
                         </div>
 
 
                     </div>
 
                     <div className="flex justify-center my-5">
-                        <button className="px-4 py-1 mx-5 w-[340px]
+                        <button 
+                        disabled={logLoad}
+                        className="px-4 py-1 mx-5 w-[340px]
              bg-gradient-to-r from-[#faf0d3] to-[#e9deaf] 
              text-gray-800 font-semibold rounded shadow-md 
-             hover:from-[#E6E0CC] hover:to-[#d1c38b] 
+             hover:from-[#E6E0CC] hover:to-[#d1c38b] flex items-center justify-center
              transition duration-300">
-                            Submit
+                            {
+                                logLoad ?
+                                    <AiOutlineLoading className='text-2xl font-bold animate-spin' />
+                                    :
+                                    "Submit"
+                            }
                         </button>
                     </div>
 

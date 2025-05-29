@@ -45,9 +45,9 @@ const MemberRegistration = () => {
 
     const gender = profileUser?.gender;
 
-    // console.log(user, status, role, gender);
+    // console.log(status, role, transaction_status);
 
-    if (loading || isLoading || formLoading, roleLoading) return <Loading />;
+    if (loading || isLoading || formLoading || roleLoading) return <Loading />;
     return (
         <motion.div
             initial={{
@@ -82,9 +82,16 @@ const MemberRegistration = () => {
                     {(status === 'not verified' && role === 'guest') && <GuestAndNotVerf />}
 
 
-                    {/* not verified and in process */}
+                    {/* not verified and in process
+                    after the form submission
+                    */}
                     {
                         status === 'in process' && role === 'in process' && transaction_status === 'not verified' && <InProcessNotVerf />
+                    }
+
+                    {/* transection send now wait for the transaction verification and become a member */}
+                    {
+                        transaction_status === 'in process'||transaction_status === 'verified' && status === 'in process' && role === 'in process' && <Transaction />
                     }
 
                     {/* girls verified */}
@@ -93,11 +100,6 @@ const MemberRegistration = () => {
                     {/* member and verified */}
                     {
                         status === 'verified' && role === 'member' && transaction_status === 'verified' && <MemberVerified />
-                    }
-
-
-                    {
-                        transaction_status === 'in process' || transaction_status === 'verified' && status === 'in process' && role === 'in process' && <Transaction />
                     }
 
 

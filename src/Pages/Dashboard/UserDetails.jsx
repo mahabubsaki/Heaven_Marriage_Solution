@@ -95,7 +95,7 @@ const UserDetails = () => {
         { name: "follow_shariah", question: "আপনি ইসলামী শরীয়াতের সকল বিধান মন থেকে মানতে রাজি আছেন কি না? এবং সবগুলি পছন্দ করেন কি না?" },
         { name: "sunna_beard_and_purdah", question: "আপনি নিজে সুন্নাতী দাড়ী এবং স্ত্রীদেরকে খাস পর্দায় রাখতে অঙ্গিকারবদ্ধ হতে রাজি আছেন কি না?" },
         { name: "accept_all_guidelines", question: "বৈবাহিক জীবনে স্ত্রীর/স্ত্রীদের শরয়ী অধিকারগুলো ও একাধিক  স্ত্রীদের মাঝে আদালত সংক্রান্ত যে শরয়ী নির্দেশনা রয়েছে, সবগুলি মানতে প্রস্তুত আছেন কি না?" },
-        { name: "accept_tms_rules", question: "আপনি Heaven Marriage Solutions (TMS) এর দাম্পত্য জীবন কেন্দ্রিক সকল আদর্শ তথা বিবাহ কেন্দ্রিক সকল শরয়ী বিধান মানতে রাজি আছেন কি না?" },
+        { name: "accept_tms_rules", question: "আপনি Heaven Marriage Solutions (HMS) এর দাম্পত্য জীবন কেন্দ্রিক সকল আদর্শ তথা বিবাহ কেন্দ্রিক সকল শরয়ী বিধান মানতে রাজি আছেন কি না?" },
         { name: "support_others_polygyny", question: "আপনার বাবা, দুলাভাই, ছেলে বা অন্য কেউ মাসনা, সুলাছা, রুবা'আ করতে চাইলে পূর্ণ সাপোর্ট ও সহযোগিতা করবেন কি না?" },
         { name: "accept_daughters_polygyny", question: "আপনার মেয়ে কারো মাসনা হলে বা আপনার জামাই মাসনা করলে মেনে নিতে পারবেন কি না?" },
         { name: "agreement_false_info_consequence", question: "ভুল বা মিথ্যা তথ্য দিলে সদস্যপদ বাতিল ও তালাক বিষয়ক সম্মতির শর্ত মেনে নেবেন কি না?" },
@@ -172,7 +172,7 @@ const UserDetails = () => {
         { name: "care_step_children", question: "স্বামীর অন্য স্ত্রীর সন্তান লালন-পালন করবেন?" },
         { name: "accept_shariah", question: "ইসলামী শরীয়াত মানেন?" },
         { name: "follow_shariah_completely", question: "শতভাগ শরয়ী পর্দা ও হুকুম পালন করবেন?" },
-        { name: "accept_tms_policy", question: "TMS-এর সকল শরয়ী বিধান মানেন?" },
+        { name: "accept_tms_policy", question: "HMS-এর সকল শরয়ী বিধান মানেন?" },
         { name: "accept_polygamy_for_daughter", question: "মেয়ে বা জামাই মাসনা করলে মেনে নেবেন?" },
 
         // Additional Info
@@ -187,7 +187,7 @@ const UserDetails = () => {
     const axiosSecure = useAxiosSecure();
     const { role, isLoading: roleLoading } = useRole();
     const { gender, isLoading: userLoading } = useUser();
-
+    const [edit, setEdit] = useState(false);
 
     // get the user data
     const { data = [], refetch, isLoading } = useQuery({
@@ -207,12 +207,15 @@ const UserDetails = () => {
         },
         onSuccess: () => {
             toast.success('Edited Successfully');
+            setEdit(false);
+            setEditedData({});
             refetch();
         }
     });
 
 
     const handleEdit = async (email) => {
+        setEdit(true);
         await mutateAsync(email);
     };
 
@@ -228,74 +231,84 @@ const UserDetails = () => {
 
             <img src={minar_top} alt="" className="px-2 pt-14" />
 
-           <div className="px-5 border-x-4 border-b-4 rounded border-[#93733F] -mt-[81px] mx-2 pt-[50px]">
-             <div className="flex w-full justify-between items-center mt-10">
-                <h1 className="text-3xl md:text-4xl border-b py-5 text-[#C3937C] font-anek">ব্যক্তিগত তথ্য</h1>
-            </div>
-
-            <div className="flex flex-col md:flex-row justify-between border-b space-y-4">
-                <div className="flex justify-between">
-                <img src={data?.image||default_img} className=" size-[180px] md:size-[250px] object-cover" alt="" />
-                {role === 'admin' ?
-                    <button onClick={() => handleEdit(data?.member_email)} className="h-[50px] px-5 border-b">Edit</button>
-                    :
-                    <Link to={`/images/${data?.member_email}`} className="font-mina underline">আরো ছবি</Link>
-                }
-                </div>
-                <p className="text-[clamp(20px,4vw,30px)]  md:text-center font-mina">{data?.name}</p>
-            </div>
-
-
-            <div>
-
-                {/* for men */}
-                <div className="md:grid space-y-3 md:grid-cols-4 grid-rows-5 w-full gap-5 py-5">
-                    {
-                        data?.gender === 'male' &&
-                        men_questions.map((got, idx) => (
-                            <div key={idx} className="col-span-2 row-span-1 space-y-1">
-                                <p className="col-span-2 row-span-5 text-2xl font-bold font-anek">{got?.p}</p>
-                                <p className="font-bold text-[18px]">{got?.question} </p>
-                                <input
-                                    type="text"
-                                    value={editedData?.[got?.name]}
-                                    disabled
-                                    onChange={(e) =>
-                                        setEditedData({ ...editedData, [got.name]: e.target.value })
-                                    }
-                                    className={`bg-white placeholder:pl-3 placeholder:text-black w-full border-2 border-gray-300  font-alkatra rounded py-2 ${got?.hidden} `}
-                                    placeholder={data?.[got?.name]}
-                                />
-                            </div>
-                        ))
-                    }
-
-                    {/* for female */}
-
-                    {
-                        data?.gender === 'female' &&
-                        female_questions.map((got, idx) => (
-                            <div key={idx} className="col-span-2 row-span-1 space-y-1">
-                                <p className="col-span-2 row-span-5 text-2xl font-kaushan text-[#C3937C]">{got?.p}</p>
-                                <p className="font-bold text-[18px] font-alkatra">{got?.question} </p>
-                                <input
-                                    type="text"
-                                    value={editedData?.[got?.name]}
-                                    disabled
-                                    onChange={(e) =>
-                                        setEditedData({ ...editedData, [got.name]: e.target.value })
-                                    }
-                                    className={`bg-white placeholder:pl-3 placeholder:text-black w-full border-2 border-gray-300  font-alkatra rounded py-2 ${got?.hidden} `}
-                                    placeholder={data?.[got?.name]}
-                                />
-                            </div>
-                        ))
-                    }
-
+            <div className="px-5 border-x-4 border-b-4 rounded border-[#93733F] -mt-[81px] mx-2 pt-[50px]">
+                <div className="flex w-full justify-between items-center mt-10">
+                    <h1 className="text-3xl md:text-4xl border-b py-5 text-[#C3937C] font-anek">ব্যক্তিগত তথ্য</h1>
                 </div>
 
+                <div className="flex flex-col md:flex-row justify-between border-b space-y-4">
+                    <div className="flex justify-between">
+                        <img src={data?.image || default_img} className=" size-[180px] md:size-[250px] object-cover" alt="" />
+                        {role === 'admin' ?
+                            <button onClick={() => handleEdit(data?.member_email)} className="h-[50px] px-5 border-b">Edit</button>
+                            :
+                            <Link to={`/images/${data?.member_email}`} className="font-mina underline">আরো ছবি</Link>
+                        }
+                    </div>
+                    <p className="text-[clamp(20px,4vw,30px)]  md:text-center font-mina">{data?.name}</p>
+                </div>
+
+
+                <div>
+
+                    {/* for men */}
+                    <div className="md:grid space-y-3 md:grid-cols-4 grid-rows-5 w-full gap-5 py-5">
+                        {
+                            data?.gender === 'male' &&
+                            men_questions.map((got, idx) => (
+                                <div key={idx} className="col-span-2 row-span-1 space-y-1">
+                                    <p className="col-span-2 row-span-5 text-2xl font-bold font-anek">{got?.p}</p>
+                                    <p className="font-bold text-[18px]">{got?.question} </p>
+                                    {
+                                        edit ?
+                                            <input
+                                                type="text"
+                                                value={editedData?.[got?.name]}
+                                                disabled
+                                                onChange={(e) =>
+                                                    setEditedData({ ...editedData, [got.name]: e.target.value })
+                                                }
+                                                className={`bg-white placeholder:pl-3 placeholder:text-black w-full border-2 border-gray-300  font-alkatra rounded py-2 ${got?.hidden} `}
+                                                placeholder={data?.[got?.name]}
+                                            />
+                                            :
+                                            <p className="bg-white p-2 text-justify border">{data?.[got?.name]}</p>
+                                    }
+                                </div>
+                            ))
+                        }
+
+                        {/* for female */}
+
+                        {
+                            data?.gender === 'female' &&
+                            female_questions.map((got, idx) => (
+                                <div key={idx} className="col-span-2 row-span-1 space-y-1">
+                                    <p className="col-span-2 row-span-5 text-2xl font-kaushan text-[#C3937C]">{got?.p}</p>
+                                    <p className="font-bold text-[18px] font-alkatra">{got?.question} </p>
+                                    {
+                                        edit ?
+                                            <input
+                                                type="text"
+                                                value={editedData?.[got?.name]}
+                                                disabled
+                                                onChange={(e) =>
+                                                    setEditedData({ ...editedData, [got.name]: e.target.value })
+                                                }
+                                                className={`bg-white placeholder:pl-3 placeholder:text-black w-full border-2 border-gray-300  font-alkatra rounded py-2 ${got?.hidden} `}
+                                                placeholder={data?.[got?.name]}
+                                            />
+                                            :
+                                            <p className="bg-white p-2 text-justify border">{data?.[got?.name]}</p>
+                                    }
+                                </div>
+                            ))
+                        }
+
+                    </div>
+
+                </div>
             </div>
-           </div>
 
 
 

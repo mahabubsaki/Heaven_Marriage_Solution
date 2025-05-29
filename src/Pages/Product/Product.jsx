@@ -11,6 +11,7 @@ import CloseModal from '../../Components/Shared/Modal/CloseModal';
 import BuyModal from '../../Components/Shared/Modal/BuyModal';
 import CartModal from '../../Components/Shared/Modal/CartModal';
 import { FaMinus, FaPlus } from "react-icons/fa6";
+import Navbar from '../../Components/Shared/Navbar/Navbar';
 
 const Product = () => {
 
@@ -73,7 +74,11 @@ const Product = () => {
 
 
     return (
-        <div className=" w-full lg:px-10 pt-[120px] px-5">
+        <div className=" w-full lg:px-10 px-5">
+            <div>
+                <h1 className="text-2xl pb-[60px] font-bold text-[#C3937C] p-2">Heaven Marriage</h1>
+                <Navbar />
+            </div>
 
             <div className=" border-t-[1px] flex flex-col lg:flex-row border-[#BEBEBE] lg:p-6 md:gap-10 gap-3 ">
 
@@ -117,12 +122,6 @@ const Product = () => {
                     <div className="flex gap-5 mb-10 ">
 
                         <div className="flex gap-5">
-                            <span
-                                onClick={() => setOpen(true)}
-                            >
-                                <WhiteButton text='Cart' />
-                            </span>
-
                             <span
                                 onClick={() => handleBuy(data)}
                             >

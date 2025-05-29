@@ -5,13 +5,15 @@ import toast from 'react-hot-toast';
 import { imageUpload } from '../../Utils/ImageUpload';
 import useAuth from '../../Hooks/Auth/useAuth';
 import { useNavigate } from 'react-router-dom';
+import { AiOutlineLoading } from 'react-icons/ai';
 
 const InProcessNotVerf = () => {
 
     const axiosSecure = useAxiosSecure();
     const qClinet = useQueryClient();
+    const [logLoad, setLogLoad] = useState(false);
     const { user } = useAuth();
-const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const { mutateAsync } = useMutation({
         mutationFn: async (transactionData) => {
@@ -21,6 +23,7 @@ const navigate = useNavigate();
         onSuccess: () => {
             toast.success('Your Transaction Data Sended');
             navigate('/transaction_received');
+            setLogLoad(false);
             qClinet.invalidateQueries(['usersData']);
         }
     });
@@ -40,6 +43,7 @@ const navigate = useNavigate();
             transaction_status: 'in process',
             transaction_sentBy_user: user?.email
         };
+        setLogLoad(true);
         await mutateAsync(transactionData);
         form.reset();
     };
@@ -49,7 +53,7 @@ const navigate = useNavigate();
             <p className="font-galada text-justify text-2xl text-blue-400 my-3">Thank You!</p>
             <p className="font-galada text-justify">আপনার ফর্মটি সফলভাবে HMS অফিসে জমা হয়েছে, আলহামদুলিল্লাহ।</p>
             <p className="font-galada text-justify">পরবর্তী ধাপ: ভেরিফিকেশন ও জয়েনিং প্রসেস সম্পন্ন করার জন্য ৫১০ টাকা পাঠাতে অনুরোধ করছি
-(ঈদুল আজহার আগ পর্যন্ত ৫০% ডিসকাউন্ট: ১০২০ টাকার পরিবর্তে মাত্র ৫১০ টাকা)</p>
+                (ঈদুল আজহার আগ পর্যন্ত ৫০% ডিসকাউন্ট: ১০২০ টাকার পরিবর্তে মাত্র ৫১০ টাকা)</p>
 
             <p className="font-galada text-justify text-xl mt-2">পেমেন্ট পাঠানোর বিকল্প মাধ্যমসমূহ:</p>
             <p className="font-galada text-justify"><span className="font-semibold">Send Money (Nagad/Bkash/Rocket – Personal):</span> <span className='text-red-600'>01748919251</span> (নগদ / বিকাশ / রকেট – পার্সোনাল)</p>
@@ -62,20 +66,20 @@ const navigate = useNavigate();
             <p className="font-galada text-justify">গুরুত্বপূর্ণ নির্দেশনা:</p>
             <p className="font-galada text-justify">টাকা পাঠানোর পর অবশ্যই রসিদ/স্ক্রিনশট বা ছবি সংগ্রহ এবং  সংরক্ষণ করুন।</p>
             <p className="font-galada text-justify">নিচের পেমেন্ট ভেরিফিকেশন ফর্মে “ডকুমেন্ট আপলোড” সেকশনে এটি আপলোড করুন, <br />
-অথবা অফিসিয়াল হোয়াটসঅ্যাপ নম্বরে পাঠিয়ে দিন: +8801342665286</p>
+                অথবা অফিসিয়াল হোয়াটসঅ্যাপ নম্বরে পাঠিয়ে দিন: +8801342665286</p>
 
 
-           <p className="font-galada text-justify">অনুরোধ:</p>
+            <p className="font-galada text-justify">অনুরোধ:</p>
             <p className="font-galada text-justify">শুধুমাত্র উপরোক্ত নির্দিষ্ট নাম্বারে টাকা পাঠাবেন। <br />
-অন্য কোনো নাম্বারে পেমেন্ট করলে HMS আপনার রেজিস্ট্রেশন নিশ্চিত করতে পারবে না।</p>
+                অন্য কোনো নাম্বারে পেমেন্ট করলে HMS আপনার রেজিস্ট্রেশন নিশ্চিত করতে পারবে না।</p>
 
 
-           <p className="font-galada text-justify">সবশেষে:</p>
+            <p className="font-galada text-justify">সবশেষে:</p>
             <p className="font-galada text-justify">অবশ্যই পেমেন্ট ভেরিফিকেশন ফর্মটি পূরণ করুন,
-নচেৎ আপনার রেজিস্ট্রেশন প্রক্রিয়া সম্পূর্ণ হবে না।</p>
+                নচেৎ আপনার রেজিস্ট্রেশন প্রক্রিয়া সম্পূর্ণ হবে না।</p>
 
             <p className="font-galada text-justify">মাআস্সালাম, <br />
-Heaven Marriage Solutions (HMS) টিম</p>
+                Heaven Marriage Solutions (HMS) টিম</p>
 
 
 
@@ -116,13 +120,19 @@ Heaven Marriage Solutions (HMS) টিম</p>
 
                 <button
                     type="submit"
+                    disabled={logLoad}
                     className="w-full bg-green-600 py-2 rounded hover:bg-green-700 font-semibold font-galada
              bg-gradient-to-r from-[#faf0d3] to-[#e9deaf] 
              hover:from-[#E6E0CC] hover:to-[#d1c38b] 
              transition duration-300
                     "
                 >
-                    সাবমিট করুন
+                    {
+                        logLoad ?
+                            <AiOutlineLoading className='text-2xl font-bold animate-spin' />
+                            :
+                            "সাবমিট করুন"
+                    }
                 </button>
             </form>
 

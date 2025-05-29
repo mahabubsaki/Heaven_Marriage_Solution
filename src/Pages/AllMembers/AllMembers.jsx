@@ -129,7 +129,7 @@ const AllMembers = () => {
                 <h1 className="font-galada text-2xl border-b border-black mb-5 pl-2">সদস্য সমূহ</h1>
 
                 {
-                    status !== 'verified' && <p className="font-kau text-2xl text-center py-10 font-galada">দয়া করে ভেরিফিকেশনের জন্য অপেক্ষা করুন।</p>
+                    status !== 'verified' && <p className="font-kau text-2xl text-center py-10 font-galada">এই পৃষ্ঠাটি দেখতে হলে আপনাকে অবশ্যই একজন সদস্য হতে হবে</p>
                 }
 
                 {/* toDO
@@ -138,16 +138,16 @@ const AllMembers = () => {
                 {
                     status === 'verified' &&
                     data?.map((got, idx) => (
-                        <div key={idx} className="border shadow rounded-2xl flex p-3 gap-4 w-full bg-[#F2F2F2] space-y-4 mt-2 h-[230px]">
-                            <img className="size-[120px] rounded-full object-cover" src={got?.image || default_img} alt="" />
-                            <div className="flex-grow space-y-1 w-full">
-                                <h1 className="text-xs text-blue-500">
+                        <div key={idx} className="border shadow rounded-2xl bg-[#F2F2F2] flex p-3 gap-4 w-full space-y-4 mt-2 h-[220px]">
+                            <img className="size-[110px] rounded-full object-cover" src={got?.image || default_img} alt="" />
+                            <div className="flex flex-col space-y-1 w-full relative">
+                                <h1 className="text-xs text-blue-500 font-bold">
                                     {got?.form_uuId.slice(0, 8)}
                                 </h1>
                                 <div className="flex justify-between items-center">
                                     <h1 className="text-xl font-galada">
                                         <span className="text-green-700"></span>
-                                        {got?.name.split(' ').slice(0, 1)} {got?.name.split(' ').slice(1, 2)}
+                                        {got?.name.split(' ').slice(0, 3).join(' ')}
                                     </h1>
                                     <span className="text-blue-500"><RiVerifiedBadgeFill /></span>
                                 </div>
@@ -163,15 +163,15 @@ const AllMembers = () => {
                                     </h1>
                                     <h1 className="flex gap-4 items-center text-base font-anek">
                                         <span className="text-green-700"><FiMapPin /></span>
-                                        {got?.current_full_address}
+                                        {got?.current_full_address.split(' ').slice(0, 2).join(' ')}
                                     </h1>
                                 </div>
 
                                 <div className="flex flex-row items-center justify-between pt-4">
-                                    <Link to={`/user_details/${got?.member_email}`} className="text-xs font-alkatra border-b border-blue-700">
+                                    <Link to={`/user_details/${got?.member_email}`} className="text-xs font-alkatra border-b absolute bottom-3 border-blue-700">
                                         বিস্তারিত
                                     </Link>
-                                    <button onClick={() => sentProposal(got)} className="text-xs font-alkatra border-b border-blue-700">
+                                    <button onClick={() => sentProposal(got)} className="text-xs font-alkatra border-b border-blue-700 absolute bottom-3 right-3">
                                         প্রস্তাব পাঠান
                                     </button>
                                 </div>

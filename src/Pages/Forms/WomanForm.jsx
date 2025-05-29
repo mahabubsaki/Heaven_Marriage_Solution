@@ -6,7 +6,7 @@ import Loading from "../Loading/Loading";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { imageUpload } from "../../Utils/ImageUpload";
-import React from 'react';
+import React, { useState } from 'react';
 import HeadingSubHead from "../../Components/TextAnimations/HeadingSubHead";
 import Navbar from "../../Components/Shared/Navbar/Navbar";
 import womanFormImg from '/images/woman_form.jpeg'
@@ -14,7 +14,7 @@ import womanFormImg from '/images/woman_form.jpeg'
 const WomanForm = () => {
 
     const { user, loading } = useAuth();
-
+    const [logLoad, setLogLoad] = useState(false);
 
 
     const questions = [
@@ -126,6 +126,45 @@ const WomanForm = () => {
         },
         { name: "current_expense_by", label: "আপনার বর্তমান খরচ কে বহন করছেন?", required: true },
         { name: "own_property", label: "আপনার নিজস্ব কোনো স্থাবর-অস্থাবর, নগদ সম্পত্তি আছে কি না? থাকলে বিস্তারিত বিবরণ দিন?" },
+
+
+        // favoured_husband
+        // color_choice
+        // height_choice
+        // financial_status
+        // district_choice
+        // own_opinion
+        {
+            name: "favoured_husband",
+            question: "কেমন পাত্র চান?",
+            class: "hidden",
+            options: ["দীনদার আলেম",
+                "*দীনদার জেনারেল শিক্ষিত",
+                "*জেনারেল শিক্ষিত",
+                "*যে কোনো দীনদার"]
+        },
+        {
+            name: "color_choice",
+            question: "গায়ের রং কেমন চান?",
+            class: "hidden",
+            options: ["*ফর্সা", "*উজ্জ্বল ফর্সা", "*ফর্সা-শ্যামলা", "*শ্যামলা", "*কালো",
+                "*যে কোনো গায়ের রং"]
+        },
+        { name: "height_choice", label: "উচ্চতা কেমন চান? (কত থেকে কত) *" },
+        { name: "district_choice", label: "নির্দিষ্ট কোন জেলা/বিভাগের পাত্র চান? না যে কোনো? *" },
+        { name: "own_opinion", label: "আপনার আরো কোন চাহিদা থাকলে স্বাধীনভাবে উল্লেখ করতে পারেন।" },
+        {
+            name: "financial_status",
+            question: "আর্থিক অবস্থা কেমন চান? ",
+            class: "hidden",
+            options: [
+                "*উচ্চবিত্ত",
+                "*উচ্চ মধ্যবিত্ত",
+                "*মধ্যবিত্ত",
+                "*নিম্নবিত্ত",
+                "*যে কোনো আর্থিক অবস্থা"]
+        },
+
 
 
         { heading: 'শরয়ী অবস্থান এর তথ্যাবলিঃ', visibility: "hidden", },
@@ -280,6 +319,12 @@ const WomanForm = () => {
         "follow_shariah_completely",
         "child_living_preference",
         "additional_info",
+        "favoured_husband",
+        "color_choice",
+        "height_choice",
+        "financial_status",
+        "district_choice",
+        "own_opinion",
     ];
 
 
@@ -293,6 +338,7 @@ const WomanForm = () => {
         },
         onSuccess: () => {
             toast.success('Form submitted Succesfully !');
+            setLogLoad(false);
             navigate('/girls_verified');
         }
     });
@@ -332,6 +378,14 @@ const WomanForm = () => {
         const family_lineage = form.family_lineage.value;
         const family_economy = form.family_economy.value;
         const own_economy = form.own_economy.value;
+        // added
+        const favoured_husband = form.favoured_husband.value;
+        const color_choice = form.color_choice.value;
+        const height_choice = form.height_choice.val;
+        const financial_status = form.financial_status.value;
+        const district_choice = form.district_choice.val;
+        const own_opinion = form.own_opinion.val;
+        // ended
         const current_expense_by = form.current_expense_by.value;
         const own_property = form.own_property.value;
         const haque_opinion = form.haque_opinion.value;
@@ -386,6 +440,12 @@ const WomanForm = () => {
             father_name_occupation,
             mother_name_occupation,
             siblings_and_position,
+            favoured_husband,
+            color_choice,
+            height_choice,
+            financial_status,
+            district_choice,
+            own_opinion,
             family_lineage,
             family_economy,
             own_economy,
@@ -415,6 +475,7 @@ const WomanForm = () => {
             form_uuId,
         };
 
+        setLogLoad(true);
         await mutateAsync(womanForm);
         form.reset();
 
@@ -433,7 +494,7 @@ const WomanForm = () => {
                 <form onSubmit={handleSubmit} className="gap-10 pt-5 px-5">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                         <div className="flex flex-col space-y-5">
-                            <label className="font-semibold font-alkatra">
+                            <label className="font-semibold ">
                                 আপনার ছবি
                             </label>
                             <input type="file" name="image" id="" className="w-2/3 border file:rounded-full border-black rounded-2xl px-5 py-2" />
@@ -442,14 +503,14 @@ const WomanForm = () => {
                         {
                             questions.map(({ heading, subHeading, visibility, name, question, class: clas, label, options, required }, idx) => (
                                 <div key={idx}>
-                                    {heading && <p className="text-3xl font-galada">{heading}</p>}
-                                    {subHeading && <p className="font-galada">{subHeading}</p>}
+                                    {heading && <p className="text-3xl ">{heading}</p>}
+                                    {subHeading && <p className="">{subHeading}</p>}
 
                                     {!clas && < div className="flex flex-col">
-                                        <label className={`font-semibold font-alkatra text-justify ${clas}`}>
+                                        <label className={`font-semibold  text-justify ${clas}`}>
                                             {label}
                                         </label>
-                                        {!visibility && < input className={`bg-white ${clas} w-full border-2 border-gray-300  font-alkatra rounded py-2 `} type="text" name={name} required={required || false} />}
+                                        {!visibility && < input className={`bg-white ${clas} w-full border-2 border-gray-300   rounded py-2 `} type="text" name={name} required={required || false} />}
                                     </div>}
 
                                     {clas && (
@@ -475,20 +536,27 @@ const WomanForm = () => {
 
                     </div>
 
-                    <div className="my-4 space-y-2">
+                    <div className="my-4 space-y-2 text-red-400">
                         <p className="text-justify font-galada">ফর্ম জমা দেওয়ার আগে নির্দেশনাগুলো পড়ুন ও সকল তথ্য যাচাই করুন। ফাঁকা ঘর থাকলে সাবমিশন হবে না।</p>
-                        <p className="text-justify font-galada">মুহতারাম, <br />
+                        <p className="text-justify font-galada">মুহতারিমা, <br />
                             সঠিকভাবে জমা হলে স্ক্রিনে পরবর্তী নির্দেশনা প্রদর্শিত হবে।তা ধারাবাহিক ভাবে অনুসরণ করুন।
-                            হোয়াটসঅ্যাপে আলাদা কোনো মেসেজ পাঠানো হবে না, স্ক্রিনশট সংরক্ষণ করুন।</p>
+                            প্রয়োজনে হোয়াটসঅ্যাপে যোগাযোগ করুন অথবা ডিরেক্ট কল দিন।</p>
                     </div>
 
-                    <div className="flex justify-center mt-5">
-                        <button className="px-4 py-1 mx-5 w-[340px]
+                    <div className="flex justify-center my-5">
+                        <button
+                            disabled={logLoad}
+                            className="px-4 py-1 mx-5 w-[340px]
              bg-gradient-to-r from-[#faf0d3] to-[#e9deaf] 
              text-gray-800 font-semibold rounded shadow-md 
-             hover:from-[#E6E0CC] hover:to-[#d1c38b] 
-             transition duration-300 my-5">
-                            Submit
+             hover:from-[#E6E0CC] hover:to-[#d1c38b] flex items-center justify-center
+             transition duration-300">
+                            {
+                                logLoad ?
+                                    <AiOutlineLoading className='text-2xl font-bold animate-spin' />
+                                    :
+                                    "Submit"
+                            }
                         </button>
                     </div>
 

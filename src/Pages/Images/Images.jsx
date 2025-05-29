@@ -9,6 +9,7 @@ import { useParams } from 'react-router';
 import { AiOutlineLoading } from 'react-icons/ai';
 import { RxCross2 } from "react-icons/rx";
 import Navbar from '../../Components/Shared/Navbar/Navbar';
+import { Link } from 'react-router-dom';
 
 const Images = () => {
 
@@ -73,6 +74,17 @@ const Images = () => {
 
     return (
         <div className=''>
+
+            {
+                data.length === 0 &&
+                <div className="absolute inset-0 flex flex-col items-center justify-center">
+                    <p className='font-galada text-xl'>কোনো ছবি পাওয়া যায়নি। হোমে ফিরে যান।</p>
+                    <Link to="/" className="text-blue-500 underline mt-2 px-5 py-1">
+                        হোম
+                    </Link>
+                </div>
+
+            }
 
             <div>
                 <h1 className="text-2xl font-bold text-[#C3937C] p-2">Heaven Marriage</h1>

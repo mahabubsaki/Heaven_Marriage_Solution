@@ -1,6 +1,6 @@
 import { FcGoogle } from 'react-icons/fc';
 import { FaEye, FaEyeSlash, FaLock, FaLockOpen } from 'react-icons/fa';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import img_1 from '/images/sign_img.jpeg';
@@ -10,14 +10,19 @@ import useAxiosSecure from '../../Hooks/Axios/useAxiosSecure';
 import { useMutation } from '@tanstack/react-query';
 import { imageUpload } from '../../Utils/ImageUpload';
 import { AiOutlineLoading } from 'react-icons/ai';
+import Loading from '../Loading/Loading';
 
 const Register = () => {
 
     const [logLoad, setLogLoad] = useState(false);
     const [passText, setPassText] = useState(true);
     const [confirmPassText, setConfirmPassText] = useState(true);
-    const { createUser, signInWithGoogle, user, setLoading } = useAuth();
+    const { createUser, signInWithGoogle, user, setLoading, loading } = useAuth();
     const navigate = useNavigate();
+
+    // divert to previous page after login
+    const location = useLocation();
+    const from = location?.state || '/';
 
     const axiosSecure = useAxiosSecure();
     const { mutateAsync } = useMutation({
@@ -54,12 +59,14 @@ const Register = () => {
         // email check
         if (!emailChecker) {
             setLogLoad(false);
+            setLoading(false);
             return toast.error('Provide a valid Email');
         }
 
         // pass checker
         if (password !== confirmPassword) {
             setLogLoad(false);
+            setLoading(false);
             return toast.error('Password is not matched !');
         }
 
@@ -70,6 +77,7 @@ const Register = () => {
             phone,
             status: "not verified",
             role: 'guest',
+            transaction_status: "not verified",
             image: imageUrl
         };
         await mutateAsync(userData);
@@ -77,26 +85,25 @@ const Register = () => {
 
         try {
             const signIn = await createUser(email, password);
-            navigate('/');
+            navigate(from);
             setLogLoad(false);
             toast.success('User Created Successfully');
         } catch (error) {
             console.log(error);
             setLogLoad(false);
+            setLoading(false);
             toast.error(error.message);
         }
     };
 
     const handleGoogleLogin = async () => {
         await signInWithGoogle();
-        navigate('/');
+        navigate(from);
     };
 
 
-
-
     if (user) return <Navigate to='/' />;
-
+    if (loading) return <Loading />
 
     return (
         <div
@@ -110,28 +117,28 @@ const Register = () => {
                 <form onSubmit={handleSignUp} className="text-left flex justify-center mt-2 flex-col items-center text-white ">
 
                     <div className='w-[280px] md:w-[400px] '>
-            <Link to={'/'} className='text-3xl font-anek'>Heaven Marriage</Link>
+                        <Link to={'/'} className='text-3xl font-anek'>Heaven Marriage</Link>
                         <h1 className="mb-2 font-lexend">SignUp Now!</h1>
                         <div className='flex flex-col space-y-5'>
-                            <input required className='glass-morphism py-4 placeholder:text-white pl-4 pr-16 text-left outline-none rounded-sm font-raleway text-sm' placeholder='Your Name' type="text" name="name" />
+                            <input required className='glass-morphism py-4 placeholder:text-white pl-4 pr-16 text-left outline-none rounded-sm font-raleway text-sm' placeholder='আপনার নাম ?' type="text" name="name" />
                             <select
                                 required
                                 name="gender"
                                 className="glass-morphism py-4 pl-4 pr-16 text-left outline-none rounded-sm font-raleway text-sm"
                             >
-                                <option disabled selected value="">Gender</option>
-                                <option className='text-black' value='male'>Male</option>
-                                <option className='text-black' value='female'>Female</option>
+                                <option disabled selected value="">আপনার লিঙ্গ উল্লেখ করুন</option>
+                                <option className='text-black' value='male'>পুরুষ</option>
+                                <option className='text-black' value='female'>মহিলা</option>
                             </select>
                             <input type="file" name="image" className='glass-morphism py-4  placeholder:text-white pl-4 pr-16 text-left outline-none rounded-sm font-raleway text-sm file:glass-morphism file:border-none file:rounded-xl ' />
-                            <input required className='glass-morphism py-4 placeholder:text-white pl-4 pr-16 text-left outline-none rounded-sm text-sm' placeholder='Phone Number' type="number" name="phone" />
-                            <input required className='glass-morphism py-4  placeholder:text-white pl-4 pr-16 text-left outline-none rounded-sm font-raleway text-sm' placeholder='Email' type="email" name="email" />
+                            <input required className='glass-morphism py-4 placeholder:text-white pl-4 pr-16 text-left outline-none rounded-sm text-sm' placeholder='মোবাইল নম্বর' type="number" name="phone" />
+                            <input required className='glass-morphism py-4  placeholder:text-white pl-4 pr-16 text-left outline-none rounded-sm font-raleway text-sm' placeholder='ইমেইল' type="email" name="email" />
                             <div className='relative'>
-                                <input required className='glass-morphism placeholder:text-white  py-4 pl-4  w-full pr-16 text-left outline-none rounded-sm font-raleway text-sm' placeholder='Password' type={passText ? "password" : "text"} name="password" />
+                                <input required className='glass-morphism placeholder:text-white  py-4 pl-4  w-full pr-16 text-left outline-none rounded-sm text-sm' placeholder='একটি নতুন পাসওয়ার্ড দিন।' type={passText ? "password" : "text"} name="password" />
                                 <span onClick={() => setPassText(!passText)} className='absolute right-5 top-4'> {passText ? <FaEye /> : <FaEyeSlash />} </span>
                             </div>
                             <div className='relative'>
-                                <input required className='glass-morphism placeholder:text-white py-4 pl-4 w-full pr-16 text-left outline-none rounded-sm font-raleway text-sm' placeholder='Confirm Password' type={confirmPassText ? "password" : "text"} name="confirmPassword" />
+                                <input required className='glass-morphism placeholder:text-white py-4 pl-4 w-full pr-16 text-left outline-none rounded-sm text-sm' placeholder='পুনরায় পাসওয়ার্ডটি লিখুন' type={confirmPassText ? "password" : "text"} name="confirmPassword" />
                                 <span onClick={() => setConfirmPassText(!confirmPassText)} className='absolute right-5 top-4'>{confirmPassText ? <FaEye /> : <FaEyeSlash />}</span>
                             </div>
                             <span className='flex justify-center'>
