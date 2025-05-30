@@ -75,8 +75,9 @@ const Images = () => {
     return (
         <div className=''>
 
+            {/* for only other user to see */}
             {
-                data.length === 0 &&
+                data.length === 0 && user?.email !== email &&
                 <div className="absolute inset-0 flex flex-col items-center justify-center">
                     <p className='font-galada text-xl'>কোনো ছবি পাওয়া যায়নি। হোমে ফিরে যান।</p>
                     <Link to="/" className="text-blue-500 underline mt-2 px-5 py-1">

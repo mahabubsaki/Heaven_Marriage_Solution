@@ -69,7 +69,7 @@ const AllMembers = () => {
     if (loading || isLoading || memberLoading) return <Loading />;
 
     return (
-        <div className="p-5 bg-[#EFEBD9] space-y-5 min-h-[100dvh]">
+        <div className="p-5 bg-[#EFEBD9] space-y-3 min-h-[100dvh]">
 
 
             <div className="relative flex flex-col py-1 space-y-2">
@@ -84,7 +84,7 @@ const AllMembers = () => {
             </div>
 
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2 ">
 
                 <div className=" bg-[#F2F2F2] p-2 rounded-2xl flex  gap-5 col-span-2 items-center">
                     <div>
@@ -97,27 +97,27 @@ const AllMembers = () => {
                             <Link to='/profile'>
                                 <p className="text-black font-bold underline">{name || user?.displayName}</p>
                             </Link>
-                            <div className="flex gap-16">
-                                <Link to={`/images/${user?.email}`} className="text-blue-400 underline font-light font-marck">More Images</Link>
-                                <p className={`${status === 'verified' ? 'text-green-400' : 'text-red-400'} text-xl font-marck`}>{status}</p>
+                            <div className="flex items-center justify-center gap-16">
+                                <Link to={`/images/${user?.email}`} className="text-blue-400 underline font-light ">আরো ছবি</Link>
+                                <p className={`${status === 'verified' ? 'text-green-400' : 'text-red-400'} text-xl mb-1`}>{status}</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div className=" rounded-2xl col-span-2 flex justify-between gap-4">
+                <div className=" rounded-2xl col-span-2 flex justify-between gap-3">
 
                     <Link to='/received_request' className="text-xs ">
                         <div className="bg-[#F2F2F2] flex gap-2 justify-center items-center p-4 rounded-xl ">
                             <FiSend className="text-2xl" />
-                            <p className="font-galada">আপনার প্রস্তাব সমূহ</p>
+                            <p className="">আপনার প্রস্তাব সমূহ</p>
                         </div>
                     </Link>
 
                     <Link to='/all_request' className=" text-xs ">
                         <div className="bg-[#F2F2F2] flex gap-2 justify-center items-center p-4 rounded-xl ">
                             <HiOutlineDownload className="text-2xl" />
-                            <p className="font-galada">আপনার অনুরোধ সমূহ</p>
+                            <p className="">আপনার অনুরোধ সমূহ</p>
                         </div>
                     </Link>
 
@@ -125,11 +125,11 @@ const AllMembers = () => {
 
             </div>
 
-            <div className="space-y-2">
-                <h1 className="font-galada text-2xl border-b border-black mb-5 pl-2">সদস্য সমূহ</h1>
+            <div className="space-y-2 ">
+                <h1 className=" text-2xl font-bold border-b border-black mb-3 pb-2 pl-2">সদস্য সমূহ</h1>
 
                 {
-                    status !== 'verified' && <p className="font-kau text-2xl text-center py-10 font-galada">এই পৃষ্ঠাটি দেখতে হলে আপনাকে অবশ্যই একজন সদস্য হতে হবে</p>
+                    status !== 'verified' && <p className=" text-2xl text-center py-10 ">এই পৃষ্ঠাটি দেখতে হলে আপনাকে অবশ্যই একজন সদস্য হতে হবে</p>
                 }
 
                 {/* toDO
@@ -145,7 +145,7 @@ const AllMembers = () => {
                                     {got?.form_uuId.slice(0, 8)}
                                 </h1>
                                 <div className="flex justify-between items-center">
-                                    <h1 className="text-xl font-galada">
+                                    <h1 className="font-bold ">
                                         <span className="text-green-700"></span>
                                         {got?.name.split(' ').slice(0, 3).join(' ')}
                                     </h1>
@@ -153,25 +153,25 @@ const AllMembers = () => {
                                 </div>
 
                                 <div className="w-full">
-                                    <h1 className="flex gap-4 items-center text-base font-anek">
+                                    <h1 className="flex gap-4 items-center font-extralight text-base ">
                                         <span className="text-green-700"><FaSuitcase /></span>
                                         {got?.income_source}
                                     </h1>
-                                    <h1 className="flex gap-4 items-center text-base font-anek">
+                                    <h1 className="flex gap-4 items-center font-extralight text-base ">
                                         <span className="text-green-700"><RiLineHeight /></span>
                                         {got?.height}
                                     </h1>
-                                    <h1 className="flex gap-4 items-center text-base font-anek">
+                                    <h1 className="flex gap-4 items-center font-extralight text-base ">
                                         <span className="text-green-700"><FiMapPin /></span>
                                         {got?.current_full_address.split(' ').slice(0, 2).join(' ')}
                                     </h1>
                                 </div>
 
                                 <div className="flex flex-row items-center justify-between pt-4">
-                                    <Link to={`/user_details/${got?.member_email}`} className="text-xs font-alkatra border-b absolute bottom-3 border-blue-700">
+                                    <Link to={`/user_details/${got?.member_email}`} className="text-xs font-semibold  border-b absolute bottom-3 border-blue-700">
                                         বিস্তারিত
                                     </Link>
-                                    <button onClick={() => sentProposal(got)} className="text-xs font-alkatra border-b border-blue-700 absolute bottom-3 right-3">
+                                    <button onClick={() => sentProposal(got)} className="text-xs font-semibold  border-b border-blue-700 absolute bottom-3 right-3">
                                         প্রস্তাব পাঠান
                                     </button>
                                 </div>
