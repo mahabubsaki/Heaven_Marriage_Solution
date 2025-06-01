@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 import React from 'react';
@@ -47,6 +47,7 @@ const AuthProvider = ({ children }) => {
 
 
 
+
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
@@ -70,9 +71,13 @@ const AuthProvider = ({ children }) => {
     };
 
 
+    const sendResetPasswordEmail = (email) => {
+        return sendPasswordResetEmail(auth,email);
+    };
+
 
     const authInfo = {
-        user, loading, setLoading, createUser, login, signInWithGoogle, logOut, contentLoading, setContentLoading
+        user, loading, setLoading, createUser, login, signInWithGoogle, logOut, contentLoading, setContentLoading,sendResetPasswordEmail
         // saveUser
     };
 

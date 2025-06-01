@@ -116,7 +116,8 @@ const Login = () => {
                         </div>
                     </div>
 
-                    <div className='capitalize flex justify-center gap-2 text-sm text-left text-white'>Dont have an account ? <Link to='/register' className='hover:text-blue-500 transition-all underline'>SignUp</Link> </div>
+                    <div className='capitalize flex justify-center gap-2 text-sm text-left text-white'>Dont have an account ? <Link to='/register' className='hover:text-blue-500 transition-all border-b border-blue-500'>SignUp</Link> </div>
+                    <div className='capitalize flex justify-center gap-2 text-sm text-left text-white'>Forgot Password ? <Link to='/forgot-password' className='hover:text-blue-500 transition-all border-b border-blue-500'>Reset</Link> </div>
                 </div>
 
 

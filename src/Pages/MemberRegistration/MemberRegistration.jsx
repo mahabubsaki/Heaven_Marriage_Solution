@@ -91,7 +91,10 @@ const MemberRegistration = () => {
 
                     {/* transection send now wait for the transaction verification and become a member */}
                     {
-                        transaction_status === 'in process'||transaction_status === 'verified' && status === 'in process' && role === 'in process' && <Transaction />
+                        transaction_status === 'in process' && status === 'in process' && role === 'in process' && <Transaction />
+                    }
+                    {
+                        transaction_status === 'verified' && status === 'in process' && role === 'in process' && <Transaction />
                     }
 
                     {/* girls verified */}
