@@ -74,7 +74,7 @@ const BoxContent = ({ heading = '', subHeading = '', lists = '' }) => {
                 className="pl-5"
             >
                 {lists.map((text, index) => (
-                    <motion.li className="pt-2 text-black list-disc text-[clamp(12px,3vw,15px)] font-galada" key={index} variants={itemVariants}>
+                    <motion.li className="pt-2 text-black list-disc text-[clamp(12px,3vw,15px)] text-justify" key={index} variants={itemVariants}>
                         {text}
                     </motion.li>
                 ))}

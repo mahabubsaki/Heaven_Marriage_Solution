@@ -39,7 +39,7 @@ const AllMembers = () => {
 
 
     // user data from usersCollection
-    const { status, isLoading, name, image, age, profession } = useUser();
+    const { status, isLoading, name, image,uuid } = useUser();
 
 
     // request a marrige offer
@@ -168,7 +168,7 @@ const AllMembers = () => {
                             }
                             <div className="flex flex-col space-y-1 w-full relative">
                                 <h1 className="text-xs text-blue-500 font-bold">
-                                    {got?.form_uuId.slice(0, 8)}
+                                    HMS-00{got?.uuid}
                                 </h1>
                                 <div className="flex justify-between items-center">
                                     <h1 className="font-bold ">

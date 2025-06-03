@@ -23,6 +23,7 @@ const useUser = () => {
     const name = data?.name;
     const status = data?.status;
     const role = data?.role;
+    const uuid = data?.uuid;
 
 
     return { email, image, gender, phone, isLoading, name, data, role, status };

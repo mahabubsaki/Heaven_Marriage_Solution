@@ -39,6 +39,7 @@ const AuthProvider = ({ children }) => {
             status: "not verified",
             transaction_status: "not verified",
             role: 'guest',
+            uuid: 0
         };
         const { data } = await axios.put(`${import.meta.env.VITE_SERVER_URL}/userData`, currentUser);
         return data;
@@ -72,12 +73,12 @@ const AuthProvider = ({ children }) => {
 
 
     const sendResetPasswordEmail = (email) => {
-        return sendPasswordResetEmail(auth,email);
+        return sendPasswordResetEmail(auth, email);
     };
 
 
     const authInfo = {
-        user, loading, setLoading, createUser, login, signInWithGoogle, logOut, contentLoading, setContentLoading,sendResetPasswordEmail
+        user, loading, setLoading, createUser, login, signInWithGoogle, logOut, contentLoading, setContentLoading, sendResetPasswordEmail
         // saveUser
     };
 

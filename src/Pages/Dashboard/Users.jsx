@@ -15,6 +15,7 @@ const Users = () => {
             return data;
         }
     });
+    // console.log(data);
 
     // verify users data
     const { mutateAsync } = useMutation({
@@ -28,16 +29,48 @@ const Users = () => {
         }
     });
     // console.log(data);
+
+
+    // get the uuid
+    const { data: uuidData = [],refetch:uuidRefetch } = useQuery({
+        queryKey: ['uuid'],
+        queryFn: async () => {
+            const { data } = await axiosSecure.get('/get_uuid');
+            return data;
+        }
+    });
+    const uuidNum = parseInt(uuidData?.uuid);
+    // console.log(typeof (uuidNum));
+
+    // update uuid
+    const { mutateAsync: updateUuid } = useMutation({
+        mutationFn: async (newUuid) => {
+            const { data } = await axiosSecure.put('/update_uuid', newUuid);
+            return data;
+        },
+        onSuccess: () => {
+            uuidRefetch()
+        }
+    });
+
     // update user
     const handleUpdate = async (email) => {
         const updatedData = {
             status: 'verified',
             role: 'member',
-            form_submitted_by: email
+            uuid: uuidNum + 1,
+            form_submitted_by: email,
         };
-        await mutateAsync(updatedData);
-    };
+        // console.log(updatedData);
 
+        const updatedUuidData = {
+            uuid: uuidNum + 1,
+        };
+        // console.log(updateUuid);
+
+        await mutateAsync(updatedData);
+        await updateUuid(updatedUuidData);
+    };
 
     return (
         <div className=" my-16">
