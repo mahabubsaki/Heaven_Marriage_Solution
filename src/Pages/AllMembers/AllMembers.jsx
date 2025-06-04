@@ -5,7 +5,7 @@ import Loading from "../Loading/Loading";
 import useUser from "../../Hooks/User/useUser";
 import { CiMenuFries } from "react-icons/ci";
 import { Link } from "react-router-dom";
-import React from 'react';
+import React, { useState } from 'react';
 import toast from "react-hot-toast";
 import { FiSend } from "react-icons/fi";
 import { HiOutlineDownload } from "react-icons/hi";
@@ -19,6 +19,7 @@ import male_default from '/images/male_default.png';
 import female_default from '/images/female_default.png';
 import useRole from "../../Hooks/Role/useRole";
 import request_bg from '/images/request_bg.jpg';
+import FilterModal from "../../Components/Shared/FilterModal/FilterModal";
 
 const AllMembers = () => {
     const { user, loading } = useAuth();
@@ -27,19 +28,60 @@ const AllMembers = () => {
 
     const { gender } = useRole();
 
-    // all members
+    // filter modal
+    const [isOpen, setIsOpen] = useState(false);
+
+    // handle filter
+    const [maritalStatus, setMaritalStatus] = useState('');
+    const [district, setDistrict] = useState('');
+    const [income_source, setIncomeSource] = useState('');
+    const [ageDifference, setAgeDifference] = useState('');
+    const [search, setSearch] = useState('');
+
+    // to do in future handleFilterSubmit
+    // const handleFilterSubmit = () => {
+    //     console.log(maritalStatus,
+    //         district,
+    //         income_source,
+    //         ageDifference,);
+    // }
+
+
+    const handleFilter = () => {
+        setIsOpen(!isOpen);
+    }
+
+
+    // handle search
+    const handleSearch = (e) => {
+        e.preventDefault();
+        const searchValue = e.target.search.value;
+        setSearch(searchValue);
+        // reset the form
+        e.target.reset();
+    };
+
+
+    // fetch all members
     const { data = [], isLoading: memberLoading } = useQuery({
-        queryKey: ['allMembers'],
+        queryKey: [
+            'allMembers',
+            maritalStatus,
+            district,
+            income_source,
+            ageDifference,
+        ],
         queryFn: async () => {
-            const { data } = await axiosSecure.get('/all_members');
+            const { data } = await axiosSecure.get(`/all_members?maritalStatus=${maritalStatus}&district=${district}&income_source=${income_source}&ageDifference=${ageDifference}&search=${search}`);
+            setIsOpen(false); // close the filter modal after fetching data
             return data;
         }
     });
 
 
-
     // user data from usersCollection
-    const { status, isLoading, name, image,uuid } = useUser();
+    const { status, isLoading, name, image, uuid } = useUser();
+
 
 
     // request a marrige offer
@@ -75,16 +117,15 @@ const AllMembers = () => {
     if (loading || isLoading || memberLoading) return <Loading />;
 
     return (
-        <div 
-        className="p-5 bg-[#EFEFEF] bg-fixed space-y-3 min-h-[100dvh]"
-        style={{
-            backgroundImage: `url(${request_bg})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat'
-        }}
+        <div
+            className="p-5 bg-[#EFEFEF] bg-fixed space-y-3 min-h-[100dvh] "
+            style={{
+                backgroundImage: `url(${request_bg})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat'
+            }}
         >
-
 
             {/* heading search and filter section*/}
             <div className="relative flex flex-col py-1 space-y-2">
@@ -92,9 +133,11 @@ const AllMembers = () => {
                     <Link to='/' className="font-bold text-3xl text-left font-galada">Heaven Marriage Solutions</Link>
                 </div>
                 <div className="flex justify-between gap-2 relative">
-                    <input type="text" placeholder="search" className="bg-white w-full outline-none border border-black p-2 rounded-lg" />
-                    <button className="bg-[#373B4D] text-white  px-2 right-24 top-2 rounded absolute">Search</button>
-                    <button className=" text-black bg-[#F2F2F2] border border-black px-5 rounded">Filter</button>
+                    <form onSubmit={handleSearch} className="relative w-full">
+                        <input name="search" type="text" placeholder="search" className="bg-white w-full outline-none border border-black p-2 rounded-lg" />
+                        <button className="bg-[#373B4D] text-white py-1 px-2 right-1 top-1 rounded absolute">Search</button>
+                    </form>
+                    <button onClick={handleFilter} className=" text-black bg-[#F2F2F2] border border-black px-5 rounded">Filter</button>
                 </div>
             </div>
 
@@ -210,6 +253,17 @@ const AllMembers = () => {
 
             </div>
 
+
+
+            {/* filter modal */}
+            <FilterModal
+                setMaritalStatus={setMaritalStatus}
+                setDistrict={setDistrict}
+                setIncomeSource={setIncomeSource}
+                setAgeDifference={setAgeDifference}
+                // handleFilterSubmit={handleFilterSubmit}
+                isOpen={isOpen}
+                setIsOpen={setIsOpen} />
 
         </div>
     );

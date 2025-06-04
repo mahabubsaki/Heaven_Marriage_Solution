@@ -19,8 +19,89 @@ const MenForm = () => {
 
     const questions = [
         { name: "name", label: "নাম?", required: true },
-        { name: "age", label: "বয়স ?", required: true },
+        {
+            name: "age",
+            question: "আপনার বয়স কত?",
+            class: "hidden",
+            options: [
+                18, 19, 20, 21, 22, 23, 24, 25, 26, 27,
+                28, 29, 30, 31, 32, 33, 34, 35, 36, 37,
+                38, 39, 40, 41, 42, 43, 44, 45, 46, 47,
+                48, 49, 50, 51, 52, 53, 54, 55, 56, 57,
+                58, 59, 60
+            ]
+        },
         { name: "location", label: "আপনার বর্তমান অবস্থান কোথায় ?", required: true },
+        {
+            name: "parmanent_address",
+            question: "আপনার স্থায়ী ঠিকানা",
+            class: "hidden",
+            options: [
+                "ঢাকা",
+                "গাজীপুর",
+                "নারায়ণগঞ্জ",
+                "টাঙ্গাইল",
+                "কিশোরগঞ্জ",
+                "মানিকগঞ্জ",
+                "মুন্সিগঞ্জ",
+                "রাজবাড়ী",
+                "মাদারীপুর",
+                "শরীয়তপুর",
+                "গোপালগঞ্জ",
+                "ফরিদপুর",
+                "নরসিংদী",
+                "চট্টগ্রাম",
+                "কক্সবাজার",
+                "বান্দরবান",
+                "রাঙ্গামাটি",
+                "খাগড়াছড়ি",
+                "নোয়াখালী",
+                "লক্ষ্মীপুর",
+                "ফেনী",
+                "চাঁদপুর",
+                "ব্রাহ্মণবাড়িয়া",
+                "কুমিল্লা",
+                "ময়মনসিংহ",
+                "জামালপুর",
+                "নেত্রকোনা",
+                "শেরপুর",
+                "রাজশাহী",
+                "নাটোর",
+                "নওগাঁ",
+                "চাঁপাইনবাবগঞ্জ",
+                "জয়পুরহাট",
+                "বগুড়া",
+                "পাবনা",
+                "সিরাজগঞ্জ",
+                "খুলনা",
+                "যশোর",
+                "চুয়াডাঙ্গা",
+                "মেহেরপুর",
+                "নড়াইল",
+                "বাগেরহাট",
+                "ঝিনাইদহ",
+                "কুষ্টিয়া",
+                "সাতক্ষীরা",
+                "বরিশাল",
+                "ভোলা",
+                "পটুয়াখালী",
+                "ঝালকাঠি",
+                "পিরোজপুর",
+                "বরগুনা",
+                "সিলেট",
+                "মৌলভীবাজার",
+                "হবিগঞ্জ",
+                "সুনামগঞ্জ",
+                "রংপুর",
+                "দিনাজপুর",
+                "ঠাকুরগাঁও",
+                "পঞ্চগড়",
+                "নীলফামারী",
+                "কুড়িগ্রাম",
+                "গাইবান্ধা",
+                "লালমনিরহাট"
+            ]
+        },
         { name: "nid_or_birth_certificate", label: "NID/জন্মনিবন্ধন নং ?", required: true },
         { name: "birthDate", label: "জন্ম তারিখ (NID/জন্মনিবন্ধনে যেটা উল্লেখ আছে)", required: true },
         { name: "whatsapp", label: "হোয়াটসআ্যপ নাম্বার?", required: true },
@@ -61,12 +142,16 @@ const MenForm = () => {
             question: "আয় এর উৎস কী?",
             class: "hidden",
             options: [
-                "ব্যবসাহ",
-                "চাকুরী",
-                "কৃষি"
+                "ব্যবসা",
+                "চাকরি",
+                "কৃষি",
+                "প্রবাস",
+                "ফ্রিল্যান্স",
+                "শিক্ষক",
+                "কারিগরি",
+                "আয় নেই",
             ]
         },
-
         { name: "current_profession_details", label: "বর্তমান পেশা সম্পর্কে বিস্তারিত লেখুন ?", required: true },
         {
             name: "height",
@@ -555,9 +640,11 @@ const MenForm = () => {
         // start
         const name = form.name.value;
         const age = form.age.value;
+        // const ageInt = parseInt(age);
         const location = form.location.value;
         const nid_or_birth_certificate = form.nid_or_birth_certificate.value;
         const birthDate = form.birthDate.value;
+        const parmanent_address = form.parmanent_address.value;
         const whatsapp = form.whatsapp.value;
         const education_background = form.education_background.value;
         const study_level = form.study_level.value;
@@ -617,6 +704,7 @@ const MenForm = () => {
             location,
             nid_or_birth_certificate,
             birthDate,
+            parmanent_address,
             whatsapp,
             education_background,
             study_level,
@@ -745,9 +833,9 @@ const MenForm = () => {
                     </div>
 
                     <div className="flex justify-center my-5">
-                        <button 
-                        disabled={logLoad}
-                        className="px-4 py-1 mx-5 w-[340px]
+                        <button
+                            disabled={logLoad}
+                            className="px-4 py-1 mx-5 w-[340px]
              bg-gradient-to-r from-[#faf0d3] to-[#e9deaf] 
              text-gray-800 font-semibold rounded shadow-md 
              hover:from-[#E6E0CC] hover:to-[#d1c38b] flex items-center justify-center
