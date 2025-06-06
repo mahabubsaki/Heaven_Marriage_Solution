@@ -126,6 +126,7 @@ const AllMembers = () => {
             }}
         >
 
+
             {/* heading search and filter section*/}
             <div className="relative flex flex-col py-1 space-y-2">
                 <div className="flex items-center gap-3">
@@ -184,6 +185,13 @@ const AllMembers = () => {
 
             <div className="space-y-2 ">
                 <h1 className=" text-2xl font-bold border-b border-black mb-3 pb-2 pl-2">সদস্য সমূহ</h1>
+
+                {
+                    data?.length === 0 && <div className="flex justify-center items-center">
+                        <p className="text-center text-xl">কোনো সদস্য পাওয়া যায়নি</p>
+                    </div>
+
+                }
 
                 {
                     status !== 'verified' && <p className=" text-2xl text-center py-10 ">এই পৃষ্ঠাটি দেখতে হলে আপনাকে অবশ্যই একজন সদস্য হতে হবে</p>
