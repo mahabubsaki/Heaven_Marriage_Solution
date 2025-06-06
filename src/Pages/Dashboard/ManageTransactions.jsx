@@ -7,6 +7,8 @@ import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
 import { Button, Table } from '@chakra-ui/react';
 import toast from 'react-hot-toast';
+import { RxCross2 } from "react-icons/rx";
+
 
 const ManageTransactions = () => {
 
@@ -20,6 +22,8 @@ const ManageTransactions = () => {
         }
     });
 
+
+    // verify transictions
     const { mutateAsync } = useMutation({
         mutationFn: async (sentRequest) => {
             const { data } = await axiosSecure.put('/verify-transactions', sentRequest);
@@ -39,11 +43,34 @@ const ManageTransactions = () => {
         }
     });
 
+
+    // delete transactions
+    const { mutateAsync: deleteTransactions } = useMutation({
+        mutationFn: async (id) => {
+            const { data } = await axiosSecure.delete(`/delete_transactions/${id}`);
+            return data;
+        },
+        onSuccess: () => {
+            toast.success('Transaction Deleted');
+            refetch();
+        },
+        onError: (error) => {
+            console.error('Error Delete Data:', error);
+        }
+    });
+
+    // delete extra transactions
+    const handleDelete = async (id) => {
+        // console.log(id);
+        await deleteTransactions(id);
+    };
+
     if (loading || isLoading) return <Loading />;
     const handleVerify = (item) => mutateAsync(item);
     return (
         <PhotoProvider>
-            <div className='mt-20'>
+            <p className='text-center text-3xl my-5'>All Transactions</p>
+            <div className=''>
                 <Table.ScrollArea borderWidth="1px" maxW="full" >
                     <Table.Root size="lg">
                         <Table.Header>
@@ -72,11 +99,21 @@ const ManageTransactions = () => {
 
                                     </Table.Cell>
                                     <Table.Cell >{item.transaction_sentBy_user}</Table.Cell>
-                                    {
-                                        item.transaction_status === 'verified' ? <Table.Cell ></Table.Cell> : <Table.Cell textAlign="end">
-                                            <Button onClick={() => handleVerify(item)} variant={'outline'} px={'4'} py='1' bg={'blue.500'}>Verify</Button>
-                                        </Table.Cell>
-                                    }
+                                    <Table.Cell>
+                                        {
+                                            item.transaction_status === 'verified' ?
+                                                <Table.Cell >
+
+                                                </Table.Cell>
+                                                :
+                                                <Table.Cell textAlign="end">
+                                                    <Button onClick={() => handleVerify(item)} variant={'outline'} px={'4'} py='1' bg={'blue.500'}>Verify</Button>
+                                                </Table.Cell>
+                                        }
+                                        <button onClick={() => handleDelete(item?._id)}>
+                                            <RxCross2 className='text-black text-2xl' />
+                                        </button>
+                                    </Table.Cell>
                                 </Table.Row>
                             ))}
                         </Table.Body>

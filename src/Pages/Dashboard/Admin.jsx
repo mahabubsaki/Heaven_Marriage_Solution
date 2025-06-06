@@ -8,13 +8,14 @@ const Admin = () => {
 
     const { user, loading } = useAuth();
     const navItems = [
-        { name: 'Add Product', to: '/dashboard/add_product' },
+        // { name: 'Add Product', to: '/dashboard/add_product' },
+        { name: 'All Users', to: '/dashboard/all_users' },
         { name: 'Manage Users', to: '/dashboard/users' },
-        { name: 'Manage Sells', to: '/dashboard/manage_sells' },
-        { name: 'Manage Proposals', to: '/dashboard/manage_proposals' },
+        // { name: 'Manage Sells', to: '/dashboard/manage_sells' },
+        // { name: 'Manage Proposals', to: '/dashboard/manage_proposals' },
         { name: 'Manage Transactions', to: '/dashboard/manage_transactions' },
-        { name: 'Banner Image', to: '' },
-        { name: 'Shop Image', to: '' },
+        // { name: 'Banner Image', to: '' },
+        // { name: 'Shop Image', to: '' },
     ];
 
     if (loading) return <Loading />;

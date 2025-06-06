@@ -46,10 +46,9 @@ const AllMembers = () => {
     //         ageDifference,);
     // }
 
-
     const handleFilter = () => {
         setIsOpen(!isOpen);
-    }
+    };
 
 
     // handle search

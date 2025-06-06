@@ -35,6 +35,7 @@ import Girl from '../Pages/Girl/Girl';
 import GirlsVerified from '../Components/MemberRegistration/GirlsVerified';
 import TransactionReceived from '../Pages/Transaction/TransactionReceived';
 import ForgetPass from '../Pages/ForgotPass/ForgetPass';
+import AllUsers from '../Pages/Dashboard/AllUsers';
 
 const router = createBrowserRouter([
     {
@@ -182,6 +183,10 @@ const router = createBrowserRouter([
             {
                 path: 'manage_transactions',
                 element: <ManageTransactions />
+            },
+            {
+                path: 'all_users',
+                element: <AllUsers />
             },
         ]
     },

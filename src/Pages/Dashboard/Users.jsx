@@ -32,7 +32,7 @@ const Users = () => {
 
 
     // get the uuid
-    const { data: uuidData = [],refetch:uuidRefetch } = useQuery({
+    const { data: uuidData = [], refetch: uuidRefetch } = useQuery({
         queryKey: ['uuid'],
         queryFn: async () => {
             const { data } = await axiosSecure.get('/get_uuid');
@@ -49,7 +49,7 @@ const Users = () => {
             return data;
         },
         onSuccess: () => {
-            uuidRefetch()
+            uuidRefetch();
         }
     });
 
