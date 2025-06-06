@@ -23,6 +23,14 @@ const MyRequests = () => {
         }
     });
 
+    const handleClick = () => {
+        const phoneNumber = '8801648922413'; // Replace with your number
+        const message = 'Hello! I would like to talk with you.';
+        const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+        window.open(url, '_blank');
+    };
+
+
     if (loading || isLoading) return <Loading />;
 
     return (
@@ -73,7 +81,15 @@ const MyRequests = () => {
                                                     </td>
 
                                                     <td className="text-center">
-                                                        <Link to={`/user_details/${got?.to}`} className="underline ">Details</Link>
+                                                        {
+                                                            got?.request_status === 'accepted' ?
+                                                                <button onClick={handleClick} className='underline'>
+                                                                    যোগাযোগ
+                                                                </button>
+                                                                :
+                                                                <Link to={`/user_details/${got?.to}`} className="underline ">Details</Link>
+                                                        }
+
                                                     </td>
 
                                                 </tr>

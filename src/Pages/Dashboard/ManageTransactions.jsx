@@ -8,6 +8,7 @@ import 'react-photo-view/dist/react-photo-view.css';
 import { Button, Table } from '@chakra-ui/react';
 import toast from 'react-hot-toast';
 import { RxCross2 } from "react-icons/rx";
+import { TiTick } from "react-icons/ti";
 
 
 const ManageTransactions = () => {
@@ -100,19 +101,28 @@ const ManageTransactions = () => {
                                     </Table.Cell>
                                     <Table.Cell >{item.transaction_sentBy_user}</Table.Cell>
                                     <Table.Cell>
-                                        {
-                                            item.transaction_status === 'verified' ?
-                                                <Table.Cell >
+                                        <div className='flex'>
+                                            {
+                                                item.transaction_status === 'verified' ?
+                                                    <Table.Cell >
 
-                                                </Table.Cell>
-                                                :
-                                                <Table.Cell textAlign="end">
-                                                    <Button onClick={() => handleVerify(item)} variant={'outline'} px={'4'} py='1' bg={'blue.500'}>Verify</Button>
-                                                </Table.Cell>
-                                        }
-                                        <button onClick={() => handleDelete(item?._id)}>
-                                            <RxCross2 className='text-black text-2xl' />
-                                        </button>
+                                                    </Table.Cell>
+                                                    :
+                                                    <Table.Cell textAlign="end">
+                                                        <Button onClick={() => handleVerify(item)} variant={'outline'}
+                                                            px={'4'}
+                                                            py='1'
+                                                            className='text-blue-600'
+                                                        // bg={'blue.500'}
+                                                        >
+                                                            <TiTick />
+                                                        </Button>
+                                                    </Table.Cell>
+                                            }
+                                            <button onClick={() => handleDelete(item?._id)}>
+                                                <RxCross2 className='text-black text-2xl' />
+                                            </button>
+                                        </div>
                                     </Table.Cell>
                                 </Table.Row>
                             ))}

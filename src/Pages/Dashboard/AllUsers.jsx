@@ -39,14 +39,17 @@ const AllUsers = () => {
 
     return (
         <div>
-            <Table.ScrollArea borderWidth="1px" maxW="full" >
+            <h1 className='text-center text-2xl font-semibold my-4'>All Users</h1>
+            <Table.ScrollArea borderWidth="1px" maxW="full"  >
                 <Table.Root size="lg">
                     <Table.Header>
                         <Table.Row>
                             <Table.ColumnHeader>Name</Table.ColumnHeader>
                             <Table.ColumnHeader>Email</Table.ColumnHeader>
                             <Table.ColumnHeader>member</Table.ColumnHeader>
-                            <Table.ColumnHeader textAlign="end">Action</Table.ColumnHeader>
+                            {/* <Table.ColumnHeader
+                                textAlign="center"
+                            >Action</Table.ColumnHeader> */}
                         </Table.Row>
                     </Table.Header>
                     <Table.Body>
@@ -55,9 +58,9 @@ const AllUsers = () => {
                                 <Table.Cell>{item.name}</Table.Cell>
                                 <Table.Cell>{item.email}</Table.Cell>
                                 <Table.Cell color={item.role === 'member' ? 'green.500' : 'blue.500'}>{item.transaction_status}</Table.Cell>
-                                <Table.Cell >
+                                {/* <Table.Cell textAlign='center' >
                                     <Button onClick={() => handleDelete(item?.email)} variant={'outline'} px={'4'} py='1' bg={'blue.500'}>Delete</Button>
-                                </Table.Cell>
+                                </Table.Cell> */}
                             </Table.Row>
                         ))}
                     </Table.Body>

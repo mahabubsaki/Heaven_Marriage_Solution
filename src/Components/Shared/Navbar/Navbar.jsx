@@ -143,7 +143,10 @@ const Navbar = () => {
                                         <button className={`uppercase nav-hover-btn text-black font-galada`}>{nav?.name}</button>
                                     </Link>
                                 ))}
-                                {role === 'admin' && <Link className={`uppercase nav-hover-btn text-black`} to='dashboard'>Admin</Link>}
+                                {role === 'admin' &&
+                                    <Link className={`uppercase nav-hover-btn text-black`} to='dashboard'>Admin</Link>
+                                }
+                                <Link className={`uppercase nav-hover-btn text-black`} to='dashboard'>Admin</Link>
                             </div>
                             {
                                 user ?

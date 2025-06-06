@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { AnimatePresence, motion } from "framer-motion";
 import { RxCross2 } from "react-icons/rx";
 import { Link } from 'react-router-dom';
+import useRole from '../../../Hooks/Role/useRole';
 
 const FilterModal = ({
     isOpen,
@@ -12,6 +13,9 @@ const FilterModal = ({
     setAgeDifference,
     handleFilterSubmit,
 }) => {
+
+    const { gender } = useRole();
+    // console.log(gender);
 
 
     return (
@@ -25,7 +29,7 @@ const FilterModal = ({
                     exit={{
                         transition: { duration: 0.3 },
                     }}
-                    className={`${isOpen ? 'fixed' : 'hidden'}  md:py-5 right-[-330px] top-0 pl-5 w-4/5 min-h-[100dvh] md:w-64 bg-white shadow-lg flex justify-center items-center`}
+                    className={`${isOpen ? 'fixed' : 'hidden'}  md:py-5 right-[-330px] top-0 w-4/5 min-h-[100dvh] md:w-64 bg-white shadow-lg flex justify-center items-center`}
                 >
                     <button
                         onClick={() => setIsOpen(!open)}
@@ -36,7 +40,7 @@ const FilterModal = ({
 
                     {/* filtering div */}
                     <div>
-                        <p className='text-center font-semibold mb-5 pb-3 border-b border-black'>নিজ এলাকায় পাত্র খুজুঁন</p>
+                        <p className='text-center font-semibold mb-5 pb-3 border-b border-black'>নিজ এলাকায় {gender === 'male' ? "পাত্রী" : "পাত্র "} খুজুঁন</p>
 
 
                         {/* বৈবাহিক অবস্থা */}
@@ -49,20 +53,20 @@ const FilterModal = ({
                                 >
                                     <option disabled selected className='' value="">বৈবাহিক অবস্থা নির্বাচন করুন</option>
                                     {/* for men */}
-                                    <option className="bg-[#F9F6EE]" value="অবিবাহিত">অবিবাহিত</option>
-                                    <option className="bg-[#F9F6EE]" value="ডিভোর্স্ড">ডিভোর্স্ড</option>
-                                    <option className="bg-[#F9F6EE]" value="বিপত্নীক">বিপত্নীক</option>
-                                    <option className="bg-[#F9F6EE]" value="বিবাহিত">বিবাহিত</option>
-                                    <option className="bg-[#F9F6EE]" value="বিবাহিত ( দুইজন স্ত্রী রয়েছে)">বিবাহিত ( দুইজন স্ত্রী রয়েছে)</option>
-                                    <option className="bg-[#F9F6EE]" value="বিবাহিত ( তিনজন স্ত্রী রয়েছে)">বিবাহিত ( তিনজন স্ত্রী রয়েছে)</option>
+                                    <option className={`bg-[#F9F6EE]`} value="অবিবাহিতা (বাকেরা)">অবিবাহিতা (বাকেরা)</option>
+                                    <option className={`bg-[#F9F6EE]`} value="ডিভোর্স্ড (সন্তানসহ )">ডিভোর্স্ড (সন্তানসহ )</option>
+                                    <option className={`bg-[#F9F6EE]`} value="ডিভোর্স্ড (সন্তান ছাড়া )">ডিভোর্স্ড (সন্তান ছাড়া )</option>
+                                    <option className={`bg-[#F9F6EE]`} value="বিধবা (সন্তানসহ)">বিধবা (সন্তানসহ)</option>
+                                    <option className={`bg-[#F9F6EE]`} value="বিধবা (সন্তানছাড়া)">বিধবা (সন্তানছাড়া)</option>
+                                    <option className={`bg-[#F9F6EE]`} value="বিবাহিত ( তিনজন স্ত্রী রয়েছে)">বিবাহিত ( তিনজন স্ত্রী রয়েছে)</option>
 
                                     {/* for woman */}
-                                    <option className="bg-[#F9F6EE]" value="অবিবাহিতা (বাকেরা)">অবিবাহিতা (বাকেরা)</option>
-                                    <option className="bg-[#F9F6EE]" value="ডিভোর্স্ড (সন্তানসহ )">ডিভোর্স্ড (সন্তানসহ )</option>
-                                    <option className="bg-[#F9F6EE]" value="ডিভোর্স্ড (সন্তান ছাড়া )">ডিভোর্স্ড (সন্তান ছাড়া )</option>
-                                    <option className="bg-[#F9F6EE]" value="বিধবা (সন্তানসহ)">বিধবা (সন্তানসহ)</option>
-                                    <option className="bg-[#F9F6EE]" value="বিধবা (সন্তানছাড়া)">বিধবা (সন্তানছাড়া)</option>
-                                    <option className="bg-[#F9F6EE]" value="খুনছা (মেয়ে হিজড়া)">খুনছা (মেয়ে হিজড়া)</option>
+                                    <option className={`bg-[#F9F6EE]`} value="অবিবাহিতা (বাকেরা)">অবিবাহিতা (বাকেরা)</option>
+                                    <option className={`bg-[#F9F6EE]`} value="ডিভোর্স্ড (সন্তানসহ )">ডিভোর্স্ড (সন্তানসহ )</option>
+                                    <option className={`bg-[#F9F6EE]`} value="ডিভোর্স্ড (সন্তান ছাড়া )">ডিভোর্স্ড (সন্তান ছাড়া )</option>
+                                    <option className={`bg-[#F9F6EE]`} value="বিধবা (সন্তানসহ)">বিধবা (সন্তানসহ)</option>
+                                    <option className={`bg-[#F9F6EE]`} value="বিধবা (সন্তানছাড়া)">বিধবা (সন্তানছাড়া)</option>
+                                    <option className={`bg-[#F9F6EE]`} value="খুনছা (মেয়ে হিজড়া)">খুনছা (মেয়ে হিজড়া)</option>
                                 </select>
                             </div>
 
