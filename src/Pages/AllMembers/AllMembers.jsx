@@ -35,20 +35,29 @@ const AllMembers = () => {
     const [maritalStatus, setMaritalStatus] = useState('');
     const [district, setDistrict] = useState('');
     const [income_source, setIncomeSource] = useState('');
-    const [ageDifference, setAgeDifference] = useState('');
+    const [lowestAge, setLowestAge] = useState('');
+    const [highestAge, setHighestAge] = useState('');
     const [search, setSearch] = useState('');
+    const [ageDifferance, setAgeDifferance] = useState();
+    console.log(ageDifferance);
+
+    let ageDiffer = {
+
+    };
+
 
     // to do in future handleFilterSubmit
-    // const handleFilterSubmit = () => {
-    //     console.log(maritalStatus,
-    //         district,
-    //         income_source,
-    //         ageDifference,);
-    // }
+    const handleFilterSubmit = () => {
+        ageDiffer = {
+            lowestAge: lowestAge,
+            highestAge: highestAge
+        };
+    };
 
     const handleFilter = () => {
         setIsOpen(!isOpen);
     };
+
 
 
     // handle search
@@ -61,17 +70,17 @@ const AllMembers = () => {
     };
 
 
-    // fetch all members
+    // fetch all members and send filterData
     const { data = [], isLoading: memberLoading } = useQuery({
         queryKey: [
             'allMembers',
             maritalStatus,
             district,
             income_source,
-            ageDifference,
+            ageDiffer
         ],
         queryFn: async () => {
-            const { data } = await axiosSecure.get(`/all_members?maritalStatus=${maritalStatus}&district=${district}&income_source=${income_source}&ageDifference=${ageDifference}&search=${search}`);
+            const { data } = await axiosSecure.get(`/all_members?maritalStatus=${maritalStatus}&district=${district}&agedifferance=${ageDiffer}&income_source=${income_source}&search=${search}`, ageDiffer);
             setIsOpen(false); // close the filter modal after fetching data
             return data;
         }
@@ -94,6 +103,8 @@ const AllMembers = () => {
         }
     });
 
+
+    // sent marriage proposal to a user
     const sentProposal = async (to_data) => {
         if (to_data?.member_email === user?.email) {
             return toast.error('cant send request to yourself');
@@ -223,7 +234,7 @@ const AllMembers = () => {
                                 <div className="flex justify-between items-center">
                                     <h1 className="font-bold ">
                                         <span className="text-green-700"></span>
-                                        {got?.name.split(' ').slice(0, 3).join(' ')}
+                                        {got?.name?.split(' ').slice(0, 3).join(' ')}
                                     </h1>
                                     <span className="text-blue-500"><RiVerifiedBadgeFill /></span>
                                 </div>
@@ -231,7 +242,7 @@ const AllMembers = () => {
                                 <div className="w-full">
                                     <h1 className="flex gap-4 items-center font-extralight text-base ">
                                         <span className="text-green-700"><FaSuitcase /></span>
-                                        {got?.income_source}
+                                        {got?.income_source?.split(' ').slice(0, 2).join(' ')}
                                     </h1>
                                     <h1 className="flex gap-4 items-center font-extralight text-base ">
                                         <span className="text-green-700"><RiLineHeight /></span>
@@ -239,7 +250,7 @@ const AllMembers = () => {
                                     </h1>
                                     <h1 className="flex gap-4 items-center font-extralight text-base ">
                                         <span className="text-green-700"><FiMapPin /></span>
-                                        {got?.current_full_address.split(' ').slice(0, 2).join(' ')}
+                                        {got?.current_full_address?.split(' ').slice(0, 3).join(' ')}
                                     </h1>
                                 </div>
 
@@ -267,8 +278,9 @@ const AllMembers = () => {
                 setMaritalStatus={setMaritalStatus}
                 setDistrict={setDistrict}
                 setIncomeSource={setIncomeSource}
-                setAgeDifference={setAgeDifference}
-                // handleFilterSubmit={handleFilterSubmit}
+                setLowestAge={setLowestAge}
+                setHighestAge={setHighestAge}
+                handleFilterSubmit={handleFilterSubmit}
                 isOpen={isOpen}
                 setIsOpen={setIsOpen} />
 

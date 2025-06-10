@@ -3,6 +3,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import { RxCross2 } from "react-icons/rx";
 import { Link } from 'react-router-dom';
 import useRole from '../../../Hooks/Role/useRole';
+import { FaSortDown } from "react-icons/fa";
+
 
 const FilterModal = ({
     isOpen,
@@ -10,7 +12,8 @@ const FilterModal = ({
     setMaritalStatus,
     setDistrict,
     setIncomeSource,
-    setAgeDifference,
+    setLowestAge,
+    setHighestAge,
     handleFilterSubmit,
 }) => {
 
@@ -180,32 +183,55 @@ const FilterModal = ({
 
                             {/* বয়স */}
                             <div className="mb-4">
-                                <label className="block font-semibold text-justify">বয়স</label>
-                                <select
-                                    onChange={(e) => setAgeDifference(e.target.value)}
-                                    name="ageDifference"
-                                    className="px-5 cursor-pointer text-sm w-full md:w-3/4 mt-1 h-10  border appearance-none border-gray-300 text-gray-500 rounded outline-none"
-                                >
-                                    <option disabled selected value="">বয়স নির্বাচন করুন</option>
-                                    <option className="bg-[#F9F6EE]" value="18-23">১৮-২৩ বছর</option>
-                                    <option className="bg-[#F9F6EE]" value="23-28">২৩-২৮ বছর</option>
-                                    <option className="bg-[#F9F6EE]" value="28-33">২৮-৩৩ বছর</option>
-                                    <option className="bg-[#F9F6EE]" value="33-38">৩৩-৩৮ বছর</option>
-                                    <option className="bg-[#F9F6EE]" value="38-43">৩৮-৪৩ বছর</option>
-                                    <option className="bg-[#F9F6EE]" value="43-48">৪৩-৪৮ বছর</option>
-                                    <option className="bg-[#F9F6EE]" value="48-53">৪৮-৫৩ বছর</option>
-                                    <option className="bg-[#F9F6EE]" value="53-58">৫৩-৫৮ বছর</option>
-                                    <option className="bg-[#F9F6EE]" value="58-60">৫৮-৬০ বছর</option>
-                                </select>
+
+
+                                <div className='flex gap-2 flex-row'>
+                                    <div>
+                                        <label className="block font-semibold text-justify">ন্যূনতম বয়স</label>
+                                        <select
+                                            onChange={(e) => setLowestAge(e.target.value)}
+                                            name="ageDifference"
+                                            className="px-5 cursor-pointer text-sm w-full md:w-3/4 mt-1 h-10  border appearance-none border-gray-300 text-gray-500 rounded outline-none"
+                                        >
+                                            <option disabled selected value="">সর্বনিম্ন বয়স</option>
+                                            {Array.from({ length: 43 }, (_, i) => {
+                                                const age = 18 + i;
+                                                const banglaNumbers = age.toString().split('').map(d =>
+                                                    ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'][+d]
+                                                ).join('');
+                                                return <option key={age} className="bg-[#F9F6EE]" value={age}>{banglaNumbers} বছর</option>;
+                                            })}
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label className="block font-semibold text-justify">সর্বোচ্চ বয়স</label>
+                                        <select
+                                            onChange={(e) => setHighestAge(e.target.value)}
+                                            name="ageDifference"
+                                            className="px-5 cursor-pointer text-sm w-full md:w-3/4 mt-1 h-10  border appearance-none border-gray-300 text-gray-500 rounded outline-none"
+                                        >
+                                            <option disabled selected value="">সর্বোচ্চ বয়স</option>
+                                            {Array.from({ length: 43 }, (_, i) => {
+                                                const age = 18 + i;
+                                                const banglaNumbers = age.toString().split('').map(d =>
+                                                    ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'][+d]
+                                                ).join('');
+                                                return <option key={age} className="bg-[#F9F6EE]" value={age}>{banglaNumbers} বছর</option>;
+                                            })}
+                                        </select>
+                                    </div>
+                                </div>
+
+
                             </div>
                         </div>
 
                         <div className='flex justify-center items-center'>
-                            {/* <button onClick={handleFilterSubmit} className='px-4 py-1 w-[150px]
+                            <button onClick={handleFilterSubmit} className='px-4 py-1 w-[150px]
              bg-gradient-to-r from-[#faf0d3] to-[#e9deaf] 
              text-gray-800 rounded shadow-md 
              hover:from-[#E6E0CC] hover:to-[#d1c38b] 
-             transition duration-300'>অনুসন্ধান</button> */}
+             transition duration-300'>অনুসন্ধান</button>
                         </div>
 
 
