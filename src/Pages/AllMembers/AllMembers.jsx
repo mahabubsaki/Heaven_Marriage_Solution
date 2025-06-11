@@ -77,10 +77,11 @@ const AllMembers = () => {
             maritalStatus,
             district,
             income_source,
-            ageDiffer
+            ageDiffer,
+            gender
         ],
         queryFn: async () => {
-            const { data } = await axiosSecure.get(`/all_members?maritalStatus=${maritalStatus}&district=${district}&agedifferance=${ageDiffer}&income_source=${income_source}&search=${search}`, ageDiffer);
+            const { data } = await axiosSecure.get(`/all_members/${gender}?maritalStatus=${maritalStatus}&district=${district}&agedifferance=${ageDiffer}&income_source=${income_source}&search=${search}`, ageDiffer);
             setIsOpen(false); // close the filter modal after fetching data
             return data;
         }
@@ -158,7 +159,14 @@ const AllMembers = () => {
                 <div className=" bg-[#FFFFFF] bg-opacity-80 p-2 rounded-2xl flex  gap-5 col-span-2 items-center">
                     <div>
                         <Link to={`/user_details/${user?.email}`}>
-                            <img src={image || user?.photoURL || male_default} className="size-[50px] object-cover rounded-full" alt="" />
+                            {
+                                gender === 'male' &&
+                                <img src={image || male_default} className="size-[50px] object-cover rounded-full" alt="" />
+                            }
+                            {
+                                gender === 'female' &&
+                                <img src={image || female_default} className="size-[50px] object-cover rounded-full" alt="" />
+                            }
                         </Link>
                     </div>
                     <div>
@@ -250,7 +258,7 @@ const AllMembers = () => {
                                     </h1>
                                     <h1 className="flex gap-4 items-center font-extralight text-base ">
                                         <span className="text-green-700"><FiMapPin /></span>
-                                        {got?.current_full_address?.split(' ').slice(0, 3).join(' ')}
+                                        {got?.current_full_address?.split(' ').slice(0, 2).join(' ')}
                                     </h1>
                                 </div>
 

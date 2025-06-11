@@ -56,20 +56,20 @@ const FilterModal = ({
                                 >
                                     <option disabled selected className='' value="">বৈবাহিক অবস্থা নির্বাচন করুন</option>
                                     {/* for men */}
-                                    <option className={`bg-[#F9F6EE]`} value="অবিবাহিতা (বাকেরা)">অবিবাহিতা (বাকেরা)</option>
-                                    <option className={`bg-[#F9F6EE]`} value="ডিভোর্স্ড (সন্তানসহ )">ডিভোর্স্ড (সন্তানসহ )</option>
-                                    <option className={`bg-[#F9F6EE]`} value="ডিভোর্স্ড (সন্তান ছাড়া )">ডিভোর্স্ড (সন্তান ছাড়া )</option>
-                                    <option className={`bg-[#F9F6EE]`} value="বিধবা (সন্তানসহ)">বিধবা (সন্তানসহ)</option>
-                                    <option className={`bg-[#F9F6EE]`} value="বিধবা (সন্তানছাড়া)">বিধবা (সন্তানছাড়া)</option>
-                                    <option className={`bg-[#F9F6EE]`} value="বিবাহিত ( তিনজন স্ত্রী রয়েছে)">বিবাহিত ( তিনজন স্ত্রী রয়েছে)</option>
+                                    <option className={`bg-[#F9F6EE] ${gender === 'male' && 'hidden'}`} value="অবিবাহিতা (বাকেরা)">অবিবাহিতা (বাকেরা)</option>
+                                    <option className={`bg-[#F9F6EE] ${gender === 'male' && 'hidden'}`} value="ডিভোর্স্ড (সন্তানসহ )">ডিভোর্স্ড (সন্তানসহ )</option>
+                                    <option className={`bg-[#F9F6EE] ${gender === 'male' && 'hidden'}`} value="ডিভোর্স্ড (সন্তান ছাড়া )">ডিভোর্স্ড (সন্তান ছাড়া )</option>
+                                    <option className={`bg-[#F9F6EE] ${gender === 'male' && 'hidden'}`} value="বিধবা (সন্তানসহ)">বিধবা (সন্তানসহ)</option>
+                                    <option className={`bg-[#F9F6EE] ${gender === 'male' && 'hidden'}`} value="বিধবা (সন্তানছাড়া)">বিধবা (সন্তানছাড়া)</option>
+                                    <option className={`bg-[#F9F6EE] ${gender === 'male' && 'hidden'}`} value="বিবাহিত ( তিনজন স্ত্রী রয়েছে)">বিবাহিত ( তিনজন স্ত্রী রয়েছে)</option>
 
                                     {/* for woman */}
-                                    <option className={`bg-[#F9F6EE]`} value="অবিবাহিতা (বাকেরা)">অবিবাহিতা (বাকেরা)</option>
-                                    <option className={`bg-[#F9F6EE]`} value="ডিভোর্স্ড (সন্তানসহ )">ডিভোর্স্ড (সন্তানসহ )</option>
-                                    <option className={`bg-[#F9F6EE]`} value="ডিভোর্স্ড (সন্তান ছাড়া )">ডিভোর্স্ড (সন্তান ছাড়া )</option>
-                                    <option className={`bg-[#F9F6EE]`} value="বিধবা (সন্তানসহ)">বিধবা (সন্তানসহ)</option>
-                                    <option className={`bg-[#F9F6EE]`} value="বিধবা (সন্তানছাড়া)">বিধবা (সন্তানছাড়া)</option>
-                                    <option className={`bg-[#F9F6EE]`} value="খুনছা (মেয়ে হিজড়া)">খুনছা (মেয়ে হিজড়া)</option>
+                                    <option className={`bg-[#F9F6EE] ${gender === 'female' && 'hidden'}`} value="অবিবাহিতা (বাকেরা)">অবিবাহিতা (বাকেরা)</option>
+                                    <option className={`bg-[#F9F6EE] ${gender === 'female' && 'hidden'}`} value="ডিভোর্স্ড (সন্তানসহ )">ডিভোর্স্ড (সন্তানসহ )</option>
+                                    <option className={`bg-[#F9F6EE] ${gender === 'female' && 'hidden'}`} value="ডিভোর্স্ড (সন্তান ছাড়া )">ডিভোর্স্ড (সন্তান ছাড়া )</option>
+                                    <option className={`bg-[#F9F6EE] ${gender === 'female' && 'hidden'}`} value="বিধবা (সন্তানসহ)">বিধবা (সন্তানসহ)</option>
+                                    <option className={`bg-[#F9F6EE] ${gender === 'female' && 'hidden'}`} value="বিধবা (সন্তানছাড়া)">বিধবা (সন্তানছাড়া)</option>
+                                    <option className={`bg-[#F9F6EE] ${gender === 'female' && 'hidden'}`} value="খুনছা (মেয়ে হিজড়া)">খুনছা (মেয়ে হিজড়া)</option>
                                 </select>
                             </div>
 
@@ -160,23 +160,23 @@ const FilterModal = ({
                                 >
                                     <option disabled selected value="">পেশা নির্বাচন করুন</option>
                                     {/* for men */}
-                                    <option className="bg-[#F9F6EE]" value="ব্যবসা">ব্যবসা</option>
-                                    <option className="bg-[#F9F6EE]" value="চাকরি">চাকরি</option>
-                                    <option className="bg-[#F9F6EE]" value="কৃষি">কৃষি</option>
-                                    <option className="bg-[#F9F6EE]" value="প্রবাস">প্রবাস</option>
-                                    <option className="bg-[#F9F6EE]" value="ফ্রিল্যান্স">ফ্রিল্যান্স</option>
-                                    <option className="bg-[#F9F6EE]" value="শিক্ষক">শিক্ষক</option>
-                                    <option className="bg-[#F9F6EE]" value="কারিগরি">কারিগরি</option>
-                                    <option className="bg-[#F9F6EE]" value="আয় নেই">আয় নেই</option>
+                                    <option className={`bg-[#F9F6EE] ${gender === 'male' && 'hidden'} `} value="ব্যবসা">ব্যবসা</option>
+                                    <option className={`bg-[#F9F6EE] ${gender === 'male' && 'hidden'} `} value="চাকরি">চাকরি</option>
+                                    <option className={`bg-[#F9F6EE] ${gender === 'male' && 'hidden'} `} value="কৃষি">কৃষি</option>
+                                    <option className={`bg-[#F9F6EE] ${gender === 'male' && 'hidden'} `} value="প্রবাস">প্রবাস</option>
+                                    <option className={`bg-[#F9F6EE] ${gender === 'male' && 'hidden'} `} value="ফ্রিল্যান্স">ফ্রিল্যান্স</option>
+                                    <option className={`bg-[#F9F6EE] ${gender === 'male' && 'hidden'} `} value="শিক্ষক">শিক্ষক</option>
+                                    <option className={`bg-[#F9F6EE] ${gender === 'male' && 'hidden'} `} value="কারিগরি">কারিগরি</option>
+                                    <option className={`bg-[#F9F6EE] ${gender === 'male' && 'hidden'} `} value="আয় নেই">আয় নেই</option>
 
                                     {/* for woman */}
-                                    <option className="bg-[#F9F6EE]" value="চাকরি">চাকরি</option>
-                                    <option className="bg-[#F9F6EE]" value="ব্যবসা">ব্যবসা</option>
-                                    <option className="bg-[#F9F6EE]" value="ফ্রিল্যান্স">ফ্রিল্যান্স</option>
-                                    <option className="bg-[#F9F6EE]" value="টিউশনি">টিউশনি</option>
-                                    <option className="bg-[#F9F6EE]" value="সেলাই">সেলাই</option>
-                                    <option className="bg-[#F9F6EE]" value="কৃষি">কৃষি</option>
-                                    <option className="bg-[#F9F6EE]" value="আয় নেই">আয় নেই</option>
+                                    <option className={`bg-[#F9F6EE] ${gender === 'female' && 'hidden'} `} value="চাকরি">চাকরি</option>
+                                    <option className={`bg-[#F9F6EE] ${gender === 'female' && 'hidden'} `} value="ব্যবসা">ব্যবসা</option>
+                                    <option className={`bg-[#F9F6EE] ${gender === 'female' && 'hidden'} `} value="ফ্রিল্যান্স">ফ্রিল্যান্স</option>
+                                    <option className={`bg-[#F9F6EE] ${gender === 'female' && 'hidden'} `} value="টিউশনি">টিউশনি</option>
+                                    <option className={`bg-[#F9F6EE] ${gender === 'female' && 'hidden'} `} value="সেলাই">সেলাই</option>
+                                    <option className={`bg-[#F9F6EE] ${gender === 'female' && 'hidden'} `} value="কৃষি">কৃষি</option>
+                                    <option className={`bg-[#F9F6EE] ${gender === 'female' && 'hidden'} `} value="আয় নেই">আয় নেই</option>
                                 </select>
                             </div>
 
