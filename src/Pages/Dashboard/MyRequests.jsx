@@ -15,6 +15,7 @@ const MyRequests = () => {
     const { user, loading } = useAuth();
     const axiosSecure = useAxiosSecure();
 
+    // fetch all the data
     const { data = [], isLoading } = useQuery({
         queryKey: ['my_requests', user?.email],
         queryFn: async () => {
@@ -23,6 +24,8 @@ const MyRequests = () => {
         }
     });
 
+
+    // contact 
     const handleClick = () => {
         const phoneNumber = '8801648922413'; // Replace with your number
         const message = 'Hello! I would like to talk with you.';
@@ -52,7 +55,7 @@ const MyRequests = () => {
                             data.length === 0 ? <p className='text-center my-32 font-galada text-3xl'>দুঃখিত ! আপনার কোন অনুরোধ নেই ।</p> :
 
                                 <div>
-                                    <HeadingSubHead heading='অনুরোধ সমূহ' />
+                                    <HeadingSubHead heading='প্রাপ্ত বিয়ের প্রস্তাব' />
 
                                     <table className="max-w-4xl mx-auto mb-4">
                                         {/* heading */}

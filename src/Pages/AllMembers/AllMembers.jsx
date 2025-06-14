@@ -115,14 +115,16 @@ const AllMembers = () => {
             to: to_data?.member_email,
             to_name: to_data?.name,
             to_image: to_data?.image,
+            to_whatsapp_number: to_data?.whatsapp_number,
             from: user?.email,
             from_name: name,
             from_image: image,
-            request_status: 'requested'
+            request_status: 'requested',
         };
         // console.log(requestData);
         await mutateAsync(requestData);
     };
+
 
 
     if (loading || isLoading || memberLoading) return <Loading />;
@@ -187,14 +189,14 @@ const AllMembers = () => {
                     <Link to='/received_request' className="text-xs ">
                         <div className="bg-[#FFFFFF] bg-opacity-80 flex gap-2 justify-center items-center p-4 rounded-xl ">
                             <FiSend className="text-2xl" />
-                            <p className="">আপনার প্রস্তাব সমূহ</p>
+                            <p className="">আপনার প্রাপ্ত প্রস্তাব সমূহ</p>
                         </div>
                     </Link>
 
                     <Link to='/all_request' className=" text-xs ">
                         <div className="bg-[#FFFFFF] bg-opacity-80 flex gap-2 justify-center items-center p-4 rounded-xl ">
                             <HiOutlineDownload className="text-2xl" />
-                            <p className="">আপনার অনুরোধ সমূহ</p>
+                            <p className="">আপনার প্রেরিত প্রস্তাব সমূহ</p>
                         </div>
                     </Link>
 

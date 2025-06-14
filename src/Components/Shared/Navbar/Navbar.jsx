@@ -23,7 +23,7 @@ import { Settings, Settings2 } from "lucide-react";
 import logo from "/images/logo.png";
 
 
-const Navbar = () => {
+const Navbar = ({ text }) => {
 
     const { user, logOut } = useAuth();
     const location = useLocation();
@@ -76,37 +76,37 @@ const Navbar = () => {
             {isOpen && <div onClick={() => setIsOpen(!isOpen)} className="bg-black/30 min-h-screen w-screen absolute top-[-36px]" />}
 
             <header className="absolute top-1/2 w-full -translate-y-1/2 ">
-                <nav className={`flex size-full items-center justify-evenly p-4  gap-5 text-[#C3937C]`}>
+                <nav className={`flex size-full items-center justify-evenly p-4  gap-5 ${text || 'text-[#C3937C]'}`}>
 
                     <Link to='/' className="text-[11px]">
                         <span className="flex flex-col justify-center items-center">
                             <span className="text-2xl"><FaHome /></span>
-                            <span className="text-[#853e1d]">Home</span></span>
+                            <span className={`${text || 'text-[#853e1d]'}`}>Home</span></span>
                     </Link>
 
                     <Link to='/member_registration' className="text-[11px]" >
                         <span className="flex flex-col justify-center items-center">
                             <span className="text-2xl"><FaWpforms /></span>
-                            <span className="text-[#853e1d]">Registration</span></span>
+                            <span className={`${text || 'text-[#853e1d]'}`}>Registration</span></span>
                     </Link>
 
                     <Link to='/all_members' className="text-[11px]" >
                         <span className="flex flex-col justify-center items-center">
                             <span className="text-2xl"><FaHandHoldingHeart /></span>
-                            <span className="text-[#853e1d]">Request</span></span>
+                            <span className={`${text || 'text-[#853e1d]'}`}>Request</span></span>
                     </Link>
 
                     <Link to='/products' className="text-[11px]" >
                         <span className="flex flex-col justify-center items-center">
                             <span className="text-2xl"><FaShop /></span>
-                            <span className="text-[#853e1d]">Shop</span></span>
+                            <span className={`${text || 'text-[#853e1d]'}`}>Shop</span></span>
                     </Link>
 
 
                     <button
                         onClick={() => setIsOpen(!isOpen)}
                     >
-                        <AiOutlineMenu className="text-2xl text-[#C3937C]" />
+                        <AiOutlineMenu className={`text-2xl ${text || 'text-[#C3937C]'}`} />
                     </button>
 
 

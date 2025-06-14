@@ -30,7 +30,7 @@ const Banner = () => {
             <div
                 className="flex justify-center text-center font-galada flex-col relative bg-no-repeat bg-contain pt-5">
                 <img src={corner} className='size-[100px] object-contain absolute left-[2%] top-2' alt="" />
-                <p className='capitalize font-semibold text-[#C3937C] text-[clamp(40px,8vw,96px)]'>Heaven marrige</p>
+                <p className='capitalize font-semibold text-[#C3937C] text-[clamp(40px,8vw,96px)]'>Heaven marriage</p>
                 <p className='capitalize font-semibold text-[#C3937C] text-3xl'>solutions</p>
                 <p className='text-[clamp(18px,4vw,25px)] px-5 mt-3 font-galada'>
                     বিশুদ্ধতা, বিশ্বস্ততা ও সুন্নাহ-সম্মত বিবাহের নির্ভরযোগ্য প্রতিষ্ঠান

@@ -36,6 +36,9 @@ import GirlsVerified from '../Components/MemberRegistration/GirlsVerified';
 import TransactionReceived from '../Pages/Transaction/TransactionReceived';
 import ForgetPass from '../Pages/ForgotPass/ForgetPass';
 import AllUsers from '../Pages/Dashboard/AllUsers';
+import AllForms from '../Pages/Dashboard/AllForms';
+import Test from '../Pages/Test';
+import SentRequest from '../Pages/Dashboard/SentRequest';
 
 const router = createBrowserRouter([
     {
@@ -102,9 +105,16 @@ const router = createBrowserRouter([
             {
                 path: '/all_request',
                 element: <PrivateRoute>
-                    <MyRequests />
+                    {/* <MyRequests /> */}
+                    <SentRequest />
                 </PrivateRoute>
             },
+            // {
+            //     path: '/sent_request',
+            //     element: <PrivateRoute>
+            //         <SentRequest />
+            //     </PrivateRoute>
+            // },
             {
                 path: '/received_request',
                 element: <PrivateRoute>
@@ -138,6 +148,10 @@ const router = createBrowserRouter([
             {
                 path: '/forgot-password',
                 element: <ForgetPass />
+            },
+            {
+                path: '/test',
+                element: <Test />
             },
         ],
     },
@@ -186,6 +200,10 @@ const router = createBrowserRouter([
             {
                 path: 'all_users',
                 element: <AllUsers />
+            },
+            {
+                path: 'all_forms',
+                element: <AllForms />
             },
         ]
     },

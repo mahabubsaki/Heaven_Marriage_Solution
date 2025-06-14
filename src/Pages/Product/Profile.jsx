@@ -10,6 +10,8 @@ import { Link } from "react-router-dom";
 import { FaMessage } from "react-icons/fa6";
 import { FiSend } from "react-icons/fi";
 import { HiOutlineDownload } from "react-icons/hi";
+import male_default from '/images/male_default.png';
+import female_default from '/images/female_default.png';
 
 const Profile = () => {
     const { loading, user } = useAuth();

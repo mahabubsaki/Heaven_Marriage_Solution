@@ -52,8 +52,9 @@ const InProcessNotVerf = () => {
         <div className='pb-5 space-y-4'>
             <p className=" text-justify text-2xl text-blue-400 my-3">Thank You!</p>
             <p className=" text-justify">আপনার ফর্মটি সফলভাবে HMS অফিসে জমা হয়েছে, আলহামদুলিল্লাহ।</p>
-            <p className=" text-justify">পরবর্তী ধাপ: ভেরিফিকেশন ও জয়েনিং প্রসেস সম্পন্ন করার জন্য ৫১০ টাকা পাঠাতে অনুরোধ করছি
-                (ঈদুল আজহার আগ পর্যন্ত ৫০% ডিসকাউন্ট: ১০২০ টাকার পরিবর্তে মাত্র ৫১০ টাকা)</p>
+            <p className=" text-justify">পরবর্তী ধাপ: ভেরিফিকেশন ও জয়েনিং প্রসেস সম্পন্ন করার জন্য ১০২০ টাকা পাঠাতে অনুরোধ করছি
+                {/* (ঈদুল আজহার আগ পর্যন্ত ৫০% ডিসকাউন্ট: ১০২০ টাকার পরিবর্তে মাত্র ৫১০ টাকা) */}
+            </p>
 
             <p className=" text-justify text-xl mt-2">পেমেন্ট পাঠানোর বিকল্প মাধ্যমসমূহ:</p>
             <p className=" text-justify"><span className="font-semibold">Send Money (Nagad/Bkash/Rocket – Personal):</span> <span className='text-red-600'>01748919251</span> (নগদ / বিকাশ / রকেট – পার্সোনাল)</p>
