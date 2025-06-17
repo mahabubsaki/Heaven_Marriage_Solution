@@ -160,7 +160,7 @@ const AllMembers = () => {
 
                 <div className=" bg-[#FFFFFF] bg-opacity-80 p-2 rounded-2xl flex  gap-5 col-span-2 items-center">
                     <div>
-                        <Link to={`/user_details/${user?.email}`}>
+                        <Link to={`/user_form/${user?.email}`}>
                             {
                                 gender === 'male' &&
                                 <img src={image || male_default} className="size-[50px] object-cover rounded-full" alt="" />

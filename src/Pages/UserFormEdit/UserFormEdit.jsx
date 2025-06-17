@@ -1,26 +1,36 @@
-import { useParams } from "react-router";
-import useAuth from "../../Hooks/Auth/useAuth";
-import Loading from "../Loading/Loading";
-import useAxiosSecure from "../../Hooks/Axios/useAxiosSecure";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { useState } from "react";
-import toast from "react-hot-toast";
-import React from 'react';
-import useRole from "../../Hooks/Role/useRole";
-import useUser from "../../Hooks/User/useUser";
-import { Link } from "react-router-dom";
-import Navbar from "../../Components/Shared/Navbar/Navbar";
-import minar_top from '/images/minar_top.png';
-import default_img from '/images/default_img.jpg';
-import male_default from '/images/male_default.png';
-import female_default from '/images/female_default.png';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import React, { useState } from 'react';
+import useAxiosSecure from '../../Hooks/Axios/useAxiosSecure';
+import toast from 'react-hot-toast';
+import useAuth from '../../Hooks/Auth/useAuth';
+import { useParams } from 'react-router-dom';
+import useRole from '../../Hooks/Role/useRole';
+import Navbar from '../../Components/Shared/Navbar/Navbar';
 import underline_img2 from '/images/underline_img2.png';
-import UserDetailsForm from "../../Components/UserDetails/UserDetailsForm";
+import Loading from '../Loading/Loading';
 
-const UserDetails = () => {
+const UserFormEdit = () => {
+
+    const axiosSecure = useAxiosSecure();
+    const { email } = useParams();
+    const { gender } = useRole();
+    // console.log(email);
 
 
-    // for men
+
+    // fetch the data
+    const { data = [], refetch, isLoading } = useQuery({
+        queryKey: ['UserForm', email],
+        queryFn: async () => {
+            const { data } = await axiosSecure.get(`/user_form/${email}`);
+            return data;
+        }
+    });
+
+    // console.log(data);
+
+
+    // men questions
     const men_questions = [
 
         // category: "ব্যক্তিগত তথ্য", 0-5
@@ -88,8 +98,7 @@ const UserDetails = () => {
         { name: "specific_dream", label: "প্রত্যেকটি মানুষই তার জীবনসঙ্গীর ব্যাপারে কিছু স্বপ্ন দেখে... দয়া করে আপনারটা উল্লেখ করুন?" },
     ];
 
-
-    // female qustions
+    // woman questions
     const female_questions = [
 
         // category: "ব্যক্তিগত তথ্য"
@@ -160,180 +169,129 @@ const UserDetails = () => {
     ];
 
 
-    const { user, loading } = useAuth();
-    const { user_email } = useParams();
-    const axiosSecure = useAxiosSecure();
-    const { role, isLoading: roleLoading } = useRole();
-    const { gender, isLoading: userLoading } = useUser();
+    // states
+    const [edit, setEdit] = useState(false);
+    const [editedData, setEditedData] = useState({});
+
+    // console.log(edit);
 
 
-    // get the user data
-    const { data = [], refetch, isLoading } = useQuery({
-        queryKey: ['userFormDetails', user_email],
-        queryFn: async () => {
-            const { data } = await axiosSecure.get(`/user_details/${user_email}`);
-            return data;
-        }
-    });
-
-    // console.log(data);
-
-
-    // user data from usersCollection
-    const { status, isLoading: userDataLoading, name, image, age, profession } = useUser();
-
-
-    // console.log(data?.gender);
-
-
-    // request a marrige offer
-    const { mutateAsync: request } = useMutation({
-        mutationFn: async (request) => {
-            const { data } = await axiosSecure.post('/sent_request', request);
+    // taking the data form edit 
+    const { mutateAsync } = useMutation({
+        mutationFn: async (gotData) => {
+            const { data } = await axiosSecure.put(`/admin_edit/${email}`, gotData);
             return data;
         },
         onSuccess: () => {
-            toast.success('Request Sent');
+            toast.success('Edited Successfully');
+            setEdit(false);
+            setEditedData({});
+            refetch();
         }
     });
 
+    // console.log(editedData);
 
-    // send proposal
-    const sentProposal = async (to_data) => {
-        if (to_data?.member_email === user?.email) {
-            return toast.error('cant send request to yourself');
-        }
-        const requestData = {
-            type: 'sent_proposal',
-            to: to_data?.member_email,
-            to_name: to_data?.name,
-            to_image: to_data?.image,
-            from: user?.email,
-            from_name: name,
-            from_image: image,
-            request_status: 'requested'
-        };
-        // console.log(requestData);
-        await request(requestData);
+
+    // handle edit button click
+    const handleEdit = async () => {
+        await mutateAsync(editedData);
+        setEdit(false);
     };
 
-
-
-
-
-    if (loading || roleLoading || isLoading || userLoading || userDataLoading) return <Loading />;
+    if (isLoading) return <Loading />;
 
     return (
-        <div className="max-w-5xl mx-auto pb-2 w-full md:my-32 shadow-xl rounded-2xl bg-[#c3cedf] min-h-[100dvh]">
+        <div>
+
+            {/* <div className="col-span-2 row-span-1 space-y-1">
+
+                <p className="col-span-2 row-span-5 text-2xl font-bold font-anek">{got?.p}</p>
+                <p className="font-bold text-[15px] text-justify">{got?.question} </p>
+                <p className="bg-white text-xs p-2 text-justify border">{data?.[got?.name]}</p>
+
+                <UserDetailsForm got={got.slice(0, 5)} data={data} />
+
+
+                <input
+                    type="text"
+                    value={editedData?.[got?.name]}
+                    disabled
+                    onChange={(e) =>
+                        setEditedData({ ...editedData, [got.name]: e.target.value })
+                    }
+                    className={`bg-white placeholder:pl-3 placeholder:text-black w-full border-2 border-gray-300  font-alkatra rounded py-2 ${got?.hidden} `}
+                    placeholder={data?.[got?.name]}
+                />
+                <p className="bg-white text-xs p-2 text-justify border">{data?.[got?.name]}</p>
+            </div> */}
+
+
             <div>
-                <h1 className="text-2xl font-bold text-gray-600 p-2">Heaven Marriage</h1>
-            </div>
-            <Navbar text={'text-gray-600'} />
-
-            {/* <img src={minar_top} alt="" className="px-2 pt-14" /> */}
-
-            <div className="px-5 mx-2 pt-[50px]">
-                <div className="flex w-full flex-col my-2">
-                    <h1 className="text-2xl md:text-4xl text-gray-600 font-anek">ব্যক্তিগত তথ্য</h1>
-                    {/* <img src={underline_img2} className="w-[200px] -mt-5 object-contain" alt="" /> */}
-                </div>
-
-                {/* image and name section */}
-                <div className="flex shadow-[8px_8px_16px_#aab4c2,-8px_-8px_16px_#dce8f6]  p-4 rounded-3xl">
-                    <div className="flex">
-                        {
-                            data?.image &&
-                            <img src={data?.image} className=" size-[100px] rounded-full md:size-[250px] object-cover" alt="" />
-                        }
-
-                        {
-                            !data?.image && data?.gender === 'male' &&
-                            <img src={male_default} className=" size-[100px] rounded-full md:size-[250px] object-cover" alt="" />
-                        }
-
-                        {
-                            !data?.image && data?.gender === 'female' &&
-                            <img src={female_default} className=" size-[100px] rounded-full md:size-[250px] object-cover" alt="" />
-                        }
-                    </div>
-                    <div className="rounded-2xl px-4 py-1">
-                        <p className="text-[clamp(20px,4vw,30px)]  md:text-center font-anek">{data?.name}</p>
-                        {/* <button onClick={() => handleEdit(data?.member_email)} className="h-[50px] px-5 border-b">Edit</button> */}
-                        <Link to={`/images/${data?.member_email}`} className="font-anek text-sm underline">আরো ছবি</Link>
-                    </div>
-                </div>
-
-
+                {/* navbar and heading */}
                 <div>
+                    <div>
+                        <h1 className="text-2xl font-bold text-gray-600 p-2">Heaven Marriage</h1>
+                    </div>
+                    <Navbar />
+                </div>
 
-                    {/* for men form data */}
-                    <div className="md:grid space-y-3 md:grid-cols-4 grid-rows-5 w-full gap-5 py-5">
+                {/* form data and edit */}
+                <div className='mt-12 mx-5 bg-white p-4 rounded-lg'>
 
-                        {/* for men */}
-                        {
-                            data?.gender === 'male' &&
-                            <div className="flex flex-col space-y-4">
-                                {/* ব্যক্তিগত তথ্য (0–5) */}
-                                <UserDetailsForm data={data} got={men_questions.slice(0, 6)} heading="ব্যক্তিগত তথ্য" />
+                    <div className="flex w-full flex-col my-2 items-center">
+                        <h1 className="text-2xl md:text-4xl text-[#C3937C] font-anek">ব্যক্তিগত তথ্য</h1>
+                        <img src={underline_img2} className="w-[200px]  object-contain" alt="" />
+                    </div>
 
-                                {/* শিক্ষাগত ও পেশাগত তথ্য (6–13) */}
-                                <UserDetailsForm data={data} got={men_questions.slice(6, 14)} heading="শিক্ষাগত ও পেশাগত তথ্য" />
-
-                                {/* শারীরিক অবস্থা (14–17) */}
-                                <UserDetailsForm data={data} got={men_questions.slice(14, 18)} heading="শারীরিক অবস্থা" />
-
-                                {/* বৈবাহিক অবস্থা ও ইতিহাস (18–23) */}
-                                <UserDetailsForm data={data} got={men_questions.slice(18, 24)} heading="বৈবাহিক অবস্থা ও ইতিহাস" />
-
-                                {/* পারিবারিক তথ্য (24–28) */}
-                                <UserDetailsForm data={data} got={men_questions.slice(24, 29)} heading="পারিবারিক তথ্য" />
-
-                                {/* আচার-আচরণ ও শরয়ী মানসিকতা (29–36) */}
-                                <UserDetailsForm data={data} got={men_questions.slice(29, 37)} heading="আচার-আচরণ ও শরয়ী মানসিকতা" />
-
-                                {/* প্রত্যাশিত পাত্রীর বৈশিষ্ট্য (37–46) */}
-                                <UserDetailsForm data={data} got={men_questions.slice(37, 47)} heading="প্রত্যাশিত পাত্রীর বৈশিষ্ট্য" />
-                            </div>
+                    <div className='space-y-4'>
+                        {gender === 'female' &&
+                            female_questions.map((got, idx) => (
+                                <div key={idx}>
+                                    <p className='text-justify'>{got?.question}</p>
+                                    {
+                                        !edit && <p className='text-gray-600 text-sm text-justify border rounded-md p-2'>{data?.[got?.name]}</p>
+                                    }
+                                    {
+                                        edit && <input onChange={(e) =>
+                                            setEditedData({ ...editedData, [got.name]: e.target.value })
+                                        } type="text" placeholder={data?.[got?.name]} className='placeholder:text-gray-600 placeholder:text-sm py-1 px-2 border rounded w-full' />
+                                    }
+                                </div>
+                            ))
                         }
 
-
-
-                        {/* for female form data */}
-                        {
-                            data?.gender === 'female' &&
-                            <div className="flex flex-col space-y-4">
-                                <UserDetailsForm data={data} got={female_questions.slice(0, 6)} heading="ব্যক্তিগত তথ্য" />
-
-                                <UserDetailsForm data={data} got={female_questions.slice(6, 11)} heading="শিক্ষাগত ও পেশাগত তথ্য" />
-
-                                <UserDetailsForm data={data} got={female_questions.slice(11, 15)} heading="শারীরিক অবস্থা" />
-
-                                <UserDetailsForm data={data} got={female_questions.slice(15, 21)} heading="বৈবাহিক অবস্থা ও ইতিহাস" />
-
-                                <UserDetailsForm data={data} got={female_questions.slice(21, 29)} heading="পারিবারিক ও অর্থনৈতিক তথ্য" />
-
-                                <UserDetailsForm data={data} got={female_questions.slice(29, 35)} heading="প্রত্যাশিত পাত্রের বৈশিষ্ট্য" />
-
-                                <UserDetailsForm data={data} got={female_questions.slice(35, 48)} heading="শরয়ী অবস্থান ও মানসিকতা" />
-
-                                <UserDetailsForm data={data} got={female_questions.slice(48)} heading="অন্যান্য" />
-                            </div>
-
+                        {gender === 'male' &&
+                            men_questions.map((got, idx) => (
+                                <div key={idx}>
+                                    <p className='text-justify'>{got?.question}</p>
+                                    {
+                                        !edit && <p className='text-gray-600 text-sm text-justify border rounded-md p-2'>{data?.[got?.name]}</p>
+                                    }
+                                    {
+                                        edit && <input onChange={(e) =>
+                                            setEditedData({ ...editedData, [got.name]: e.target.value })
+                                        } type="text" placeholder={data?.[got?.name]} className='placeholder:text-gray-600 placeholder:text-sm py-1 px-2 border rounded w-full' />
+                                    }
+                                </div>
+                            ))
                         }
 
                     </div>
 
-                    <button onClick={() => sentProposal(data)}
-                        className="text-xs font-semibold  border-b px-4 py-2 my-4 flex items-center gap-2 w-[300px]
-             bg-gradient-to-r from-[#faf0d3] to-[#e9deaf] 
-             text-gray-800 rounded shadow-md 
-             hover:from-[#E6E0CC] hover:to-[#d1c38b] 
-             transition duration-300 flex-col">
-                        প্রস্তাব পাঠান
-                    </button>
+                    <div className='flex justify-center my-3'>
+                        {
+                            edit ?
+                                <button className=' bg-gradient-to-r from-[#faf0d3] to-[#e9deaf] px-8 rounded-full py-1' onClick={handleEdit}>Submit</button>
+                                :
+                                <button className=' bg-gradient-to-r from-[#faf0d3] to-[#e9deaf] px-8 rounded-full py-1' onClick={() => setEdit(true)}>Edit</button>
+                        }
+                    </div>
+
 
                 </div>
             </div>
+
 
 
 
@@ -341,4 +299,4 @@ const UserDetails = () => {
     );
 };
 
-export default UserDetails;
+export default UserFormEdit;

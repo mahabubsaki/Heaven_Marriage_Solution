@@ -40,6 +40,7 @@ import AllForms from '../Pages/Dashboard/AllForms';
 import Test from '../Pages/Test';
 import SentRequest from '../Pages/Dashboard/SentRequest';
 import AboutAndTeam from '../Pages/AboutAndTeam/AboutAndTeam';
+import UserFormEdit from '../Pages/UserFormEdit/UserFormEdit';
 
 const router = createBrowserRouter([
     {
@@ -153,6 +154,10 @@ const router = createBrowserRouter([
             {
                 path: '/about_team',
                 element: <AboutAndTeam />
+            },
+            {
+                path: '/user_form/:email',
+                element: <UserFormEdit />
             },
             {
                 path: '/test',
