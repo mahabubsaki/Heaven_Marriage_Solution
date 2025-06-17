@@ -9,8 +9,8 @@ const UserDetailsForm = ({ data = [], got = [], heading = '' }) => {
                 {
                     got.map((gotData, index) => (
                         <div key={index} className='mb-2 border-b rounded space-y-3 py-1'>
-                            <p className=" text-[15px] text-justify">{gotData?.question} </p>
-                            <p className="bg-white text-xs text-justify text-gray-500 ">{data?.[gotData?.name] || 'কোন উত্তর নেই'}</p>
+                            <p className=" text-[15px] text-justify font-medium">{gotData?.question} </p>
+                            <p className="bg-white text-xs text-justify text-gray-600 ">{data?.[gotData?.name] || 'কোন উত্তর নেই'}</p>
                         </div>
                     ))
                 }

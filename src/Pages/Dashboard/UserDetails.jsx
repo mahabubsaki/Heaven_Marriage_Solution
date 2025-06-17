@@ -177,7 +177,7 @@ const UserDetails = () => {
     });
 
     // console.log(data);
-    
+
 
     // user data from usersCollection
     const { status, isLoading: userDataLoading, name, image, age, profession } = useUser();
@@ -243,44 +243,43 @@ const UserDetails = () => {
     if (loading || roleLoading || isLoading || userLoading || userDataLoading) return <Loading />;
 
     return (
-        <div className="max-w-5xl mx-auto pb-2 w-full md:my-32 shadow-xl rounded-2xl">
+        <div className="max-w-5xl mx-auto pb-2 w-full md:my-32 shadow-xl rounded-2xl bg-[#c3cedf] min-h-[100dvh]">
             <div>
                 <h1 className="text-2xl font-bold text-[#C3937C] p-2">Heaven Marriage</h1>
             </div>
             <Navbar />
 
-            <img src={minar_top} alt="" className="px-2 pt-14" />
+            {/* <img src={minar_top} alt="" className="px-2 pt-14" /> */}
 
-            <div className="px-5 border-x-4 border-b-4 rounded border-[#93733F] -mt-[81px] mx-2 pt-[50px]">
-                <div className="flex w-full pb-5 flex-col justify-between items-center mt-10">
-                    <h1 className="text-3xl md:text-4xl border-b py-5 text-[#C3937C] font-anek">ব্যক্তিগত তথ্য</h1>
-                    <img src={underline_img2} alt="" />
+            <div className="px-5 mx-2 pt-[50px]">
+                <div className="flex w-full pb-5 flex-col justify-between items-center">
+                    <h1 className="text-2xl md:text-4xl py-5 text-gray-600 font-anek">ব্যক্তিগত তথ্য</h1>
+                    <img src={underline_img2} className="w-[200px] -mt-5 object-contain" alt="" />
                 </div>
 
                 {/* image and name section */}
-                <div className="flex flex-col md:flex-row justify-between border-b space-y-4">
-                    <div className="flex justify-between">
+                <div className="flex shadow-[8px_8px_16px_#aab4c2,-8px_-8px_16px_#dce8f6] p-4 rounded-3xl">
+                    <div className="flex">
                         {
                             data?.image &&
-                            <img src={data?.image} className=" size-[180px] md:size-[250px] object-cover" alt="" />
+                            <img src={data?.image} className=" size-[100px] rounded-full md:size-[250px] object-cover" alt="" />
                         }
 
                         {
                             !data?.image && data?.gender === 'male' &&
-                            <img src={male_default} className=" size-[180px] md:size-[250px] object-cover" alt="" />
+                            <img src={male_default} className=" size-[100px] rounded-full md:size-[250px] object-cover" alt="" />
                         }
 
                         {
                             !data?.image && data?.gender === 'female' &&
-                            <img src={female_default} className=" size-[180px] md:size-[250px] object-cover" alt="" />
-                        }
-                        {role === 'admin' ?
-                            <button onClick={() => handleEdit(data?.member_email)} className="h-[50px] px-5 border-b">Edit</button>
-                            :
-                            <Link to={`/images/${data?.member_email}`} className="font-mina underline">আরো ছবি</Link>
+                            <img src={female_default} className=" size-[100px] rounded-full md:size-[250px] object-cover" alt="" />
                         }
                     </div>
-                    <p className="text-[clamp(20px,4vw,30px)]  md:text-center font-mina">{data?.name}</p>
+                    <div className="rounded-2xl px-4 py-1">
+                        <p className="text-[clamp(20px,4vw,30px)]  md:text-center font-mina">{data?.name}</p>
+                        {/* <button onClick={() => handleEdit(data?.member_email)} className="h-[50px] px-5 border-b">Edit</button> */}
+                        <Link to={`/images/${data?.member_email}`} className="font-mina text-sm underline">আরো ছবি</Link>
+                    </div>
                 </div>
 
 
