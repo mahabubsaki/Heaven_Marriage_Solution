@@ -72,6 +72,7 @@ const Login = () => {
 
     const handleGoogleLogin = async () => {
         await signInWithGoogle();
+        setLoading(false);
         navigate(from);
     };
 

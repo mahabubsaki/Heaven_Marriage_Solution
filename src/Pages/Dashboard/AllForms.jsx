@@ -39,13 +39,14 @@ const AllForms = () => {
 
 
     return (
-        <div className='w-full min-h-screen bg-red-500'>
-            <div>
+        <div className='w-full min-h-screen bg-[#c3cedf]'>
+            <div className='flex flex-col space-y-6 p-4 w-full mx-auto max-w-[1200px]'>
+                <p className='text-2xl pl-2'>Forms</p>
                 {
                     data.map((got, idx) => (
-                        <div key={idx} className='flex w-full bg-white justify-between space-y-5 border-y-2'>
+                        <div key={idx} className='flex items-center justify-between px-5 py-3 bg-[#c3cedf] shadow-[8px_8px_10px_#aab4c2,-8px_-8px_10px_#dce8f6] text-gray-600 rounded-full'>
                             <p>{got?.member_email}</p>
-                            <button onClick={() => handleDelete(got?._id)}>X</button>
+                            <button onClick={() => handleDelete(got?._id)} className='shadow-[inset_4px_4px_5px_rgba(0,0,0,0.3),4px_4px_8px_rgba(0,0,0,0.1)] rounded-full px-2 py-1'>Delete</button>
                         </div>
                     ))
                 }

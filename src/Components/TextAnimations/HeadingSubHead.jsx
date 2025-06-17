@@ -60,7 +60,7 @@ const HeadingSubHead = ({ heading = '', subHeading = '' }) => {
                         }
                     }}
                     viewport={{ once: true }}
-                    src={underLineImg} className='h-[30px] object-contain' alt="" />
+                    src={underLineImg} className='h-[30px] -mt-3 object-contain' alt="" />
             </div>
 
 

@@ -41,7 +41,7 @@ const Dashboard = () => {
             <Sidebar open={open} setOpen={setOpen} />
 
             {/* outlet */}
-            <div className="min-h-[100vh] w-[calc(100%-140px)] mx-auto">
+            <div className="min-h-[100vh] w-[calc(100%-55px)] mx-auto">
                 <ScrollTop>
                     <Outlet />
                 </ScrollTop>

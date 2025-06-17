@@ -39,6 +39,7 @@ import AllUsers from '../Pages/Dashboard/AllUsers';
 import AllForms from '../Pages/Dashboard/AllForms';
 import Test from '../Pages/Test';
 import SentRequest from '../Pages/Dashboard/SentRequest';
+import AboutAndTeam from '../Pages/AboutAndTeam/AboutAndTeam';
 
 const router = createBrowserRouter([
     {
@@ -148,6 +149,10 @@ const router = createBrowserRouter([
             {
                 path: '/forgot-password',
                 element: <ForgetPass />
+            },
+            {
+                path: '/about_team',
+                element: <AboutAndTeam />
             },
             {
                 path: '/test',

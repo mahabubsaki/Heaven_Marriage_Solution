@@ -35,7 +35,7 @@ const Navbar = ({ text }) => {
         { name: 'প্রোফাইল', destination: '/profile', icon: <CiUser /> },
         { name: 'সেটিংস', destination: '/settings', icon: <Settings /> },
         { name: 'বিবাহের মাসলা-মাসায়েল সমুহ', destination: '/settings', icon: <FaBook /> },
-        { name: 'HMS এর কর্মকতাগণ', destination: '/employee', icon: <TbUsersGroup /> },
+        { name: 'HMS এর  পরিচিতি ও কর্মকতাগণ', destination: '/about_team', icon: <TbUsersGroup /> },
     ];
 
     // scroll implementation using react-use
@@ -136,7 +136,7 @@ const Navbar = ({ text }) => {
 
 
                         <nav className="mt-10 flex flex-col gap-4 text-xs md:text-sm">
-                            <div className={` md:hidden text-white flex space-y-2 flex-col`}>
+                            <div className={` text-white flex space-y-2 flex-col`}>
                                 {navItems.map((nav, idx) => (
                                     <Link key={idx} to={nav?.destination} className="flex border-b -ml-5 px-5 pb-2 gap-2" >
                                         <span className="text-2xl text-[#C3937C]">{nav?.icon}</span>
