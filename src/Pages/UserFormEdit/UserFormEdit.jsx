@@ -8,6 +8,7 @@ import useRole from '../../Hooks/Role/useRole';
 import Navbar from '../../Components/Shared/Navbar/Navbar';
 import underline_img2 from '/images/underline_img2.png';
 import Loading from '../Loading/Loading';
+import DownloadPdf from '../../Components/Shared/Pdf/DownloadPdf';
 
 const UserFormEdit = () => {
 
@@ -17,9 +18,15 @@ const UserFormEdit = () => {
     // console.log(email);
 
 
+    const formData = {
+        name: 'Kaiser Reven',
+        email: 'kaiser@example.com',
+        phone: '017xxxxxxxx',
+    };
+
 
     // fetch the data
-    const { data = [], refetch, isLoading } = useQuery({
+    const { data = {}, refetch, isLoading } = useQuery({
         queryKey: ['UserForm', email],
         queryFn: async () => {
             const { data } = await axiosSecure.get(`/user_form/${email}`);
@@ -27,7 +34,7 @@ const UserFormEdit = () => {
         }
     });
 
-    // console.log(data);
+    console.log(data);
 
 
     // men questions
@@ -286,6 +293,7 @@ const UserFormEdit = () => {
                                 :
                                 <button className=' bg-gradient-to-r from-[#faf0d3] to-[#e9deaf] px-8 rounded-full py-1' onClick={() => setEdit(true)}>Edit</button>
                         }
+                        <DownloadPdf formData={data} />
                     </div>
 
 
