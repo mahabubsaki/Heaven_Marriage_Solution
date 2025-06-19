@@ -104,6 +104,7 @@ const UserFormEdit = () => {
         { name: "bride_type", question: "কেমন পাত্রী চান?", class: "hidden" },
         { name: "specific_dream", label: "প্রত্যেকটি মানুষই তার জীবনসঙ্গীর ব্যাপারে কিছু স্বপ্ন দেখে... দয়া করে আপনারটা উল্লেখ করুন?" },
     ];
+    console.log(men_questions.length);
 
     // woman questions
     const female_questions = [
@@ -293,7 +294,7 @@ const UserFormEdit = () => {
                                 :
                                 <button className=' bg-gradient-to-r from-[#faf0d3] to-[#e9deaf] px-8 rounded-full py-1' onClick={() => setEdit(true)}>Edit</button>
                         }
-                        <DownloadPdf formData={data} />
+                        {Object.keys(data).length > 0 && <DownloadPdf key={data?._id} formData={data} />}
                     </div>
 
 

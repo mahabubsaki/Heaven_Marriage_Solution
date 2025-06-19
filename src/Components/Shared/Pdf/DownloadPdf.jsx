@@ -6,7 +6,7 @@ import PdfDocument from './PdfDocument';
 const DownloadPdf = ({ formData }) => {
 
     return (
-        <PDFDownloadLink document={<PdfDocument formData={formData} />} fileName={'user-' + formData.email + '.pdf'}>
+        <PDFDownloadLink document={<PdfDocument formData={formData} />} fileName={'user-' + formData.member_email + '.pdf'}>
 
             {({ loading, error }) => (
                 <button
