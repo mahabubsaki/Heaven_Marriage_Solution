@@ -11,7 +11,7 @@ const DownloadPdf = ({ formData }) => {
             {({ loading, error }) => (
                 <button
                     disabled={loading}
-                    className="px-4 py-2 bg-blue-600 flex items-center gap-3 text-white rounded hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="px-4 py-2 rounded-full bg-blue-600 flex items-center gap-3 text-white hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                     {loading ? 'Preparing Document' : 'Download PDF'}
                     {loading ? <span className='animate animate-pulse rounded-full size-[15px] bg-green-500 inline-block' /> : null}

@@ -287,7 +287,7 @@ const UserFormEdit = () => {
 
                     </div>
 
-                    <div className='flex justify-center my-3'>
+                    <div className='flex justify-center my-3 gap-3'>
                         {
                             edit ?
                                 <button className=' bg-gradient-to-r from-[#faf0d3] to-[#e9deaf] px-8 rounded-full py-1' onClick={handleEdit}>Submit</button>
