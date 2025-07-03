@@ -15,14 +15,8 @@ const UserFormEdit = () => {
     const axiosSecure = useAxiosSecure();
     const { email } = useParams();
     const { gender } = useRole();
+    const { loading } = useAuth();
     // console.log(email);
-
-
-    const formData = {
-        name: 'Kaiser Reven',
-        email: 'kaiser@example.com',
-        phone: '017xxxxxxxx',
-    };
 
 
     // fetch the data
@@ -34,7 +28,7 @@ const UserFormEdit = () => {
         }
     });
 
-    console.log(data);
+    // console.log(data);
 
 
     // men questions
@@ -207,7 +201,7 @@ const UserFormEdit = () => {
         setEdit(false);
     };
 
-    if (isLoading) return <Loading />;
+    if (isLoading || loading) return <Loading />;
 
     return (
         <div>
