@@ -9,7 +9,7 @@ import { imageUpload } from "../../Utils/ImageUpload";
 import React, { useState } from 'react';
 import Navbar from "../../Components/Shared/Navbar/Navbar";
 import HeadingSubHead from "../../Components/TextAnimations/HeadingSubHead";
-import menFormImage from '/images/men_form.jpeg'
+import menFormImage from '/images/men_form.jpeg';
 import { AiOutlineLoading } from "react-icons/ai";
 
 const MenForm = () => {
@@ -789,7 +789,7 @@ const MenForm = () => {
                         </div>
 
                         {
-                            questions.map(({ heading, subHeading, visibility, name, question, class: clas, label, options, required }, idx) => (
+                            questions.map(({ heading, subHeading, visibility, name, question, class: clas, label, options, }, idx) => (
                                 <div key={idx}>
                                     {heading && <p className="text-3xl">{heading}</p>}
                                     {subHeading && <p className="">{subHeading}</p>}

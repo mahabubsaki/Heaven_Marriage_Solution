@@ -56,6 +56,59 @@ const InProcessNotVerf = () => {
                 {/* (ঈদুল আজহার আগ পর্যন্ত ৫০% ডিসকাউন্ট: ১০২০ টাকার পরিবর্তে মাত্র ৫১০ টাকা) */}
             </p>
 
+            <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto p-4 border rounded-xl bg-white shadow">
+                <h2 className="text-xl font-bold text-center ">ভেরিফাই পেমেন্ট</h2>
+
+                <div>
+                    <label className="block font-semibold  mb-1">আপনার নাম</label>
+                    <input
+                        type="text"
+                        name="name"
+                        required
+                        className="w-full border p-2 rounded "
+                        placeholder="নাম লিখুন"
+                    />
+                </div>
+
+                <div>
+                    <label className="block font-semibold  mb-1">যে নাম্বার থেকে টাকা পাঠিয়েছেন ।</label>
+                    <input
+                        type="number"
+                        name="transaction_number"
+                        required
+                        className="w-full border p-2 rounded font-alkatra"
+                        placeholder="মোবাইল নম্বর লিখুন"
+                    />
+                </div>
+
+                <div>
+                    <label className="block font-semibold  mb-1">স্ক্রিনশর্ট (ছবি)</label>
+                    <input
+                        type="file"
+                        name="screenshot"
+                        required
+                        className="w-full font-alkatra"
+                    />
+                </div>
+
+                <button
+                    type="submit"
+                    disabled={logLoad}
+                    className="w-full bg-green-600 py-2 rounded hover:bg-green-700 font-semibold 
+             bg-gradient-to-r from-[#faf0d3] to-[#e9deaf] 
+             hover:from-[#E6E0CC] hover:to-[#d1c38b] 
+             transition duration-300
+                    "
+                >
+                    {
+                        logLoad ?
+                            <AiOutlineLoading className='text-2xl font-bold animate-spin' />
+                            :
+                            "সাবমিট করুন"
+                    }
+                </button>
+            </form>
+
             <p className=" text-justify text-xl mt-2">পেমেন্ট পাঠানোর বিকল্প মাধ্যমসমূহ:</p>
             <p className=" text-justify"><span className="font-semibold">Send Money (Nagad/Bkash/Rocket – Personal):</span> <span className='text-red-600'>01748919251</span> (নগদ / বিকাশ / রকেট – পার্সোনাল)</p>
 
@@ -84,58 +137,7 @@ const InProcessNotVerf = () => {
 
 
 
-            <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto p-4 border rounded-xl bg-white shadow">
-                <h2 className="text-xl font-bold text-center ">ভেরিফাই পেমেন্ট</h2>
 
-                <div>
-                    <label className="block font-semibold font-alkatra mb-1">আপনার নাম</label>
-                    <input
-                        type="text"
-                        name="name"
-                        required
-                        className="w-full border p-2 rounded font-alkatra"
-                        placeholder="নাম লিখুন"
-                    />
-                </div>
-
-                <div>
-                    <label className="block font-semibold font-alkatra mb-1">যে নাম্বার থেকে টাকা পাঠিয়েছেন ।</label>
-                    <input
-                        type="number"
-                        name="transaction_number"
-                        required
-                        className="w-full border p-2 rounded font-alkatra"
-                        placeholder="মোবাইল নম্বর লিখুন"
-                    />
-                </div>
-
-                <div>
-                    <label className="block font-semibold font-alkatra mb-1">স্ক্রিনশর্ট (ছবি)</label>
-                    <input
-                        type="file"
-                        name="screenshot"
-                        required
-                        className="w-full font-alkatra"
-                    />
-                </div>
-
-                <button
-                    type="submit"
-                    disabled={logLoad}
-                    className="w-full bg-green-600 py-2 rounded hover:bg-green-700 font-semibold 
-             bg-gradient-to-r from-[#faf0d3] to-[#e9deaf] 
-             hover:from-[#E6E0CC] hover:to-[#d1c38b] 
-             transition duration-300
-                    "
-                >
-                    {
-                        logLoad ?
-                            <AiOutlineLoading className='text-2xl font-bold animate-spin' />
-                            :
-                            "সাবমিট করুন"
-                    }
-                </button>
-            </form>
 
 
         </div>
