@@ -3,11 +3,16 @@ import BlackButton from "../../Components/Shared/Buttons/BlackButton";
 import useAxiosSecure from "../../Hooks/Axios/useAxiosSecure";
 import toast from "react-hot-toast";
 import { imageUpload } from "../../Utils/ImageUpload";
-import React from 'react';
+import React, { useState } from 'react';
+import ExampleWrapper from "../../Components/Shared/ProductReviewModal/ExampleWrapper";
+import ProductReviewModal from "../../Components/Shared/ProductReviewModal/ProductReviewModal";
 
 const AddProduct = () => {
 
     const axiosSecure = useAxiosSecure();
+    const [isOpen, setIsOpen] = useState(false);
+
+    const [reviewProduct, setReviewProduct] = useState({});
 
     const { mutateAsync } = useMutation({
         mutationFn: async (product) => {
@@ -16,152 +21,140 @@ const AddProduct = () => {
         },
         onSuccess: () => {
             toast.success('Product Added Successfully');
+            setIsOpen(false);
+            setReviewProduct({});
         }
     });
 
 
-    const handleSubmit = async (e) => {
+    const handleReview = async (e) => {
         e.preventDefault();
         const form = e.target;
-
         const name = form.name.value;
-        const brand = form.brand.value;
-        const warranty = form.warranty.value;
-        const price = parseInt(form.price.value);
-        const availability = form.availability.value;
-        const material = form.material.value;
-        const waterResistance = form.waterResistance.value;
-        const color = form.color.value;
+        const priceStr = form.price.value;
+        const discount = form.discount.value;
+        const discountedPrice = parseInt(priceStr) - (parseInt(priceStr) * parseInt(discount)) / 100;
         const category = form.category.value;
-        const details = form.details.value;
+        const variant = form.variant.value;
+        const description = form.description.value;
         const uuId = crypto.randomUUID();
 
-        const image = form.image.files[0];
-        const imageUrl = await imageUpload(image);
-        console.log(imageUrl);
+        // ⬇️ Get all selected files
+        const files = form.image.files;
 
-        const product = {
+        // ⬇️ Upload all images and collect URLs
+        const imageUploadPromises = [...files].map(image => imageUpload(image));
+        const imageUrls = await Promise.all(imageUploadPromises);
+
+        const productDetails = {
             name,
-            brand,
-            warranty,
-            price,
-            availability,
-            material,
-            waterResistance,
-            color,
+            price: priceStr,
+            discount,
+            discountedPrice,
             category,
-            details,
+            variant,
+            description,
             uuId,
-            image: imageUrl
+            images: imageUrls,
         };
 
-        await mutateAsync(product);
-        form.reset();
+        setReviewProduct(productDetails);
+        setIsOpen(true);
+    };
 
+
+
+    const handleSubmit = async () => {
+        await mutateAsync(reviewProduct);
+        setIsOpen(false);
     };
 
 
     return (
-        <div className=" min-h-screen min-w-full">
-
-            <div className="text-black">
-                <div className="border-b border-black">
-                    <h1 className="text-4xl my-10 font-lexend text-center">Submit Product</h1>
+        <div className="min-h-screen bg-gradient-to-br from-white to-gray-100 p-6">
+            <div className="max-w-3xl mx-auto bg-white rounded-xl shadow-xl overflow-hidden">
+                {/* Header */}
+                <div className="bg-black text-white p-6 text-center">
+                    <h1 className="text-3xl font-bold font-lexend">Add New Product</h1>
                 </div>
 
-                {/* form */}
-                <form onSubmit={handleSubmit} className="flex  flex-col py-10 px-5 max-w-[1000px] mx-auto capitalize gap-10">
+                {/* Form */}
+                <form onSubmit={handleReview} className="p-8 grid grid-cols-1 md:grid-cols-2 gap-6 text-sm md:text-base">
 
-
-                    {/* 1stdiv */}
-                    <div className="flex flex-col justify-between px-5 gap-5 md:gap-10">
-
-                        <div className="">
-                            <label className="block text-xs md:text-2xl font-lexend">Name</label>
-                            <input required className=" w-3/4 my-5 outline-none placeholder:text-gray-500 border-b border-black" type="text" name="name" placeholder="name" />
-                        </div>
-
-                        <div className="  ">
-                            <label className="block text-xs md:text-xl">Image</label>
-                            <input required type="file" name="image" className="block w-full md:w-3/4 px-3 py-2 mt-2 text-sm text-gray-600 border border-gray-400 rounded-lg file:rounded-lg file:border-none file:text-gray-600  " />
-                        </div>
-
+                    {/* Product Name */}
+                    <div className="flex flex-col">
+                        <label className="mb-1 font-semibold text-gray-700">Product Name</label>
+                        <input name="name" type="text" placeholder="Enter product name" required
+                            className="p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 ring-black" />
                     </div>
 
-
-                    {/* 2nd div */}
-                    <div className="flex flex-col  justify-between px-5 gap-5 md:gap-10">
-                        <div className=" ">
-                            <label className="block text-xs md:text-2xl font-lexend">Brand</label>
-                            <input className=" w-3/4 my-5 outline-none placeholder:text-gray-500 border-b border-black" type="text" name="brand" placeholder="brand" />
-                        </div>
-
-                        <div className=" ">
-                            <label className="block text-xs md:text-2xl font-lexend">Warranty</label>
-                            <input className=" w-3/4 my-5 outline-none placeholder:text-gray-500 border-b border-black" type="text" name="warranty" placeholder="warranty" />
-                        </div>
+                    {/* Product Image */}
+                    <div className="flex flex-col">
+                        <label className="mb-1 font-semibold text-gray-700">Image</label>
+                        <input name="image" type="file" accept="image/*" required multiple
+                            className="p-2 border border-gray-300 rounded file:bg-black file:text-white file:px-4 file:py-2 file:rounded-lg file:border-0 hover:file:bg-gray-800" />
                     </div>
 
-                    {/* 3rd div */}
-                    <div className="flex flex-col  justify-between px-5 gap-5 md:gap-10">
-                        <div className=" ">
-                            <label className="block text-xs md:text-2xl font-lexend">Price</label>
-                            <input required min={0} className=" w-3/4 outline-none placeholder:text-gray-500 border-b border-black" type="number" name="price" placeholder="price" />
-                        </div>
-
-                        <div className=" ">
-                            <label className="block text-xs md:text-2xl font-lexend">availability</label>
-                            <input className=" w-3/4 outline-none placeholder:text-gray-500 border-b border-black" type="text" name="availability" placeholder="availability" />
-                        </div>
+                    {/* Price */}
+                    <div className="flex flex-col">
+                        <label className="mb-1 font-semibold text-gray-700">Price (৳)</label>
+                        <input name="price" type="number" min="0" placeholder="Enter price" required
+                            className="p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 ring-black" />
                     </div>
 
-
-                    {/* 4th div */}
-                    <div className="flex  flex-col justify-between px-5 gap-5 md:gap-10">
-                        <div className=" ">
-                            <label className="block text-xs md:text-2xl font-lexend">material</label>
-                            <input min={0} className=" w-3/4 outline-none placeholder:text-gray-500 border-b border-black" type="text" name="material" placeholder="material" />
-                        </div>
-
-                        <div className=" ">
-                            <label className="block text-xs md:text-2xl font-lexend">Durability</label>
-                            <input className=" w-3/4 outline-none placeholder:text-gray-500 border-b border-black" type="text" name="waterResistance" placeholder="Resistance" />
-                        </div>
+                    {/* Discount Percentage */}
+                    <div className="flex flex-col">
+                        <label className="mb-1 font-semibold text-gray-700">Discount (%)</label>
+                        <input name="discount" type="number" min="0" max="100" placeholder="e.g., 10"
+                            className="p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 ring-black" />
                     </div>
 
-
-                    {/* 5th div */}
-                    <div className="flex flex-col justify-between px-5 gap-5 md:gap-10">
-                        <div className=" ">
-                            <label className="block text-xs md:text-2xl font-lexend">Color</label>
-                            <input className=" w-3/4 my-5 outline-none placeholder:text-gray-500 border-b border-black" type="text" name="color" placeholder="Product Color" />
-                        </div>
-
-                        <div className=" ">
-                            <label className="block text-xs md:text-2xl font-lexend">Category</label>
-                            <select required className="px-5 cursor-pointer w-28 md:w-3/4 mt-1 h-10 border-b appearance-none border-black rounded-sm outline-none" name="category" id="">
-                                <option disabled selected>Select</option>
-                                <option value="Luxury">Luxury</option>
-                                <option value="Smartwatches">Smartwatches</option>
-                                <option value="Sports">Sports</option>
-                                <option value="Casual">Casual</option>
-                            </select>
-                        </div>
-
+                    {/* Category */}
+                    <div className="flex flex-col">
+                        <label className="mb-1 font-semibold text-gray-700">Category</label>
+                        <select name="category" required
+                            className="p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 ring-black">
+                            <option disabled selected>Select a category</option>
+                            <option value="Luxury">Luxury</option>
+                            <option value="Smartwatches">Smartwatches</option>
+                            <option value="Sports">Sports</option>
+                            <option value="Casual">Casual</option>
+                        </select>
                     </div>
 
-                    {/* 6th div */}
-                    <textarea required name="details" id="" rows='5' className="rounded outline-none border border-gray-400 placeholder:p-5" placeholder="Descriptions"></textarea>
+                    {/* Variant */}
+                    <div className="flex flex-col">
+                        <label className="mb-1 font-semibold text-gray-700">Variant</label>
+                        <input name="variant" type="text" placeholder="e.g., Black/XL/32GB"
+                            className="p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 ring-black" />
+                    </div>
 
+                    {/* Description (Full Width) */}
+                    <div className="col-span-1 md:col-span-2 flex flex-col">
+                        <label className="mb-1 font-semibold text-gray-700">Description</label>
+                        <textarea name="description" rows="4" required placeholder="Write product description..."
+                            className="p-4 border border-gray-300 rounded focus:outline-none focus:ring-2 ring-black resize-none" />
+                    </div>
 
-                    <button>
-                        <BlackButton size={325} text={'submit'} />
-                    </button>
-
+                    {/* Submit Button */}
+                    <div className="col-span-1 md:col-span-2 text-center">
+                        <button type="submit"
+                            className="bg-black hover:bg-gray-800 text-white px-10 py-3 rounded-full text-lg transition duration-300">
+                            Review Product
+                        </button>
+                    </div>
                 </form>
-            </div>
 
+                {/* modal */}
+                <div>
+                    <ProductReviewModal handleSubmit={handleSubmit} data={reviewProduct} isOpen={isOpen} setIsOpen={setIsOpen} />
+                </div>
+
+
+            </div>
         </div>
+
+
     );
 };
 

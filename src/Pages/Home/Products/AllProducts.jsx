@@ -15,7 +15,7 @@ import banner_1 from '/images/shop_5.jpg';
 import banner_2 from '/images/shop_6.jpg';
 import banner_3 from '/images/shop_7.jpg';
 import banner_4 from '/images/shop_8.jpg';
-import { FaHome, FaOpencart } from "react-icons/fa";
+import { FaHome, FaOpencart, FaStar } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
 
 
@@ -31,12 +31,12 @@ const AllProducts = () => {
     });
 
     return (
-        <div className="">
+        <div className="bg-gray-100">
             <div className="w-screen bg-[#FC8934] flex text-white py-2">
                 <p className="w-[300px] mx-auto">আমাদের যেকোনো পন্য অর্ডার করতে কল বা হোয়াটসঅ্যাপ করুন: 01734874385</p>
             </div>
 
-            <div className="max-h-screen overflow-y-auto relative px-5 pb-5">
+            <div className="max-h-screen overflow-y-auto relative px-3 pb-5">
 
 
                 {/* bottom fixed menu bar */}
@@ -110,25 +110,47 @@ const AllProducts = () => {
                     </Swiper>
                 </div>
 
+
+                {/* product card section */}
                 <div className="">
-                    <p className="font-bold text-xl mt-2">Products:</p>
-                    <div className="grid grid-cols-2 gap-5 mb-14">
+                    <p className="font-bold text-xl my-4">সকল প্রডাক্ট</p>
+                    <div className="grid grid-cols-2 gap-3 mb-14">
                         {data?.map((got) => (
-                            <Link to={`/product/${got?._id}`}
+                            <Link
+                                to={`/product/${got?._id}`}
                                 key={got?._id}
-                                className="flex flex-col items-center rounded p-3 shadow-md h-[250px] w-[150px] overflow-hidden border border-gray-200"
+                                className="flex flex-col bg-white rounded p-3 shadow-md h-[350px] w-[165px] overflow-hidden border border-gray-200"
                             >
                                 <img
-                                    src={got?.image}
+                                    src={got?.images[0]}
                                     alt=""
                                     className="object-cover h-[120px] w-full"
                                 />
-                                <p className="text-center h-[30px]">
-                                    {got?.name.length > 8 ? got?.name.slice(0, 11) + "..." : got?.name}
-                                </p>
-                                <p className="">Tk {got?.price}</p>
-                                <button className="px-2 bg-[#FC8934] text-white grow py-1 rounded w-full">Buy Now</button>
+
+                                <div className="flex flex-col flex-grow">
+                                    <p className="text-xs text-orange-500 my-2">{got?.category}</p>
+                                    <p className=" font-semibold">
+                                        {got?.name.split(' ').slice(0, 3).join(' ')}
+                                    </p>
+                                    <div className="flex bg-slate-100 font-bold w-[60px] rounded">
+                                        <p className="flex  items-center text-orange-400 border-r border-gray-300 p-1 gap-1">0<FaStar /> </p>
+                                        <p className="flex items-center px-2">0</p>
+                                    </div>
+                                    <p className="text-red-600 font-semibold"> <span className=" font-mina">৳</span>{got?.discountedPrice}</p>
+                                    <div className="flex gap-3 items-center">
+                                        <p className="line-through text-gray-400"><span className=" font-mina">৳</span>{got?.price}</p>
+                                        <p className="flex gap-3 bg-red-500 text-white px-2 rounded-lg">{got?.discount}% OFF</p>
+                                    </div>
+
+                                    <div className="mt-auto flex gap-2">
+                                        <button className="p-2 border border-[#FC8934] text-[#FC8934] rounded-md"><IoBag /></button>
+                                        <button className="px-2 bg-[#FC8934] text-white py-1 rounded w-full">
+                                            Buy Now
+                                        </button>
+                                    </div>
+                                </div>
                             </Link>
+
                         ))}
                     </div>
                 </div>

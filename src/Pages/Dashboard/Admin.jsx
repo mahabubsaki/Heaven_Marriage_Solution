@@ -11,6 +11,7 @@ const Admin = () => {
         // { name: 'Add Product', to: '/dashboard/add_product' },
         { name: 'Users', to: '/dashboard/all_users' },
         { name: 'Members', to: '/dashboard/users' },
+        { name: 'Add Products', to: '/dashboard/add_product' },
         // { name: 'Manage Sells', to: '/dashboard/manage_sells' },
         // { name: 'Manage Proposals', to: '/dashboard/manage_proposals' },
         { name: 'Transactions', to: '/dashboard/manage_transactions' },

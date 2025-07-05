@@ -41,6 +41,7 @@ import Test from '../Pages/Test';
 import SentRequest from '../Pages/Dashboard/SentRequest';
 import AboutAndTeam from '../Pages/AboutAndTeam/AboutAndTeam';
 import UserFormEdit from '../Pages/UserFormEdit/UserFormEdit';
+import Checkout from '../Pages/Checkout/Checkout';
 
 const router = createBrowserRouter([
     {
@@ -133,6 +134,12 @@ const router = createBrowserRouter([
                 path: '/profile',
                 element: <PrivateRoute>
                     <Profile />
+                </PrivateRoute>
+            },
+            {
+                path: '/checkout',
+                element: <PrivateRoute>
+                    <Checkout />
                 </PrivateRoute>
             },
             {
