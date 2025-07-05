@@ -5,11 +5,13 @@ import useAuth from "../../Hooks/Auth/useAuth";
 import useAxiosSecure from "../../Hooks/Axios/useAxiosSecure";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export default function Checkout() {
 
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
+    const navigate = useNavigate();
 
     // get all cart data------------------------------------------------------------------------
     const { data: cartData = [], refetch } = useQuery({
@@ -19,6 +21,8 @@ export default function Checkout() {
             return data;
         }
     });
+    // console.log(cartData);
+
 
 
     // setDelivery
@@ -26,25 +30,44 @@ export default function Checkout() {
     // console.log(delivery);
 
 
-
-    const [quantity, setQuantity] = useState(2);
-
-
-    // total price
+    // total price calculation
     const cartTotal = cartData.reduce((sum, item) => sum + item.total_price, 0);
-
     let deliveryCharge = 0;
-
     if (delivery === 'Inside Dhaka') {
         deliveryCharge = 60;
     } else if (delivery === 'Outside Dhaka') {
         deliveryCharge = 120;
     }
-
     const total = cartTotal + deliveryCharge;
 
 
+    // add user cart data to the server
+    const { mutateAsync: order } = useMutation({
+        mutationFn: async (cartData) => {
+            const { data } = await axiosSecure.post(`/orderData/${user?.email}`, cartData);
+            return data;
+        },
+        onSuccess: () => {
+            navigate('/order_success');
+        }
+    });
 
+
+    // add user cart data to the server
+    const { mutateAsync: placedOrder } = useMutation({
+        mutationFn: async (placedOrderInfo) => {
+            const { data } = await axiosSecure.post(`/placed_order_info`, placedOrderInfo);
+            return data;
+        },
+        onSuccess: () => {
+            toast.success('Thanks for buying !');
+        }
+    });
+
+
+
+
+    // add user details to the server
     const handleSubmit = async (e) => {
         e.preventDefault();
         const form = e.target;
@@ -64,8 +87,9 @@ export default function Checkout() {
             delivery,
             total
         };
-
-        console.table(formData);
+        // console.table(formData);
+        await placedOrder(formData);
+        await order(cartData);
     };
 
 

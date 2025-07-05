@@ -78,9 +78,10 @@ const Product = () => {
         },
         onSuccess: () => {
             toast.success('Added Successfully, Check Your Cart !');
+            setDragDrawerOpen(false);
+            setCartIsOpen(true);
             setQuantity(1);
             refetch();
-            navigate('/checkout');
         }
     });
 

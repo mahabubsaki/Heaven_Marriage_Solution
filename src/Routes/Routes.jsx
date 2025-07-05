@@ -42,6 +42,7 @@ import SentRequest from '../Pages/Dashboard/SentRequest';
 import AboutAndTeam from '../Pages/AboutAndTeam/AboutAndTeam';
 import UserFormEdit from '../Pages/UserFormEdit/UserFormEdit';
 import Checkout from '../Pages/Checkout/Checkout';
+import OrderSuccess from '../Pages/Product/OrderSuccess';
 
 const router = createBrowserRouter([
     {
@@ -140,6 +141,12 @@ const router = createBrowserRouter([
                 path: '/checkout',
                 element: <PrivateRoute>
                     <Checkout />
+                </PrivateRoute>
+            },
+            {
+                path: '/order_success',
+                element: <PrivateRoute>
+                    <OrderSuccess />
                 </PrivateRoute>
             },
             {
