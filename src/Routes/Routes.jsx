@@ -43,6 +43,8 @@ import AboutAndTeam from '../Pages/AboutAndTeam/AboutAndTeam';
 import UserFormEdit from '../Pages/UserFormEdit/UserFormEdit';
 import Checkout from '../Pages/Checkout/Checkout';
 import OrderSuccess from '../Pages/Product/OrderSuccess';
+import ProductOrders from '../Pages/Dashboard/ProductOrders';
+import OrderedProduct from '../Pages/Dashboard/OrderedProduct';
 
 const router = createBrowserRouter([
     {
@@ -177,6 +179,10 @@ const router = createBrowserRouter([
                 path: '/test',
                 element: <Test />
             },
+            {
+                path: '/ordered_product/:buyerEmail',
+                element: <OrderedProduct />
+            },
         ],
     },
     {
@@ -228,6 +234,10 @@ const router = createBrowserRouter([
             {
                 path: 'all_forms',
                 element: <AllForms />
+            },
+            {
+                path: 'product_orders',
+                element: <ProductOrders />
             },
         ]
     },

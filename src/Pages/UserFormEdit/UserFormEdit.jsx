@@ -28,7 +28,6 @@ const UserFormEdit = () => {
         }
     });
 
-    // console.log(data);
 
 
     // men questions
@@ -98,7 +97,6 @@ const UserFormEdit = () => {
         { name: "bride_type", question: "কেমন পাত্রী চান?", class: "hidden" },
         { name: "specific_dream", label: "প্রত্যেকটি মানুষই তার জীবনসঙ্গীর ব্যাপারে কিছু স্বপ্ন দেখে... দয়া করে আপনারটা উল্লেখ করুন?" },
     ];
-    console.log(men_questions.length);
 
     // woman questions
     const female_questions = [
@@ -175,8 +173,6 @@ const UserFormEdit = () => {
     const [edit, setEdit] = useState(false);
     const [editedData, setEditedData] = useState({});
 
-    // console.log(edit);
-
 
     // taking the data form edit 
     const { mutateAsync } = useMutation({
@@ -192,8 +188,6 @@ const UserFormEdit = () => {
         }
     });
 
-    // console.log(editedData);
-
 
     // handle edit button click
     const handleEdit = async () => {
@@ -205,29 +199,6 @@ const UserFormEdit = () => {
 
     return (
         <div>
-
-            {/* <div className="col-span-2 row-span-1 space-y-1">
-
-                <p className="col-span-2 row-span-5 text-2xl font-bold font-anek">{got?.p}</p>
-                <p className="font-bold text-[15px] text-justify">{got?.question} </p>
-                <p className="bg-white text-xs p-2 text-justify border">{data?.[got?.name]}</p>
-
-                <UserDetailsForm got={got.slice(0, 5)} data={data} />
-
-
-                <input
-                    type="text"
-                    value={editedData?.[got?.name]}
-                    disabled
-                    onChange={(e) =>
-                        setEditedData({ ...editedData, [got.name]: e.target.value })
-                    }
-                    className={`bg-white placeholder:pl-3 placeholder:text-black w-full border-2 border-gray-300  font-alkatra rounded py-2 ${got?.hidden} `}
-                    placeholder={data?.[got?.name]}
-                />
-                <p className="bg-white text-xs p-2 text-justify border">{data?.[got?.name]}</p>
-            </div> */}
-
 
             <div>
                 {/* navbar and heading */}

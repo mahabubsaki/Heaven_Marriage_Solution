@@ -7,7 +7,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 
-const CartSidebar = ({ isOpen, setIsOpen, data, refetch }) => {
+const CartSidebar = ({ isOpen, setIsOpen, data, refetch, style }) => {
 
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
@@ -48,7 +48,7 @@ const CartSidebar = ({ isOpen, setIsOpen, data, refetch }) => {
             initial={{ x: "100%" }}
             animate={{ x: isOpen ? 0 : "100%" }}
             transition={{ type: "tween", duration: 0.3 }}
-            className="fixed -top-5 right-0 w-[90%] md:w-[400px] h-full bg-white shadow-lg z-50 flex flex-col"
+            className={`fixed ${style} right-0 w-[90%] md:w-[400px] h-full bg-white shadow-lg z-50 flex flex-col`}
         >
             {/* Header */}
             <div className="flex items-center justify-between p-4 border-b">

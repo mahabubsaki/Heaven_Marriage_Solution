@@ -4,7 +4,6 @@ import useAxiosSecure from "../../Hooks/Axios/useAxiosSecure";
 import toast from "react-hot-toast";
 import { imageUpload } from "../../Utils/ImageUpload";
 import React, { useState } from 'react';
-import ExampleWrapper from "../../Components/Shared/ProductReviewModal/ExampleWrapper";
 import ProductReviewModal from "../../Components/Shared/ProductReviewModal/ProductReviewModal";
 
 const AddProduct = () => {

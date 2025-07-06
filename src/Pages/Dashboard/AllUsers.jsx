@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import useAxiosSecure from '../../Hooks/Axios/useAxiosSecure';
-import { Button, Table } from '@chakra-ui/react';
+import { Table } from '@chakra-ui/react';
 import toast from 'react-hot-toast';
 import { FaSearch } from 'react-icons/fa';
 import male_default from '/images/male_default.png';

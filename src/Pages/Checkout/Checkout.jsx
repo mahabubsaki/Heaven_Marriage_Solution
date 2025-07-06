@@ -21,13 +21,22 @@ export default function Checkout() {
             return data;
         }
     });
-    // console.log(cartData);
+
+    // filtering the product array to get some data
+    const filteredArray = cartData.map(item => ({
+        category: item.category,
+        image: item.image,
+        quantity: item.quantity,
+        product_name: item.product_name,
+        variant: item.variant,
+        total_price: item.total_price
+    }));
+    // console.log(filteredArray);
 
 
 
     // setDelivery
     const [delivery, setDelivery] = useState('');
-    // console.log(delivery);
 
 
     // total price calculation
@@ -51,6 +60,7 @@ export default function Checkout() {
             navigate('/order_success');
         }
     });
+
 
 
     // add user cart data to the server
@@ -85,9 +95,11 @@ export default function Checkout() {
             mobile,
             address,
             delivery,
-            total
+            total,
+            status: 'order listed',
+            products: filteredArray
         };
-        // console.table(formData);
+        // console.log(formData);
         await placedOrder(formData);
         await order(cartData);
     };

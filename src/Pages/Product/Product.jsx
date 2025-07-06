@@ -445,7 +445,7 @@ const Product = () => {
                     </DragCloseDrawer >
 
                     {/* cart side bar */}
-                    <CartSidebar data={cartData} refetch={refetch} isOpen={CartIsOpen} setIsOpen={setCartIsOpen} />
+                    <CartSidebar style='-top-5' data={cartData} refetch={refetch} isOpen={CartIsOpen} setIsOpen={setCartIsOpen} />
 
 
                     <div className="mt-6 flex gap-4 fixed bottom-0 bg-white left-0 w-full border-t py-3">

@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosCommon from "../../../Hooks/Axios/useAxiosCommon";
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import 'swiper/css';
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -10,6 +10,7 @@ import { IoCall, IoReorderThreeSharp } from "react-icons/io5";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { IoBag } from "react-icons/io5";
 import { IoBagOutline } from "react-icons/io5";
+import { BsFilterRight } from "react-icons/bs";
 
 import banner_1 from '/images/shop_5.jpg';
 import banner_2 from '/images/shop_6.jpg';
@@ -17,18 +18,75 @@ import banner_3 from '/images/shop_7.jpg';
 import banner_4 from '/images/shop_8.jpg';
 import { FaHome, FaOpencart, FaStar } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
+import CartSidebar from "../../../Components/Shared/Sidebar/CartSidebar";
+import useAxiosSecure from "../../../Hooks/Axios/useAxiosSecure";
+import useAuth from "../../../Hooks/Auth/useAuth";
+import FilterSortSidebar from "../../../Components/Shared/Sidebar/FilterSortSidebar";
 
 
 const AllProducts = () => {
+    const { user } = useAuth();
     const axiosCommon = useAxiosCommon();
+    const axiosSecure = useAxiosSecure();
 
-    const { data = [] } = useQuery({
-        queryKey: ['allProduct'],
+
+    // cart state
+    const [CartIsOpen, setCartIsOpen] = useState(false);
+    const [filterSortOpen, setFilterSortOpen] = useState(false);
+
+
+    // filter and sort
+    const [filter, setFilter] = useState([]);
+    const [sort, setSort] = useState('');
+    const [search, setSearch] = useState('');
+    const handleCheckboxChange = (e) => {
+        const { value, checked } = e.target;
+
+        if (checked) {
+            setFilter((prev) => [...prev, value]);
+        } else {
+            setFilter((prev) => prev.filter((v) => v !== value));
+        }
+    };
+
+    // console.log(sort, filter);
+
+
+    // get all cart data------------------------------------------------------------------------
+    const { data: cartData = [], refetch } = useQuery({
+        queryKey: ['cartData', user?.email],
         queryFn: async () => {
-            const { data } = await axiosCommon.get('/products');
+            const { data } = await axiosSecure(`/cart/${user?.email}`);
             return data;
         }
     });
+
+
+
+    // send query params to backend--------------------------------------------------------------
+    const queryParams = new URLSearchParams();
+    if (filter.length) queryParams.append('category', filter.join(','));
+    if (sort) queryParams.append('sort', sort);
+    if (search) queryParams.append('search', search);
+
+
+    // all product data fetch
+    const { data = [] } = useQuery({
+        queryKey: ['allProduct', queryParams.toString()],
+        queryFn: async () => {
+            const { data } = await axiosCommon.get(`/products?${queryParams.toString()}`);
+            return data;
+        }
+    });
+
+    const handleSearch = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const searchData = form.search.value;
+        setSearch(searchData);
+        form.reset();
+    };
+
 
     return (
         <div className="bg-gray-100">
@@ -39,8 +97,23 @@ const AllProducts = () => {
             <div className="max-h-screen overflow-y-auto relative px-3 pb-5">
 
 
+                {/* cart */}
+                <CartSidebar style={'top-0'} data={cartData} setIsOpen={setCartIsOpen} refetch={refetch} isOpen={CartIsOpen} />
+                {/* filter sort side bar */}
+                <FilterSortSidebar
+                    filter={filter}
+                    setFilter={setFilter}
+                    sort={sort}
+                    setSort={setSort}
+                    handleCheckboxChange={handleCheckboxChange}
+                    isOpen={filterSortOpen}
+                    onClose={() => setFilterSortOpen(false)}
+                    setSearch={setSearch}
+                />
+
+
                 {/* bottom fixed menu bar */}
-                <div className="fixed bg-white w-full flex justify-evenly bottom-0 left-0">
+                <div className="fixed bg-white w-full flex text-orange-400 justify-evenly bottom-0 left-0">
 
                     <Link to='/'>
                         <div className="pt-2">
@@ -50,27 +123,15 @@ const AllProducts = () => {
                         </div>
                     </Link>
 
-                    <Link to='/cart'>
-                        <div className="pt-2">
-                            <span className="flex flex-col justify-center items-center font-raleway">
-                                <FaOpencart className="text-2xl" />Cart
-                            </span>
-                        </div>
-                    </Link>
+                    <div className="pt-2">
+                        <button onClick={() => setCartIsOpen(true)} className="flex flex-col justify-center items-center font-raleway">
+                            <IoBag className="text-2xl" />Cart
+                        </button>
+                    </div>
 
-                    <Link to='/profile'>
-                        <div className="pt-2">
-                            <span className="flex flex-col justify-center items-center font-raleway">
-                                <CgProfile className="text-2xl" />Profile
-                            </span>
-                        </div>
-                    </Link>
                 </div>
 
                 <div className="relative flex justify-between items-center my-2 text-[#FC8934]">
-                    <div>
-                        <IoReorderThreeSharp className="text-3xl text-black" />
-                    </div>
                     <div className="flex items-center gap-2 ml-5 md:ml-0">
                         <img src="/images/shop_logo.png" alt="" className="size-[50px] object-cover" />
                         <div>
@@ -80,8 +141,15 @@ const AllProducts = () => {
                     </div>
 
                     <div className="flex space-x-3">
-                        <FaMagnifyingGlass className="text-2xl" />
-                        <IoBagOutline className="text-2xl" />
+                        <form onSubmit={handleSearch} className="relative">
+                            <input type="text" name="search" className="w-[170px] border pl-2 pr-8 py-1 text-gray-600 border-orange-400 rounded-full h-[30px]" />
+                            <button className="absolute right-3 top-2">
+                                <FaMagnifyingGlass className="text-base" />
+                            </button>
+                        </form >
+                        <button onClick={() => setFilterSortOpen(true)}>
+                            <BsFilterRight className="text-2xl" />
+                        </button>
                     </div>
                 </div>
 
