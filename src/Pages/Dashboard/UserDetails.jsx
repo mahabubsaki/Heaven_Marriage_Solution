@@ -16,8 +16,10 @@ import male_default from '/images/male_default.png';
 import female_default from '/images/female_default.png';
 import underline_img2 from '/images/underline_img2.png';
 import UserDetailsForm from "../../Components/UserDetails/UserDetailsForm";
+import DownloadPdf from "../../Components/Shared/Pdf/DownloadPdf";
 
 const UserDetails = () => {
+
 
 
     // for men
@@ -331,6 +333,10 @@ const UserDetails = () => {
              transition duration-300 flex-col">
                         প্রস্তাব পাঠান
                     </button>
+
+                    <div className="flex justify-center">
+                        {Object.keys(data).length > 0 && <DownloadPdf key={data?._id} formData={data} men_questions={men_questions} female_questions={female_questions} />}
+                    </div>
 
                 </div>
             </div>

@@ -3,10 +3,10 @@ import { PDFDownloadLink } from '@react-pdf/renderer';
 import PdfDocument from './PdfDocument';
 
 
-const DownloadPdf = ({ formData }) => {
+const DownloadPdf = ({ formData, men_questions, female_questions }) => {
 
     return (
-        <PDFDownloadLink document={<PdfDocument formData={formData} />} fileName={'user-' + formData.member_email + '.pdf'}>
+        <PDFDownloadLink document={<PdfDocument formData={formData} men_questions={men_questions} female_questions={female_questions} />} fileName={'Heaven_Marriage_Solutions-' + formData.name + '.pdf'}>
 
             {({ loading, error }) => (
                 <button

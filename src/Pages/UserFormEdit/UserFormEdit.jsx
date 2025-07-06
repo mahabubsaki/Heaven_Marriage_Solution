@@ -259,7 +259,7 @@ const UserFormEdit = () => {
                                 :
                                 <button className=' bg-gradient-to-r from-[#faf0d3] to-[#e9deaf] px-8 rounded-full py-1' onClick={() => setEdit(true)}>Edit</button>
                         }
-                        {Object.keys(data).length > 0 && <DownloadPdf key={data?._id} formData={data} />}
+                        {Object.keys(data).length > 0 && <DownloadPdf key={data?._id} formData={data} men_questions={men_questions} female_questions={female_questions} />}
                     </div>
 
 
