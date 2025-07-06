@@ -54,9 +54,12 @@ const Product = () => {
     const { data: more_product = [] } = useQuery({
         queryKey: ['moreProduct', data?.category, data?._id],
         queryFn: async () => {
-            const { data: more } = await axiosSecure.get(`/more_product?category=${data?.category}&id=${data?._id}`);
+            const { data: more } = await axiosSecure.get(
+                `/more_product?category=${data?.category}&id=${data?._id?.toString()}`
+            );
             return more;
         }
+
     });
 
     // console.log(more_product);
@@ -340,14 +343,14 @@ const Product = () => {
                         <p className="text-xl font-semibold">একই ক্যাটাগরির আরও প্রোডাক্ট</p>
 
                         <div className="grid grid-cols-2 gap-3 mb-10 py-3">
-                            {more_product?.slice(0, 3).map((got) => (
+                            {more_product?.slice(0, 4).map((got) => (
                                 <Link
                                     to={`/product/${got?._id}`}
                                     key={got?._id}
                                     className="flex flex-col bg-white rounded p-3 shadow-md h-[350px] w-[165px] overflow-hidden border border-gray-200"
                                 >
                                     <img
-                                        src={got?.image}
+                                        src={got?.images[0]}
                                         alt=""
                                         className="object-cover h-[120px] w-full"
                                     />
