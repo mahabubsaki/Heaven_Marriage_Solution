@@ -22,10 +22,11 @@ import CartSidebar from "../../../Components/Shared/Sidebar/CartSidebar";
 import useAxiosSecure from "../../../Hooks/Axios/useAxiosSecure";
 import useAuth from "../../../Hooks/Auth/useAuth";
 import FilterSortSidebar from "../../../Components/Shared/Sidebar/FilterSortSidebar";
+import Loading from "../../Loading/Loading";
 
 
 const AllProducts = () => {
-    const { user } = useAuth();
+    const { user, loading } = useAuth();
     const axiosCommon = useAxiosCommon();
     const axiosSecure = useAxiosSecure();
 
@@ -53,7 +54,7 @@ const AllProducts = () => {
 
 
     // get all cart data------------------------------------------------------------------------
-    const { data: cartData = [], refetch } = useQuery({
+    const { data: cartData = [], refetch, isLoading: cartLoading } = useQuery({
         queryKey: ['cartData', user?.email],
         queryFn: async () => {
             const { data } = await axiosSecure(`/cart/${user?.email}`);
@@ -71,7 +72,7 @@ const AllProducts = () => {
 
 
     // all product data fetch
-    const { data = [] } = useQuery({
+    const { data = [], isLoading } = useQuery({
         queryKey: ['allProduct', queryParams.toString()],
         queryFn: async () => {
             const { data } = await axiosCommon.get(`/products?${queryParams.toString()}`);
@@ -87,6 +88,7 @@ const AllProducts = () => {
         form.reset();
     };
 
+    if (loading || isLoading || cartLoading) return <Loading />;
 
     return (
         <div className="bg-gray-100">
@@ -142,7 +144,7 @@ const AllProducts = () => {
 
                     <div className="flex space-x-3">
                         <form onSubmit={handleSearch} className="relative">
-                            <input type="text" name="search" className="w-[170px] border pl-2 pr-8 py-1 text-gray-600 border-orange-400 rounded-full h-[30px]" />
+                            <input type="text" name="search" className="w-[170px] border pl-2 pr-8 py-1 outline-none text-gray-600 border-orange-400 rounded-full h-[30px]" />
                             <button className="absolute right-3 top-2">
                                 <FaMagnifyingGlass className="text-base" />
                             </button>
