@@ -36,7 +36,7 @@ const SentRequest = () => {
 
     // contact 
     const handleClick = (to_whatsapp_number) => {
-        const phoneNumber = `88${to_whatsapp_number}`;
+        const phoneNumber = `8801342665286`;
         // Replace with your number
         const message = 'Hello! I would like to talk with you.';
         const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
