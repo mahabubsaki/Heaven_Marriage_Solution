@@ -91,7 +91,7 @@ const AllProducts = () => {
     if (loading || isLoading || cartLoading) return <Loading />;
 
     return (
-        <div className="bg-gray-100">
+        <div className="bg-gray-100 min-h-screen">
             <div className="w-screen bg-[#FC8934] flex text-white py-2">
                 <p className="w-[300px] mx-auto">আমাদের যেকোনো পন্য অর্ডার করতে কল বা হোয়াটসঅ্যাপ করুন: 01734874385</p>
             </div>
@@ -112,6 +112,8 @@ const AllProducts = () => {
                     onClose={() => setFilterSortOpen(false)}
                     setSearch={setSearch}
                 />
+
+
 
 
                 {/* bottom fixed menu bar */}
@@ -184,6 +186,13 @@ const AllProducts = () => {
                 {/* product card section */}
                 <div className="">
                     <p className="font-bold text-xl my-4">সকল প্রডাক্ট</p>
+
+                    {
+                        data?.length === 0 && <div className="flex justify-center items-center text-xl font-semibold">
+                            <p>কোন পণ্য পাওয়া যায়নি </p>
+                        </div>
+                    }
+
                     <div className="grid grid-cols-2 gap-3 mb-14">
                         {data?.map((got) => (
                             <Link

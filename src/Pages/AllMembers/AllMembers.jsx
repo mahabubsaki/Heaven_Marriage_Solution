@@ -20,6 +20,7 @@ import female_default from '/images/female_default.png';
 import useRole from "../../Hooks/Role/useRole";
 import request_bg from '/images/request_bg.jpg';
 import FilterModal from "../../Components/Shared/FilterModal/FilterModal";
+import { IoSearch } from "react-icons/io5";
 
 const AllMembers = () => {
     const { user, loading } = useAuth();
@@ -35,24 +36,11 @@ const AllMembers = () => {
     const [maritalStatus, setMaritalStatus] = useState('');
     const [district, setDistrict] = useState('');
     const [income_source, setIncomeSource] = useState('');
-    const [lowestAge, setLowestAge] = useState('');
-    const [highestAge, setHighestAge] = useState('');
     const [search, setSearch] = useState('');
     const [ageDifferance, setAgeDifferance] = useState();
-    console.log(ageDifferance);
-
-    let ageDiffer = {
-
-    };
+    // console.log(ageDifferance);
 
 
-    // to do in future handleFilterSubmit
-    const handleFilterSubmit = () => {
-        ageDiffer = {
-            lowestAge: lowestAge,
-            highestAge: highestAge
-        };
-    };
 
     const handleFilter = () => {
         setIsOpen(!isOpen);
@@ -77,15 +65,17 @@ const AllMembers = () => {
             maritalStatus,
             district,
             income_source,
-            ageDiffer,
-            gender
+            ageDifferance,
+            gender,
+            search
         ],
         queryFn: async () => {
-            const { data } = await axiosSecure.get(`/all_members/${gender}?maritalStatus=${maritalStatus}&district=${district}&agedifferance=${ageDiffer}&income_source=${income_source}&search=${search}`, ageDiffer);
+            const { data } = await axiosSecure.get(`/all_members/${gender}?maritalStatus=${maritalStatus}&district=${district}&agedifferance=${ageDifferance}&income_source=${income_source}&search=${search}`);
             setIsOpen(false); // close the filter modal after fetching data
             return data;
         }
     });
+
 
 
     // user data from usersCollection
@@ -148,8 +138,10 @@ const AllMembers = () => {
                 </div>
                 <div className="flex justify-between gap-2 relative">
                     <form onSubmit={handleSearch} className="relative w-full">
-                        <input name="search" type="text" placeholder="search" className="bg-white w-full outline-none border border-black p-2 rounded-lg" />
-                        <button className="bg-[#373B4D] text-white py-1 px-2 right-1 top-1 rounded absolute">Search</button>
+                        <input name="search" type="text" placeholder="search" className="bg-white w-full outline-none border border-black p-2 pr-10 rounded-lg" />
+                        <button className="text-2xl font-bold right-2 top-[10px] rounded absolute">
+                            <IoSearch />
+                        </button>
                     </form>
                     <button onClick={handleFilter} className=" text-black bg-[#F2F2F2] border border-black px-5 rounded">Filter</button>
                 </div>
@@ -224,7 +216,7 @@ const AllMembers = () => {
                 {
                     status === 'verified' &&
                     data?.map((got, idx) => (
-                        <div key={idx} className="border shadow rounded-2xl bg-[#FFFFFF] bg-opacity-80 flex p-3 gap-4 w-full space-y-4 mt-2 h-[220px]">
+                        <div key={idx} className="border shadow rounded-2xl bg-[#FFFFFF] bg-opacity-80 flex p-3 gap-4 w-full space-y-4 mt-2 h-[240px]">
                             {/* {!got?.image &&
                                 <img className="size-[110px] rounded-full object-cover" src={default_img} alt="" />
                             } */}
@@ -238,11 +230,11 @@ const AllMembers = () => {
                                 < img className="size-[110px] rounded-full object-cover" src={female_default} alt="" />
                             }
                             <div className="flex flex-col space-y-1 w-full relative">
-                                <h1 className="text-xs text-blue-500 font-bold">
-                                    HMS-00{got?.uuid}
+                                <h1 className="text-sm text-blue-500 font-bold">
+                                    HMS-{got?.uuid}
                                 </h1>
                                 <div className="flex justify-between items-center">
-                                    <h1 className="font-bold ">
+                                    <h1 className="font-bold text-lg">
                                         <span className="text-green-700"></span>
                                         {got?.name?.split(' ').slice(0, 3).join(' ')}
                                     </h1>
@@ -285,14 +277,17 @@ const AllMembers = () => {
 
             {/* filter modal */}
             <FilterModal
+                maritalStatus={maritalStatus}
                 setMaritalStatus={setMaritalStatus}
+                district={district}
                 setDistrict={setDistrict}
+                income_source={income_source}
                 setIncomeSource={setIncomeSource}
-                setLowestAge={setLowestAge}
-                setHighestAge={setHighestAge}
-                handleFilterSubmit={handleFilterSubmit}
+                ageDifferance={ageDifferance}
+                setAgeDifferance={setAgeDifferance}
                 isOpen={isOpen}
-                setIsOpen={setIsOpen} />
+                setIsOpen={setIsOpen}
+                setSearch={setSearch} />
 
         </div>
     );
