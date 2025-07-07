@@ -104,7 +104,7 @@ const WomanForm = () => {
         },
         { name: "nid_or_birth_certificate", label: "NID/জন্মনিবন্ধন নং?", type: 'number', required: true },
         { name: "birth_date", label: "জন্ম তারিখ (NID/জন্মনিবন্ধনে যেটা উল্লেখ আছে)?", type: 'date', required: true },
-        { name: "whatsapp_number", label: "হোয়াটসআ্যপ নাম্বার লিখুন (হোয়াটসঅ্যাপ নাম্বার ছাড়া অন্য নাম্বার প্রযোজ্য নয়। যদি হোয়াটসঅ্যাপ না থাকে, হোয়াটসঅ্যাপ অ্যাপটি এক্টিভ করে নিন)", type: 'number' },
+        { name: "whatsapp", label: "হোয়াটসঅ্যাপ নম্বর/মোবাইল নম্বর দিন।", required: true },
         { name: "whatsapp_number_owner", label: "হোয়াটসআ্যপ নাম্বারটি কার তা উল্লেখ করুন?", required: true },
         {
             name: "education_background",

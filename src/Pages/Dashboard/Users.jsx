@@ -214,7 +214,7 @@ const Users = () => {
                                     {/* form */}
                                     <Table.Cell>
                                         <div className="flex items-center justify-center gap-2">
-                                            <Link to={`/user_details/${item?.email}`} className="underline ">Form</Link>
+                                            <Link to={`/admin_details/${item?.email}`} className="underline ">Form</Link>
                                             <button onClick={() => handleFormDelete(item?.email)} className="text-xl text-red-700 mt-1"><RxCross2 /> </button>
                                         </div>
                                     </Table.Cell>

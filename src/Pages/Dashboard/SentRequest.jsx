@@ -34,14 +34,26 @@ const SentRequest = () => {
     });
 
 
+
     // contact 
-    const handleClick = (to_whatsapp_number) => {
-        const phoneNumber = `8801342665286`;
-        // Replace with your number
-        const message = 'Hello! I would like to talk with you.';
+    const handleClick = () => {
+        const phoneNumber = `8801342665286`; // Admin's number
+        const message = `
+✅ বিয়ের প্রস্তাব গৃহীত হয়েছে!
+
+🔹 প্রস্তাবদাতা: Shaif Ahamed Sojib
+📧 ইমেইল: ricoreven@gmail.com
+
+🔹 প্রাপক: Snigdha Akter
+📧 ইমেইল: kaiserreven@gmail.com
+
+দয়া করে পরবর্তী ধাপের জন্য আমাদের সহায়তা করুন।
+`;
+
         const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
         window.open(url, '_blank');
     };
+
 
 
 

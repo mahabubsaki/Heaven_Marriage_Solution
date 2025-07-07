@@ -104,7 +104,7 @@ const MenForm = () => {
         },
         { name: "nid_or_birth_certificate", label: "NID/জন্মনিবন্ধন নং ?", required: true },
         { name: "birthDate", label: "জন্ম তারিখ (NID/জন্মনিবন্ধনে যেটা উল্লেখ আছে)", required: true },
-        { name: "whatsapp", label: "হোয়াটসআ্যপ নাম্বার?", required: true },
+        { name: "whatsapp", label: "হোয়াটসঅ্যাপ নম্বর/মোবাইল নম্বর দিন।", required: true },
         {
             name: "education_background",
             question: "আপনার শিক্ষাগত ব্যাকগ্রাউন্ড কী?",

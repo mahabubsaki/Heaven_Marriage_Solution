@@ -59,7 +59,6 @@ const ReceivedRequest = () => {
         }
     });
 
-
     const handleAccept = async (id) => {
         await mutateAsync(id);
     };
@@ -83,42 +82,76 @@ const ReceivedRequest = () => {
 
 
                 {
-                    data.length === 0 ? <p className='text-center my-32 font-alkatra text-2xl mx-5'>দুঃখিত, আপনি এখনও কোন প্রস্তাব পাননি।</p> : <div>
-
-                        <p className='font-bold text-gray-600 mb-3 text-xl'>প্রাপ্ত প্রস্তাব সমূহ</p>
-                        {
-                            data.map((got, idx) => (
-                                <div key={idx}
-                                    className={`flex mb-4 items-center px-5 py-3 gap-3 bg-[#c3cedf] shadow-[8px_8px_16px_#aab4c2,-8px_-8px_16px_#dce8f6] text-gray-600 rounded-full w-80 md:w-96`}
-                                >
-                                    <div className='w-1/4'>
-                                        {
-                                            gender === 'male' && <img src={got?.to_image || female_default} className='size-12 object-cover rounded-full' alt="" />
-                                        }
-                                        {
-                                            gender === 'female' && <img src={got?.to_image || male_default} className='size-12 object-cover rounded-full' alt="" />
-                                        }
-                                    </div>
-                                    <div className='w-3/6 flex flex-col text-sm'>
-                                        <p className='text-black'>{(got?.from_name ?? '').split(' ').slice(0, 2).join(' ')}</p>
-                                        <p className={`${got?.request_status === 'requested' ? 'text-red-800' : 'text-blue-700'}`}>{got?.request_status}</p>
-                                    </div>
-                                    <div className='flex gap-2'>
-                                        <Link to={`/user_details/${got?.from}`} className="text-black text-sm shadow-[inset_4px_4px_5px_rgba(0,0,0,0.3),4px_4px_8px_rgba(0,0,0,0.1)] rounded-full px-2 py-1">Details</Link>
-                                        <button
-                                            onClick={() => handleAccept(got?._id)}
-                                            className={`text-blue-600 ${got?.request_status === 'accepted' && 'hidden'} text-sm shadow-[inset_4px_4px_5px_rgba(0,0,0,0.3),4px_4px_8px_rgba(0,0,0,0.1)] rounded-full px-2 py-1`}>
-                                            Accept
-                                        </button>
-                                    </div>
-
-                                </div>
-                            ))
-                        }
-
-                    </div>
-
+                    data.length === 0 ? (
+                        <p className='text-center my-32 font-alkatra text-2xl mx-5'>
+                            দুঃখিত, আপনি এখনও কোন প্রস্তাব পাননি।
+                        </p>
+                    ) : (
+                        <div>
+                            <p className='font-bold text-gray-600 mb-3 text-xl'>প্রাপ্ত প্রস্তাব সমূহ</p>
+                            {
+                                data.map((got, idx) => {
+                                    if (got?.request_status === 'requested' || got?.request_status === 'accepted') {
+                                        return (
+                                            <div
+                                                key={idx}
+                                                className="flex mb-4 items-center px-5 py-3 gap-3 bg-[#c3cedf] shadow-[8px_8px_16px_#aab4c2,-8px_-8px_16px_#dce8f6] text-gray-600 rounded-full w-80 md:w-96"
+                                            >
+                                                <div className='w-1/4'>
+                                                    {gender === 'male' && (
+                                                        <img
+                                                            src={got?.to_image || female_default}
+                                                            className='size-12 object-cover rounded-full'
+                                                            alt=""
+                                                        />
+                                                    )}
+                                                    {gender === 'female' && (
+                                                        <img
+                                                            src={got?.to_image || male_default}
+                                                            className='size-12 object-cover rounded-full'
+                                                            alt=""
+                                                        />
+                                                    )}
+                                                </div>
+                                                <div className='w-3/6 flex flex-col text-sm'>
+                                                    <p className='text-black'>
+                                                        {(got?.from_name ?? '').split(' ').slice(0, 2).join(' ')}
+                                                    </p>
+                                                    <p className={`${got?.request_status === 'requested' ? 'text-red-800' : 'text-blue-700'}`}>
+                                                        {got?.request_status}
+                                                    </p>
+                                                </div>
+                                                <div className='flex gap-2'>
+                                                    <Link
+                                                        to={`/user_details/${got?.from}`}
+                                                        className="text-black text-sm shadow-[inset_4px_4px_5px_rgba(0,0,0,0.3),4px_4px_8px_rgba(0,0,0,0.1)] rounded-full px-2 py-1"
+                                                    >
+                                                        Details
+                                                    </Link>
+                                                    <button
+                                                        onClick={() => handleAccept(got?._id)}
+                                                        className={`text-blue-600 ${got?.request_status === 'accepted' ? 'hidden' : ''} text-sm shadow-[inset_4px_4px_5px_rgba(0,0,0,0.3),4px_4px_8px_rgba(0,0,0,0.1)] rounded-full px-2 py-1`}
+                                                    >
+                                                        Accept
+                                                    </button>
+                                                    <button
+                                                        onClick={() => handleReject(got?._id)}
+                                                        className="text-red-600"
+                                                    >
+                                                        <RxCross2 />
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        );
+                                    } else {
+                                        return null; // skip if not requested or accepted
+                                    }
+                                })
+                            }
+                        </div>
+                    )
                 }
+
 
 
             </div>

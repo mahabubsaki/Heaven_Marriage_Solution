@@ -45,6 +45,7 @@ import Checkout from '../Pages/Checkout/Checkout';
 import OrderSuccess from '../Pages/Product/OrderSuccess';
 import ProductOrders from '../Pages/Dashboard/ProductOrders';
 import OrderedProduct from '../Pages/Dashboard/OrderedProduct';
+import AdminDetails from '../Pages/Dashboard/AdminDetails';
 
 const router = createBrowserRouter([
     {
@@ -94,6 +95,12 @@ const router = createBrowserRouter([
                 path: '/user_details/:user_email',
                 element: <PrivateRoute>
                     <UserDetails />
+                </PrivateRoute>
+            },
+            {
+                path: '/admin_details/:user_email',
+                element: <PrivateRoute>
+                    <AdminDetails />
                 </PrivateRoute>
             },
             {
