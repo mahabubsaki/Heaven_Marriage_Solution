@@ -19,7 +19,7 @@ const Users = () => {
     const [search, setSearch] = useState('');
     const [sort, setSort] = useState('');
 
-    console.log(sort);
+    // console.log(sort);
 
 
     // get request data
@@ -152,6 +152,8 @@ const Users = () => {
                         <select onChange={(e) => setSort(e.target.value)} className='outline-none'>
                             <option disabled selected>Sort</option>
                             <option value="">All</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
                             <option value="transaction">Transaction</option>
                             <option value="form">Form</option>
                         </select>

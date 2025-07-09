@@ -8,7 +8,7 @@ import useAuth from '../../Hooks/Auth/useAuth';
 const GuestAndNotVerf = () => {
 
     const { gender } = useRole();
-    console.log(gender);
+    // console.log(gender);
 
     const { user } = useAuth();
     return (

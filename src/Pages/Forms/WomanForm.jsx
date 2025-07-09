@@ -431,7 +431,7 @@ const WomanForm = () => {
 
 
     // send the woman form
-    const { mutateAsync } = useMutation({
+    const { mutateAsync, isPending } = useMutation({
         mutationFn: async (formData) => {
             const { data } = await axiosSecure.post(`/form/${user?.email}`, formData);
             return data;
@@ -469,7 +469,7 @@ const WomanForm = () => {
         const parmanent_address = form.parmanent_address.value;
         const nid_or_birth_certificate = form.nid_or_birth_certificate.value;
         const birth_date = form.birth_date.value;
-        const whatsapp_number = form.whatsapp_number.value;
+        const whatsapp = form.whatsapp.value;
         const whatsapp_number_owner = form.whatsapp_number_owner.value;
         const education_background = form.education_background.value;
         const education_level = form.education_level.value;
@@ -536,7 +536,7 @@ const WomanForm = () => {
             parmanent_address,
             nid_or_birth_certificate,
             birth_date,
-            whatsapp_number,
+            whatsapp,
             whatsapp_number_owner,
             education_background,
             education_level,
@@ -599,6 +599,8 @@ const WomanForm = () => {
 
     };
 
+    if (loading || isPending) return <Loading />;
+
     return (
         <div className="px-2 py-2">
             <div>
@@ -628,7 +630,7 @@ const WomanForm = () => {
                                         <label className={`font-semibold  text-justify ${clas}`}>
                                             {label}
                                         </label>
-                                        {!visibility && < input className={`bg-white ${clas} w-full border-2 border-gray-300   rounded py-2 `} type="text" name={name} required={required || false} />}
+                                        {!visibility && < input className={`bg-white ${clas} px-2 w-full border-2 border-gray-300   rounded py-2 `} type="text" name={name} required />}
                                     </div>}
 
                                     {clas && (
@@ -654,7 +656,7 @@ const WomanForm = () => {
 
                     </div>
 
-                    <div className="my-4 space-y-2 text-red-400">
+                    <div className="my-4 space-y-2 text-red-600">
                         <p className="text-justify font-galada">ফর্ম জমা দেওয়ার আগে নির্দেশনাগুলো পড়ুন ও সকল তথ্য যাচাই করুন। ফাঁকা ঘর থাকলে সাবমিশন হবে না।</p>
                         <p className="text-justify font-galada">মুহতারিমা, <br />
                             সঠিকভাবে জমা হলে স্ক্রিনে পরবর্তী নির্দেশনা প্রদর্শিত হবে।তা ধারাবাহিক ভাবে অনুসরণ করুন।

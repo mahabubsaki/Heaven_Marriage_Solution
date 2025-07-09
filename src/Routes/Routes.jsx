@@ -46,6 +46,8 @@ import OrderSuccess from '../Pages/Product/OrderSuccess';
 import ProductOrders from '../Pages/Dashboard/ProductOrders';
 import OrderedProduct from '../Pages/Dashboard/OrderedProduct';
 import AdminDetails from '../Pages/Dashboard/AdminDetails';
+import AboutHeavenGroup from '../Pages/AboutAndTeam/AboutHeavenGroup';
+import MyProducts from '../Pages/Dashboard/MyProducts';
 
 const router = createBrowserRouter([
     {
@@ -114,6 +116,10 @@ const router = createBrowserRouter([
                 element: <PrivateRoute>
                     <Cart />
                 </PrivateRoute>
+            },
+            {
+                path: '/about_heaven_group',
+                element: <AboutHeavenGroup />
             },
             {
                 path: '/all_request',
@@ -245,6 +251,10 @@ const router = createBrowserRouter([
             {
                 path: 'product_orders',
                 element: <ProductOrders />
+            },
+            {
+                path: 'my_products',
+                element: <MyProducts />
             },
         ]
     },

@@ -16,6 +16,7 @@ const Admin = () => {
         // { name: 'Manage Sells', to: '/dashboard/manage_sells' },
         // { name: 'Manage Proposals', to: '/dashboard/manage_proposals' },
         { name: 'Transactions', to: '/dashboard/manage_transactions' },
+        { name: 'My Products', to: '/dashboard/my_products' },
         // { name: 'Forms', to: '/dashboard/all_forms' },
         // { name: 'Banner Image', to: '' },
         // { name: 'Shop Image', to: '' },
