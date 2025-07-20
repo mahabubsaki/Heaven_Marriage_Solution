@@ -35,7 +35,7 @@ const Navbar = ({ text }) => {
         { name: 'প্রোফাইল', destination: '/profile', icon: <CiUser /> },
         { name: 'সেটিংস', destination: '/settings', icon: <Settings /> },
         { name: 'বিবাহের মাসলা-মাসায়েল সমুহ', destination: '/settings', icon: <FaBook /> },
-        { name: 'HMS এর  পরিচিতি ও কর্মকতাগণ', destination: '/about_team', icon: <TbUsersGroup /> },
+        { name: 'Heaven Group এর  পরিচিতি ও কর্মকতাগণ', destination: '/about_team', icon: <TbUsersGroup /> },
     ];
 
     // scroll implementation using react-use

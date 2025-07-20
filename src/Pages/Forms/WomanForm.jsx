@@ -105,7 +105,7 @@ const WomanForm = () => {
         { name: "nid_or_birth_certificate", label: "NID/জন্মনিবন্ধন নং?", type: 'number', required: true },
         { name: "birth_date", label: "জন্ম তারিখ (NID/জন্মনিবন্ধনে যেটা উল্লেখ আছে)?", type: 'date', required: true },
         { name: "whatsapp", label: "হোয়াটসঅ্যাপ নম্বর/মোবাইল নম্বর দিন।", required: true },
-        { name: "whatsapp_number_owner", label: "হোয়াটসআ্যপ নাম্বারটি কার তা উল্লেখ করুন?", required: true },
+        // { name: "whatsapp_number_owner", label: "হোয়াটসআ্যপ নাম্বারটি কার তা উল্লেখ করুন?", required: true },
         {
             name: "education_background",
             question: "আপনার শিক্ষাগত ব্যাকগ্রাউন্ড কী?",
@@ -166,7 +166,7 @@ const WomanForm = () => {
         },
 
 
-        { name: "physical_condition", label: "শারীরিক কোন অঙ্গহানি থাকলে বা বড় ধরনের কোন রোগ থাকলে আমানতের সাথে উল্লেখ করুন?" },
+        // { name: "physical_condition", label: "শারীরিক কোন অঙ্গহানি থাকলে বা বড় ধরনের কোন রোগ থাকলে আমানতের সাথে উল্লেখ করুন?" },
         {
             name: "skin_color",
             question: "গায়ের রঙ?",
@@ -188,20 +188,20 @@ const WomanForm = () => {
             ]
         },
         { name: "children_count", label: "সন্তান কয়টি? (বিবাহিতা হলে), অবিবাহিত হলে “প্রোজোয্য নয়” লিখুন?" },
-        {
-            name: "delivery_type",
-            question: "বাচ্চা নরমালে হয়েছে না সিজারে? (যদি বাচ্চা থাকে)?",
-            class: "hidden",
-            options: ["নরমাল ডেলিভারি", "সিজার", "বাচ্চা হয়নি", "প্রযোজ্য নয়"]
-        },
-        {
-            name: "child_count_plan",
-            question: "আপনার কয়টি বাচ্চা নেওয়ার ইচ্ছা আছে?",
-            class: "hidden",
-            options: ["যতগুলো হয়, বন্ধ করবো না, ইনশাআল্লাহ", "বাচ্চা হবে না বন্ধ্যা"]
-        },
-        { name: "previous_husband_rights", label: "আগের স্বামীর শরয়ী হকগুলো আদায় করছেন কি না? (অবিবাহিত হলে “প্রোজোয্য নয়” লিখুন)?" },
-        { name: "divorce_reason", label: "ডিভোর্স্ড (পূর্বের স্বামীর সাথে ছাড়াছাড়ি হয়েছে), কেনো হয়েছে সংক্ষেপে লিখুন?" },
+        // {
+        //     name: "delivery_type",
+        //     question: "বাচ্চা নরমালে হয়েছে না সিজারে? (যদি বাচ্চা থাকে)?",
+        //     class: "hidden",
+        //     options: ["নরমাল ডেলিভারি", "সিজার", "বাচ্চা হয়নি", "প্রযোজ্য নয়"]
+        // },
+        // {
+        //     name: "child_count_plan",
+        //     question: "আপনার কয়টি বাচ্চা নেওয়ার ইচ্ছা আছে?",
+        //     class: "hidden",
+        //     options: ["যতগুলো হয়, বন্ধ করবো না, ইনশাআল্লাহ", "বাচ্চা হবে না বন্ধ্যা"]
+        // },
+        // { name: "previous_husband_rights", label: "আগের স্বামীর শরয়ী হকগুলো আদায় করছেন কি না? (অবিবাহিত হলে “প্রোজোয্য নয়” লিখুন)?" },
+        { name: "divorce_reason", label: "ডিভোর্স্ কেনো হয়েছে সংক্ষেপে লিখুন? (অবিবাহিত হলে “প্রোজোয্য নয়” লিখুন)" },
 
         { heading: 'পারিবারিক ও অর্থনৈতিক তথ্য', visibility: "hidden", },
         { name: "father_name_occupation", label: "পিতার নাম ও পেশা?", required: true },
@@ -266,12 +266,12 @@ const WomanForm = () => {
         { heading: 'শরয়ী অবস্থান এর তথ্যাবলিঃ', visibility: "hidden", },
 
 
-        {
-            name: "haque_opinion",
-            question: " পরিবার ও সমাজ বা অন‌্য কারো চাপে পরবর্তীতে স্বামীর   শরয়ী হকগুলো আদায় করা বন্ধ করবেন না তো?*",
-            class: "hidden",
-            options: ["যেকোনো পরিস্থিতি আসুক হক নষ্ট  করবো না, ইনশা-আল্লাহ"]
-        },
+        // {
+        //     name: "haque_opinion",
+        //     question: " পরিবার ও সমাজ বা অন‌্য কারো চাপে পরবর্তীতে স্বামীর   শরয়ী হকগুলো আদায় করা বন্ধ করবেন না তো?*",
+        //     class: "hidden",
+        //     options: ["যেকোনো পরিস্থিতি আসুক হক নষ্ট  করবো না, ইনশা-আল্লাহ"]
+        // },
         {
             name: "polygamy_opinion",
             question: "আপনার স্বামী যদি একাদিক বিবাহে আগ্রহি হোন অথবা উনার যদি একাদিক বিবাহের প্রযোজন হয় ,আপনি বিষয়টাকে কেমন ভাবে দেখবেন ?   এবং পূর্ণ সাপোর্ট করবেন কি না? ",
@@ -289,14 +289,14 @@ const WomanForm = () => {
                 "না রাজি নয়।"
             ]
         },
-        {
-            name: "agree_islamic_law",
-            question: "আপনি ইসলামী শরীয়াতের সকল বিধান মন থেকে মানতে রাজি আছেন কি না? এবং সবগুলি পছন্দ করেন কি না?*",
-            class: "hidden",
-            options: [
-                "জি, ইনশা-আল্লাহ রাজি আছি।",
-            ]
-        },
+        // {
+        //     name: "agree_islamic_law",
+        //     question: "আপনি ইসলামী শরীয়াতের সকল বিধান মন থেকে মানতে রাজি আছেন কি না? এবং সবগুলি পছন্দ করেন কি না?*",
+        //     class: "hidden",
+        //     options: [
+        //         "জি, ইনশা-আল্লাহ রাজি আছি।",
+        //     ]
+        // },
 
         {
             name: "accept_tms_policy",
@@ -304,30 +304,30 @@ const WomanForm = () => {
             class: "hidden",
             options: ["জি, রাজি আছি।"]
         },
-        {
-            name: "fulfill_husband_rights",
-            question: "আপনি আপনার স্বামীর সকল শরয়ী হক্ব আদায় করতে রাজি আছেন কিনা? হক্বগুলো না জানা থাকলে  HMS  থেকে  জেনে নিয়ে তা মানতে রাজি আছেন কিনা?",
-            class: "hidden",
-            options: ["জি রাজি আছি, ইনশাআল্লাহ"]
-        },
-        {
-            name: "accept_polygamy_for_daughter",
-            question: "আপনার মেয়ে কারো মাসনা হলে বা আপনার জামাই মাসনা করলে মেনে নিতে পারবেন কি না?",
-            class: "hidden",
-            options: ["জি পারবো, ইনশাআল্লাহ"]
-        },
+        // {
+        //     name: "fulfill_husband_rights",
+        //     question: "আপনি আপনার স্বামীর সকল শরয়ী হক্ব আদায় করতে রাজি আছেন কিনা? হক্বগুলো না জানা থাকলে  HMS  থেকে  জেনে নিয়ে তা মানতে রাজি আছেন কিনা?",
+        //     class: "hidden",
+        //     options: ["জি রাজি আছি, ইনশাআল্লাহ"]
+        // },
+        // {
+        //     name: "accept_polygamy_for_daughter",
+        //     question: "আপনার মেয়ে কারো মাসনা হলে বা আপনার জামাই মাসনা করলে মেনে নিতে পারবেন কি না?",
+        //     class: "hidden",
+        //     options: ["জি পারবো, ইনশাআল্লাহ"]
+        // },
         {
             name: "obey_husband_fully",
             question: "আপনার স্বামীর সকল শরয়ী আদেশ-নিষেধ মানতে প্রস্তুত আছেন কি না?",
             class: "hidden",
             options: ["জি, ইনশাআল্লাহ প্রস্তুত আছি ।"]
         },
-        {
-            name: "avoid_misbehavior",
-            question: "স্বামীর উপর কর্তৃত্ব খাটানো, সম্পদের উপর নজরদারী করা বা খারাপ ব্যবহার করা থকে বিরত থাকবেন কি না?",
-            class: "hidden",
-            options: ["বিরত থাকবো ইনশাআল্লাহ ।"]
-        },
+        // {
+        //     name: "avoid_misbehavior",
+        //     question: "স্বামীর উপর কর্তৃত্ব খাটানো, সম্পদের উপর নজরদারী করা বা খারাপ ব্যবহার করা থকে বিরত থাকবেন কি না?",
+        //     class: "hidden",
+        //     options: ["বিরত থাকবো ইনশাআল্লাহ ।"]
+        // },
         {
             name: "care_step_children",
             question: "আপনার স্বামীর অন্য স্ত্রীর মা-হারা সন্তান থাকলে তাদেরকে লালন-পালন করতে প্রস্তুত আছেন কি না? ",
@@ -342,7 +342,7 @@ const WomanForm = () => {
             name: "follow_shariah_completely",
             question: " শতভাগ  শরয়ী পর্দা ও সকল শরয়ী হুকুম-আহকাম পরপিূর্ণভাবে পালন করতে রাজি আছেন কি না?",
             class: "hidden",
-            options: ["জি, রাজি আছি।"]
+            options: ["জি, রাজি আছি।", "চেষ্টা করবো"]
         },
         {
             name: "child_living_preference",
@@ -367,9 +367,9 @@ const WomanForm = () => {
         },
 
         { name: "current_full_address", label: "বর্তমান পূর্ণ ঠিকানা (প্রযোজ্য ক্ষেত্রে বাসা নাম্বার, ফ্ল্যাট নাম্বার ইত্যাদিসহ)?", required: true },
-        { name: "email", label: "আপনার ইমেইল অ্যাড্রেস দিন ?", required: true },
+        // { name: "email", label: "আপনার ইমেইল অ্যাড্রেস দিন ?", required: true },
         { name: "alternate_number", label: "আপনার অন্য আরেকটি নাম্বার দিন (আবশ্যিক)" },
-        { name: "additional_info", label: "নিজের ব্যাপারে কিছু শেয়ার করতে চাইলে করতে পারেন।" }
+        // { name: "additional_info", label: "নিজের ব্যাপারে কিছু শেয়ার করতে চাইলে করতে পারেন।" }
     ];
 
     const questionName = [
