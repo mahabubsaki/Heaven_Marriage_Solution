@@ -107,9 +107,10 @@ const router = createBrowserRouter([
             },
             {
                 path: '/all_members',
-                element: <PrivateRoute>
-                    <AllMembers />
-                </PrivateRoute>
+                element:
+                    <PrivateRoute>
+                        <AllMembers />
+                    </PrivateRoute>
             },
             {
                 path: '/cart',
@@ -208,11 +209,10 @@ const router = createBrowserRouter([
     },
     {
         path: 'dashboard',
-        element: <AdminRoute>
-            <PrivateRoute>
+        element:
+            <AdminRoute>
                 <Dashboard />
-            </PrivateRoute>
-        </AdminRoute>
+            </AdminRoute>
         ,
         children: [
             {

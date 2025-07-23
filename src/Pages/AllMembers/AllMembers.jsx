@@ -21,13 +21,15 @@ import useRole from "../../Hooks/Role/useRole";
 import request_bg from '/images/request_bg.jpg';
 import FilterModal from "../../Components/Shared/FilterModal/FilterModal";
 import { IoSearch } from "react-icons/io5";
+import { HeartHandshake } from 'lucide-react';
 
 const AllMembers = () => {
     const { user, loading } = useAuth();
     const axiosSecure = useAxiosSecure();
 
 
-    const { gender } = useRole();
+    const { gender, role } = useRole();
+
 
     // filter modal
     const [isOpen, setIsOpen] = useState(false);
@@ -203,7 +205,6 @@ const AllMembers = () => {
                     data?.length === 0 && <div className="flex justify-center items-center">
                         <p className="text-center text-xl">কোনো সদস্য পাওয়া যায়নি</p>
                     </div>
-
                 }
 
                 {
@@ -214,9 +215,9 @@ const AllMembers = () => {
                 <p className="font-kau text-2xl text-center py-10 font-galada">দয়া করে আপনার  রেজিস্ট্রেশন  সম্পন্ন করুন।</p> */}
 
                 {
-                    status === 'verified' &&
+                    (status === 'verified' || role === 'admin') &&
                     data?.map((got, idx) => (
-                        <div key={idx} className="border shadow rounded-2xl bg-[#FFFFFF] bg-opacity-80 flex p-3 gap-4 w-full space-y-4 mt-2 h-[240px]">
+                        <div key={idx} className="border shadow rounded-2xl bg-[#FFFFFF] bg-opacity-80 flex p-3 gap-4 w-full space-y-4 mt-2 h-[250px]">
                             {/* {!got?.image &&
                                 <img className="size-[110px] rounded-full object-cover" src={default_img} alt="" />
                             } */}
@@ -241,7 +242,11 @@ const AllMembers = () => {
                                     <span className="text-blue-500"><RiVerifiedBadgeFill /></span>
                                 </div>
 
-                                <div className="w-full">
+                                <div className="w-full flex-grow ">
+                                    <h1 className="flex gap-4 items-center font-extralight text-base ">
+                                        <span className="text-green-700"><HeartHandshake size={18} /></span>
+                                        {got?.marital_status}
+                                    </h1>
                                     <h1 className="flex gap-4 items-center font-extralight text-base ">
                                         <span className="text-green-700"><FaSuitcase /></span>
                                         {got?.income_source?.split(' ').slice(0, 2).join(' ')}
@@ -256,11 +261,11 @@ const AllMembers = () => {
                                     </h1>
                                 </div>
 
-                                <div className="flex flex-row items-center justify-between pt-4">
-                                    <Link to={`/user_details/${got?.member_email}`} className="text-xs font-semibold  border-b absolute bottom-3 border-blue-700">
+                                <div className="flex flex-row items-center justify-between">
+                                    <Link to={`/user_details/${got?.member_email}`} className="text-xs font-semibold  border-b border-blue-700">
                                         বিস্তারিত
                                     </Link>
-                                    <button onClick={() => sentProposal(got)} className="text-xs font-semibold  border-b border-blue-700 absolute bottom-3 right-3">
+                                    <button onClick={() => sentProposal(got)} className="text-xs font-semibold  border-b border-blue-700 ">
                                         প্রস্তাব পাঠান
                                     </button>
                                 </div>

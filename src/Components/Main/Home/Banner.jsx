@@ -25,7 +25,7 @@ const Banner = () => {
         clickable: true,
     };
     return (
-        <div className="w-full bg-[#EFEBD9] mt-11">
+        <div className="w-full mt-11">
 
             <div
                 className="flex justify-center text-center font-galada flex-col relative bg-no-repeat bg-contain pt-5">

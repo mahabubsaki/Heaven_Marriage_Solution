@@ -62,7 +62,7 @@ const MemberRegistration = () => {
                 }
             }}
             viewport={{ once: true }}
-            className="">
+            className="min-h-screen">
 
             <div>
                 <h1 className="text-2xl font-bold text-[#C3937C] p-2    ">Heaven Marriage</h1>

@@ -21,6 +21,7 @@ import { TbUsersGroup } from "react-icons/tb";
 import { FaYoutube } from "react-icons/fa";
 import { Settings, Settings2 } from "lucide-react";
 import logo from "/images/logo.png";
+import { Crown, UserCog } from 'lucide-react';
 
 
 const Navbar = ({ text }) => {
@@ -144,9 +145,8 @@ const Navbar = ({ text }) => {
                                     </Link>
                                 ))}
                                 {role === 'admin' &&
-                                    <Link className={`uppercase nav-hover-btn text-black`} to='dashboard'>Admin</Link>
+                                    <Link className={`uppercase nav-hover-btn text-black flex items-center font-lexend gap-2`} to='dashboard'><Crown color="#eab308" />Admin</Link>
                                 }
-                                {/* <Link className={`uppercase nav-hover-btn text-black`} to='dashboard'>Admin</Link> */}
                             </div>
                             {
                                 user ?

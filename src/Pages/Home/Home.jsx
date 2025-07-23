@@ -1,6 +1,7 @@
 import Footer from "../../Components/Main/Footer/Footer";
 import Banner from "../../Components/Main/Home/Banner";
 import ImgAlbum from "../../Components/Main/Home/ImgAlbum";
+import Gradient from "../../Components/Shared/Buttons/Gradient";
 import Navbar from "../../Components/Shared/Navbar/Navbar";
 import useAuth from "../../Hooks/Auth/useAuth";
 import Loading from "../Loading/Loading";
@@ -20,7 +21,9 @@ const Home = () => {
             <Navbar />
             <Banner />
             <ImgAlbum />
-            <Footer />
+            <div className='flex justify-center mb-5'>
+                <Gradient engLang='Heaven Marriage' />
+            </div>
         </div>
     );
 };
