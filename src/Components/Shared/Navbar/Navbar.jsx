@@ -144,7 +144,7 @@ const Navbar = ({ text }) => {
                                         <button className={`uppercase nav-hover-btn text-black font-galada`}>{nav?.name}</button>
                                     </Link>
                                 ))}
-                                {role === 'admin' &&
+                                {role === 'admin' && user &&
                                     <Link className={`uppercase nav-hover-btn text-black flex items-center font-lexend gap-2`} to='/dashboard'><Crown color="#eab308" />Admin</Link>
                                 }
                             </div>
