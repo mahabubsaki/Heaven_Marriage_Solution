@@ -269,7 +269,7 @@ const UserDetails = () => {
                 <div>
 
                     {/* for men form data */}
-                    <div className="md:grid space-y-3 md:grid-cols-4 grid-rows-5 w-full gap-5 py-5">
+                    <div className=" space-y-3 grid-rows-5 w-full gap-5 py-5">
 
                         {/* for men */}
                         {
@@ -325,14 +325,16 @@ const UserDetails = () => {
 
                     </div>
 
-                    <button onClick={() => sentProposal(data)}
-                        className="text-xs font-semibold  border-b px-4 py-2 my-4 flex items-center gap-2 w-[300px]
+                    <div className="flex justify-center">
+                        <button onClick={() => sentProposal(data)}
+                            className="text-xs font-semibold  border-b px-4 py-2 my-4 flex items-center gap-2 w-[300px]
              bg-gradient-to-r from-[#faf0d3] to-[#e9deaf] 
              text-gray-800 rounded shadow-md 
              hover:from-[#E6E0CC] hover:to-[#d1c38b] 
              transition duration-300 flex-col">
-                        প্রস্তাব পাঠান
-                    </button>
+                            প্রস্তাব পাঠান
+                        </button>
+                    </div>
 
                     <div className="flex justify-center">
                         {Object.keys(data).length > 0 && <DownloadPdf key={data?._id} formData={data} men_questions={men_questions} female_questions={female_questions} />}

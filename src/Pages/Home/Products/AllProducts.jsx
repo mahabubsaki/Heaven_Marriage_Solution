@@ -92,7 +92,7 @@ const AllProducts = () => {
 
     return (
         <div className="bg-gray-100 min-h-screen">
-            <div className="w-screen bg-[#FC8934] flex text-white py-2">
+            <div className="bg-[#FC8934] flex text-white py-2">
                 <p className="w-[300px] mx-auto">আমাদের যেকোনো পন্য অর্ডার করতে কল বা হোয়াটসঅ্যাপ করুন: 01734874385</p>
             </div>
 

@@ -73,7 +73,7 @@ const Images = () => {
     if (loading) return <Loading />;
 
     return (
-        <div className=''>
+        <div className='min-h-screen'>
 
             {/* for only other user to see */}
             {

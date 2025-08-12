@@ -267,7 +267,7 @@ const AdminDetails = () => {
                 <div>
 
                     {/* for men form data */}
-                    <div className="md:grid space-y-3 md:grid-cols-4 grid-rows-5 w-full gap-5 py-5">
+                    <div className=" space-y-3 w-full gap-5 py-5">
 
                         {/* for men */}
                         {

@@ -36,7 +36,7 @@ const Banner = () => {
                     বিশুদ্ধতা, বিশ্বস্ততা ও সুন্নাহ-সম্মত বিবাহের নির্ভরযোগ্য প্রতিষ্ঠান
                 </p>
                 <img src={corner} className='size-[100px] object-contain absolute rotate-180 right-[2%] bottom-[50%]' alt="" />
-                <img src={underLineImg} className='h-[30px] px-5 mb-5' alt="" />
+                <img src={underLineImg} className='h-[30px] object-contain mb-2' alt="" />
             </div>
 
 
