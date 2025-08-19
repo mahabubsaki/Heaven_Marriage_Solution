@@ -40,7 +40,6 @@ const AddProduct = () => {
 
         // ⬇️ Get all selected files
         const files = form.image.files;
-
         // ⬇️ Upload all images and collect URLs
         const imageUploadPromises = [...files].map(image => imageUpload(image));
         const imageUrls = await Promise.all(imageUploadPromises);

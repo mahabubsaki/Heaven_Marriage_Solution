@@ -385,72 +385,7 @@ const MenForm = () => {
         {
             name: "districts",
             label: "কোন জেলার মেয়ে হলে ভালো হয়?",
-            // class: "hidden",
-            // options: [
-            //     "ঢাকা",
-            //     "গাজীপুর",
-            //     "নারায়ণগঞ্জ",
-            //     "টাঙ্গাইল",
-            //     "কিশোরগঞ্জ",
-            //     "মানিকগঞ্জ",
-            //     "মুন্সিগঞ্জ",
-            //     "রাজবাড়ী",
-            //     "মাদারীপুর",
-            //     "শরীয়তপুর",
-            //     "গোপালগঞ্জ",
-            //     "ফরিদপুর",
-            //     "নরসিংদী",
-            //     "চট্টগ্রাম",
-            //     "কক্সবাজার",
-            //     "বান্দরবান",
-            //     "রাঙ্গামাটি",
-            //     "খাগড়াছড়ি",
-            //     "নোয়াখালী",
-            //     "লক্ষ্মীপুর",
-            //     "ফেনী",
-            //     "চাঁদপুর",
-            //     "ব্রাহ্মণবাড়িয়া",
-            //     "কুমিল্লা",
-            //     "ময়মনসিংহ",
-            //     "জামালপুর",
-            //     "নেত্রকোনা",
-            //     "শেরপুর",
-            //     "রাজশাহী",
-            //     "নাটোর",
-            //     "নওগাঁ",
-            //     "চাঁপাইনবাবগঞ্জ",
-            //     "জয়পুরহাট",
-            //     "বগুড়া",
-            //     "পাবনা",
-            //     "সিরাজগঞ্জ",
-            //     "খুলনা",
-            //     "যশোর",
-            //     "চুয়াডাঙ্গা",
-            //     "মেহেরপুর",
-            //     "নড়াইল",
-            //     "বাগেরহাট",
-            //     "ঝিনাইদহ",
-            //     "কুষ্টিয়া",
-            //     "সাতক্ষীরা",
-            //     "বরিশাল",
-            //     "ভোলা",
-            //     "পটুয়াখালী",
-            //     "ঝালকাঠি",
-            //     "পিরোজপুর",
-            //     "বরগুনা",
-            //     "সিলেট",
-            //     "মৌলভীবাজার",
-            //     "হবিগঞ্জ",
-            //     "সুনামগঞ্জ",
-            //     "রংপুর",
-            //     "দিনাজপুর",
-            //     "ঠাকুরগাঁও",
-            //     "পঞ্চগড়",
-            //     "নীলফামারী",
-            //     "কুড়িগ্রাম",
-            //     "গাইবান্ধা",
-            //     "লালমনিরহাট"
-            // ]
+
         },
         {
             name: "expected_bride_age",
@@ -610,6 +545,57 @@ const MenForm = () => {
         { name: "alternate_number", label: "আপনার অন্য আরেকটি নাম্বার দিন (আবশ্যিক)" },
     ];
 
+    const questionName = [
+        "name",
+        "age",
+        "location",
+        "parmanent_address",
+        "nid_or_birth_certificate",
+        "birthDate",
+        "whatsapp",
+        "education_background",
+        "study_level",
+        "study_details",
+        "income_source",
+        "current_profession_details",
+        "height",
+        "body_structure",
+        "physical_disability",
+        "skin_color",
+        "marital_status",
+        "children_count",
+        "divorce_reason",
+        "post_marriage_living",
+        "wives_intention",
+        "father_name_job",
+        "mother_name_job",
+        "siblings_info",
+        "family_lineage",
+        "family_economy",
+        "own_economy",
+        "monthly_income",
+        "assets_details",
+        "follow_shariah",
+        "accept_tms_rules",
+        "wife_earning",
+        "sunna_beard_and_purdah",
+        "accept_other_children",
+        "districts",
+        "expected_bride_age",
+        "expected_bride_height",
+        "expected_bride_color",
+        "expected_bride_education",
+        "expected_bride_family_type",
+        "expected_bride_class",
+        "bride_type",
+        "specific_dream",
+        "agree_on_false_info_consequence",
+        "agree_on_statement",
+        "registration_preference",
+        "current_full_address",
+        "email",
+        "alternate_number",
+    ];
 
 
     const axiosSecure = useAxiosSecure();
@@ -647,11 +633,10 @@ const MenForm = () => {
         // start
         const name = form.name.value;
         const age = form.age.value;
-        // const ageInt = parseInt(age);
         const location = form.location.value;
+        const parmanent_address = form.parmanent_address.value;
         const nid_or_birth_certificate = form.nid_or_birth_certificate.value;
         const birthDate = form.birthDate.value;
-        const parmanent_address = form.parmanent_address.value;
         const whatsapp = form.whatsapp.value;
         const education_background = form.education_background.value;
         const study_level = form.study_level.value;
@@ -664,9 +649,7 @@ const MenForm = () => {
         const skin_color = form.skin_color.value;
         const marital_status = form.marital_status.value;
         const children_count = form.children_count.value;
-        // const previous_wife_rights = form.previous_wife_rights.value;
         const divorce_reason = form.divorce_reason.value;
-        const mohor_support = form.mohor_support.value;
         const post_marriage_living = form.post_marriage_living.value;
         const wives_intention = form.wives_intention.value;
         const father_name_job = form.father_name_job.value;
@@ -677,13 +660,8 @@ const MenForm = () => {
         const own_economy = form.own_economy.value;
         const monthly_income = form.monthly_income.value;
         const assets_details = form.assets_details.value;
-        const will_not_violate_rights = form.will_not_violate_rights.value;
-        // const justice_among_wives = form.justice_among_wives.value;
-        // const accept_all_guidelines = form.accept_all_guidelines.value;
         const follow_shariah = form.follow_shariah.value;
         const accept_tms_rules = form.accept_tms_rules.value;
-        // const support_others_polygyny = form.support_others_polygyny.value;
-        // const accept_daughters_polygyny = form.accept_daughters_polygyny.value;
         const wife_earning = form.wife_earning.value;
         const sunna_beard_and_purdah = form.sunna_beard_and_purdah.value;
         const accept_other_children = form.accept_other_children.value;
@@ -702,6 +680,7 @@ const MenForm = () => {
         const current_full_address = form.current_full_address.value;
         const email = form.email.value;
         const alternate_number = form.alternate_number.value;
+
         const form_uuId = crypto.randomUUID();
         // end
 
@@ -726,7 +705,6 @@ const MenForm = () => {
             children_count,
             // previous_wife_rights,
             divorce_reason,
-            mohor_support,
             post_marriage_living,
             wives_intention,
             father_name_job,
@@ -737,7 +715,6 @@ const MenForm = () => {
             own_economy,
             monthly_income,
             assets_details,
-            will_not_violate_rights,
             // justice_among_wives,
             // accept_all_guidelines,
             follow_shariah,
@@ -769,6 +746,8 @@ const MenForm = () => {
             status: 'in process',
             form_uuId,
         };
+
+        // console.table(formData);
 
         setLogLoad(true);
         await mutateAsync(formData);

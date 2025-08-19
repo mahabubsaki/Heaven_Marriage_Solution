@@ -393,29 +393,25 @@ const WomanForm = () => {
         // { name: "additional_info", label: "নিজের ব্যাপারে কিছু শেয়ার করতে চাইলে করতে পারেন।" }
     ];
 
-    const questionName = [
+    const questionNames = [
         "name",
         "age",
         "current_location",
+        "parmanent_address",
         "nid_or_birth_certificate",
         "birth_date",
-        "whatsapp_number",
-        "whatsapp_number_owner",
+        "whatsapp",
         "education_background",
         "education_level",
         "education_details",
         "skills_or_experience",
-        "income_source",
         "current_occupation",
         "height",
         "physical_structure",
-        "physical_condition",
+        "income_source",
         "skin_color",
         "marital_status",
         "children_count",
-        "delivery_type",
-        "child_count_plan",
-        "previous_husband_rights",
         "divorce_reason",
         "father_name_occupation",
         "mother_name_occupation",
@@ -424,27 +420,24 @@ const WomanForm = () => {
         "family_economy",
         "own_economy",
         "current_expense_by",
-        "own_property",
-        "haque_opinion",
-        "polygamy_opinion",
-        "agree_polygamous_wife",
-        "agree_islamic_law",
-        "accept_tms_policy",
-        "fulfill_husband_rights",
-        "accept_polygamy_for_daughter",
-        "obey_husband_fully",
-        "avoid_misbehavior",
-        "care_step_children",
-        "follow_shariah_completely",
-        "child_living_preference",
-        "additional_info",
         "favoured_husband",
         "color_choice",
         "height_choice",
-        "financial_status",
         "district_choice",
         "own_opinion",
+        "financial_status",
+        "polygamy_opinion",
+        "agree_polygamous_wife",
+        "accept_tms_policy",
+        "obey_husband_fully",
+        "care_step_children",
+        "follow_shariah_completely",
+        "child_living_preference",
+        "registration_preference",
+        "current_full_address",
+        "alternate_number"
     ];
+
 
 
     const axiosSecure = useAxiosSecure();
@@ -483,30 +476,26 @@ const WomanForm = () => {
         e.preventDefault();
         const form = e.target;
         //test
+        // const ageInt = parseInt(age);
+
         const name = form.name.value;
         const age = form.age.value;
-        // const ageInt = parseInt(age);
         const current_location = form.current_location.value;
         const parmanent_address = form.parmanent_address.value;
         const nid_or_birth_certificate = form.nid_or_birth_certificate.value;
         const birth_date = form.birth_date.value;
         const whatsapp = form.whatsapp.value;
-        const whatsapp_number_owner = form.whatsapp_number_owner.value;
         const education_background = form.education_background.value;
         const education_level = form.education_level.value;
         const education_details = form.education_details.value;
         const skills_or_experience = form.skills_or_experience.value;
         const current_occupation = form.current_occupation.value;
         const height = form.height.value;
-        const income_source = form.income_source.value;
         const physical_structure = form.physical_structure.value;
-        const physical_condition = form.physical_condition.value;
+        const income_source = form.income_source.value;
         const skin_color = form.skin_color.value;
         const marital_status = form.marital_status.value;
         const children_count = form.children_count.value;
-        const delivery_type = form.delivery_type.value;
-        const child_count_plan = form.child_count_plan.value;
-        const previous_husband_rights = form.previous_husband_rights.value;
         const divorce_reason = form.divorce_reason.value;
         const father_name_occupation = form.father_name_occupation.value;
         const mother_name_occupation = form.mother_name_occupation.value;
@@ -514,32 +503,23 @@ const WomanForm = () => {
         const family_lineage = form.family_lineage.value;
         const family_economy = form.family_economy.value;
         const own_economy = form.own_economy.value;
-        // added
+        const current_expense_by = form.current_expense_by.value;
         const favoured_husband = form.favoured_husband.value;
         const color_choice = form.color_choice.value;
-        const height_choice = form.height_choice.val;
+        const height_choice = form.height_choice.value;
+        const district_choice = form.district_choice.value;
+        const own_opinion = form.own_opinion.value;
         const financial_status = form.financial_status.value;
-        const district_choice = form.district_choice.val;
-        const own_opinion = form.own_opinion.val;
-        // ended
-        const current_expense_by = form.current_expense_by.value;
-        const own_property = form.own_property.value;
-        const haque_opinion = form.haque_opinion.value;
         const polygamy_opinion = form.polygamy_opinion.value;
         const agree_polygamous_wife = form.agree_polygamous_wife.value;
-        const agree_islamic_law = form.agree_islamic_law.value;
         const accept_tms_policy = form.accept_tms_policy.value;
-        const fulfill_husband_rights = form.fulfill_husband_rights.value;
-        const accept_polygamy_for_daughter = form.accept_polygamy_for_daughter.value;
         const obey_husband_fully = form.obey_husband_fully.value;
-        const avoid_misbehavior = form.avoid_misbehavior.value;
         const care_step_children = form.care_step_children.value;
-        const email = form.email.value;
-        const current_full_address = form.current_full_address.value;
-        const registration_preference = form.registration_preference.value;
         const follow_shariah_completely = form.follow_shariah_completely.value;
         const child_living_preference = form.child_living_preference.value;
-        const additional_info = form.additional_info.value;
+        const registration_preference = form.registration_preference.value;
+        const current_full_address = form.current_full_address.value;
+        const alternate_number = form.alternate_number.value;
         const form_uuId = crypto.randomUUID();
 
         const image = form.image.files[0];
@@ -558,7 +538,6 @@ const WomanForm = () => {
             nid_or_birth_certificate,
             birth_date,
             whatsapp,
-            whatsapp_number_owner,
             education_background,
             education_level,
             education_details,
@@ -566,45 +545,34 @@ const WomanForm = () => {
             current_occupation,
             height,
             physical_structure,
-            physical_condition,
+            income_source,
             skin_color,
             marital_status,
             children_count,
-            income_source,
-            delivery_type,
-            child_count_plan,
-            previous_husband_rights,
             divorce_reason,
             father_name_occupation,
             mother_name_occupation,
             siblings_and_position,
-            favoured_husband,
-            color_choice,
-            height_choice,
-            financial_status,
-            district_choice,
-            own_opinion,
             family_lineage,
             family_economy,
             own_economy,
             current_expense_by,
-            own_property,
-            haque_opinion,
+            favoured_husband,
+            color_choice,
+            height_choice,
+            district_choice,
+            own_opinion,
+            financial_status,
             polygamy_opinion,
             agree_polygamous_wife,
-            agree_islamic_law,
             accept_tms_policy,
-            fulfill_husband_rights,
-            accept_polygamy_for_daughter,
             obey_husband_fully,
-            avoid_misbehavior,
             care_step_children,
             follow_shariah_completely,
             child_living_preference,
-            additional_info,
-            email,
-            current_full_address,
             registration_preference,
+            current_full_address,
+            alternate_number,
             image: imageUrl,
             member_email: user?.email,
             gender: 'female',
@@ -613,6 +581,8 @@ const WomanForm = () => {
             form_uuId,
             uuid: uuidNum + 1
         };
+
+        // console.table(womanForm);
 
         setLogLoad(true);
         await mutateAsync(womanForm);
