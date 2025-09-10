@@ -20,7 +20,7 @@ import { CiUser } from "react-icons/ci";
 import { TbUsersGroup } from "react-icons/tb";
 import { FaYoutube } from "react-icons/fa";
 import { Settings, Settings2 } from "lucide-react";
-import logo from "/images/logo.png";
+import logo from "/images/logo_2.png";
 import { Crown, UserCog } from 'lucide-react';
 
 
@@ -129,8 +129,8 @@ const Navbar = ({ text }) => {
 
 
                         <div className="mt-16 pr-5 flex flex-col items-center gap-2">
-                            <img src={logo} className="size-[200px] mt-[-80px] object-cover" alt="" />
-                            <p className="text-black text-center text-sm mt-[-30px] font-galada">বিশুদ্ধতা, বিশ্বস্ততা ও সুন্নাহ-সম্মত বিবাহের নির্ভরযোগ্য প্রতিষ্ঠান</p>
+                            <img src={logo} className="size-[100px] object-cover" alt="" />
+                            <p className="text-black text-center text-sm font-galada">বিশুদ্ধতা, বিশ্বস্ততা ও সুন্নাহ-সম্মত বিবাহের নির্ভরযোগ্য প্রতিষ্ঠান</p>
                             <img src="/images/underline_img2.png" alt="" />
                         </div>
 

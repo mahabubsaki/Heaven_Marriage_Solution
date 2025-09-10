@@ -8,7 +8,7 @@ const Loading = () => {
     return (
         <div
             className="flex justify-center relative items-center h-screen flex-col gap-10">
-                <img src={img} alt="" />
+            <img src={img} alt="" />
         </div>
     );
 };
