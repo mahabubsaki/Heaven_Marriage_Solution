@@ -97,11 +97,11 @@ const Navbar = ({ text }) => {
                             <span className={`${text || 'text-[#853e1d]'}`}>Request</span></span>
                     </Link>
 
-                    <Link to='/products' className="text-[11px]" >
+                    {/* <Link to='/products' className="text-[11px]" >
                         <span className="flex flex-col justify-center items-center">
                             <span className="text-2xl"><FaShop /></span>
                             <span className={`${text || 'text-[#853e1d]'}`}>Shop</span></span>
-                    </Link>
+                    </Link> */}
 
 
                     <button

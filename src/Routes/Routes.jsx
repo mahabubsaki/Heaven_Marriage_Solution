@@ -48,6 +48,7 @@ import OrderedProduct from '../Pages/Dashboard/OrderedProduct';
 import AdminDetails from '../Pages/Dashboard/AdminDetails';
 import AboutHeavenGroup from '../Pages/AboutAndTeam/AboutHeavenGroup';
 import MyProducts from '../Pages/Dashboard/MyProducts';
+import Phone from '../Pages/Sign/Phone';
 
 const router = createBrowserRouter([
     {
@@ -206,6 +207,10 @@ const router = createBrowserRouter([
     {
         path: 'register',
         element: <Register />
+    },
+    {
+        path: 'phone',
+        element: <Phone />
     },
     {
         path: 'dashboard',

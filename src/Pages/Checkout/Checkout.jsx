@@ -22,6 +22,9 @@ export default function Checkout() {
         }
     });
 
+    // console.log(cartData);
+
+
     // filtering the product array to get some data
     const filteredArray = cartData.map(item => ({
         category: item.category,
@@ -50,7 +53,7 @@ export default function Checkout() {
     const total = cartTotal + deliveryCharge;
 
 
-    // add user cart data to the server
+    // delete cart data from the server
     const { mutateAsync: order } = useMutation({
         mutationFn: async (cartData) => {
             const { data } = await axiosSecure.post(`/orderData/${user?.email}`, cartData);
