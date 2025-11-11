@@ -8,6 +8,7 @@ import banner_1 from '/images/banner_1.webp';
 import wedding_4 from '/images/wedding_4.webp';
 import banner_3 from '/images/banner_3.webp';
 import banner_4 from '/images/banner_4.webp';
+import banner_8 from '/images/banner_8.jpeg';
 import banner_5 from '/images/banner_5.jpeg';
 import banner_7 from '/images/banner_7.jpeg';
 import banner_2 from '/images/banner_2.webp';
@@ -54,7 +55,7 @@ const Banner = () => {
                     className="w-full rounded-2xl h-full"
                 >
                     <SwiperSlide>
-                        <img src={banner_5} alt="1" loading='lazy' className="w-full h-full object-cover" />
+                        <img src={banner_8} alt="1" loading='lazy' className="w-full h-full object-cover" />
                     </SwiperSlide>
                     <SwiperSlide>
                         <img src={wedding_4} alt="2" loading='lazy' className="w-full h-full object-cover" />

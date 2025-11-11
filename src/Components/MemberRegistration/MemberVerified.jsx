@@ -31,8 +31,8 @@ const MemberVerified = () => {
                 <ul className=" space-y-1">
                     <li>১. মোহাম্মদ রাহেদ হোসেন মাহেদ (ফাউন্ডার, HMS) → <span className="font-semibold">+8801610371038</span></li>
                     <li>২. হাফিজুর রহমান হাফিজ (ফাউন্ডার এন্ড চেয়ারম্যন HMS ) → <span className="font-semibold">+8801925222525</span></li>
-                    <li>৩. অফিসিয়াল ডিরেক্ট কল সাপোর্ট (ডকুমেন্ট ও প্রস্তাব সংক্রান্ত ) → <span className="font-semibold">+8801342665285</span></li>
-                    <li>৩. অফিসিয়াল হোয়াটসঅ্যাপ সাপোর্ট (ডকুমেন্ট ও প্রস্তাব সংক্রান্ত) → <span className="font-semibold">+8801342665286</span></li>
+                    <li>৩. অফিসিয়াল ডিরেক্ট কল সাপোর্ট (ডকুমেন্ট ও প্রস্তাব সংক্রান্ত ) → <span className="font-semibold">+8801734874385</span></li>
+                    <li>৩. অফিসিয়াল হোয়াটসঅ্যাপ সাপোর্ট (ডকুমেন্ট ও প্রস্তাব সংক্রান্ত) → <span className="font-semibold">+8801734874385</span></li>
                 </ul>
 
                 <p className="">যোগাযোগ সময়: প্রতিদিন সকাল ০৯ টা থেকে রাত ০৯টা (বাংলাদেশ সময়)।</p>

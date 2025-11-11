@@ -449,8 +449,8 @@ const AboutHeavenGroup = () => {
                                 <ul className="list-disc list-inside text-gray-700">
                                     <li><a href="https://wa.me/8801748919251" target="_blank" className="text-blue-600 underline">+8801748919251</a> (কল, মেসেজ ও পেমেন্ট)</li>
                                     <li><a href="https://wa.me/8801610371037" target="_blank" className="text-blue-600 underline">+8801610371037</a> (শুধু কল)</li>
-                                    <li><a href="https://wa.me/8801342665285" target="_blank" className="text-blue-600 underline">+8801342665285</a> (পুরুষ প্রস্তাবের জন্য)</li>
-                                    <li><a href="https://wa.me/8801342665286" target="_blank" className="text-blue-600 underline">+8801342665286</a> (মহিলা প্রস্তাবের জন্য)</li>
+                                    <li><a href="https://wa.me/8801734874385" target="_blank" className="text-blue-600 underline">+8801734874385</a> (পুরুষ প্রস্তাবের জন্য)</li>
+                                    <li><a href="https://wa.me/8801734874385" target="_blank" className="text-blue-600 underline">+8801734874385</a> (মহিলা প্রস্তাবের জন্য)</li>
                                 </ul>
                             </div>
 

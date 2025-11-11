@@ -13,7 +13,7 @@ const Footer = () => {
 
     const whatsappNumbers = [
         '8801610371038',
-        '8801342665286'
+        '8801734874385'
     ];
 
     return (

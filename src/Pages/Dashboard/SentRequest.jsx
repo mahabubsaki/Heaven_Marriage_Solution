@@ -37,7 +37,7 @@ const SentRequest = () => {
 
     // contact 
     const handleClick = () => {
-        const phoneNumber = `8801342665286`; // Admin's number
+        const phoneNumber = `8801734874385`; // Admin's number
         const message = `
 ✅ বিয়ের প্রস্তাব গৃহীত হয়েছে!
 
